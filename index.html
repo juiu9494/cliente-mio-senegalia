@@ -119,6 +119,23 @@
             to { transform: scale(1); opacity: 1; }
         }
         
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes rotateIn {
+            from { transform: rotate(-180deg) scale(0.3); opacity: 0; }
+            to { transform: rotate(0) scale(1); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
         /* Header et Navigation */
         header {
             background: var(--nav-bg);
@@ -143,6 +160,11 @@
         .logo-container {
             display: flex;
             align-items: center;
+        }
+        
+        .logo {
+            height: 70px;
+            transition: all 0.5s ease;
         }
         
         header.scrolled .logo {
@@ -227,11 +249,13 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.5s ease-out 0.5s both;
         }
         
         .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
+            animation: fadeInUp 1.5s ease-out 1s both;
         }
         
         .cta-button {
@@ -245,7 +269,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            animation: pulse 2s infinite 1s;
+            animation: pulse 2s infinite 1s, fadeInUp 1.5s ease-out 1.5s both;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
@@ -321,6 +345,37 @@
         
         .about-image:hover img {
             transform: scale(1.02);
+        }
+        
+        /* Section Vidéo */
+        .video-section {
+            background-color: var(--dark);
+            padding: 3rem 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border: 12px solid #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+            transition: transform 2s ease-in-out;
+            animation: zoomIn 3s ease forwards;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.1) brightness(1.1) saturate(1.3);
+            animation: fadeIn 4s ease-in-out;
         }
         
         /* Section Menu */
@@ -796,36 +851,62 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-          .video-container {
-            margin-left: 250px;
-      position: relative;
-      width: 800px;
-      height: 450px;
-      overflow: hidden;
-      border: 12px solid #fff;
-      border-radius: 20px;
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-      transition: transform 2s ease-in-out;
-      animation: zoomIn 3s ease forwards;
-    }
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: contrast(1.1) brightness(1.1) saturate(1.3);
-      animation: fadeIn 4s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: scale(1.1); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(0.95); }
-      to { transform: scale(1); }
-    }
+        
+        /* Media Queries pour mobile */
+        @media (max-width: 767px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .about-text p {
+                text-align: left;
+            }
+            
+            .video-container {
+                border-width: 6px;
+            }
+            
+            .menu-categories {
+                gap: 0.3rem;
+            }
+            
+            .category-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .info-icon {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -839,7 +920,7 @@
     <!-- Header -->
     <header>
         <div class="logo-container">
-            <img src="logo senegalia.png" alt="Logo IN&OUT Senigallia" width="100px">
+            <img src="https://via.placeholder.com/100x70/d4af37/1a1a1a?text=IN%26OUT" alt="Logo IN&OUT Senigallia" class="logo">
         </div>
         <nav class="desktop-nav">
             <ul>
@@ -870,7 +951,6 @@
             <li><a href="#contact">Contatti</a></li>
         </ul>
     </div>
-    
 
     <!-- Section Hero -->
     <section class="hero" id="home">
@@ -896,12 +976,15 @@
         </div>
     </section>
 
-     <div class="video-container">
-    <video autoplay muted loop playsinline>
-      <source src="video.mp4" type="video/mp4">
-      Ton navigateur ne supporte pas la vidéo HTML5.
-    </video>
-  </div>
+    <!-- Section Vidéo -->
+    <section class="video-section">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="https://player.vimeo.com/external/469588414.sd.mp4?s=4a3b3e6e7e4b8b0b8b0b8b0b8b0b8b0b8b0b8b0b&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+                Il tuo browser non supporta il tag video.
+            </video>
+        </div>
+    </section>
 
     <!-- Section Menu -->
     <section class="menu" id="menu">
@@ -918,7 +1001,7 @@
             <!-- Pizze Rosse -->
             <div class="menu-item fade-in" data-category="pizze-rosse">
                 <div class="menu-item-image">
-                    <img src="https://thepizzasecret.com/wp-content/uploads/2023/05/20220211142754-margherita-9920.jpg" alt="Pizza Margherita">
+                    <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Pizza Margherita">
                 </div>
                 <div class="menu-item-info">
                     <div class="menu-item-title">
@@ -931,7 +1014,7 @@
             
             <div class="menu-item fade-in" data-category="pizze-rosse">
                 <div class="menu-item-image">
-                    <img src="https://tse2.mm.bing.net/th/id/OIP.VRXBAjFDWu_mIAG_CqTdtAHaEO?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Pizza Napoli">
+                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Pizza Napoli">
                 </div>
                 <div class="menu-item-info">
                     <div class="menu-item-title">
@@ -944,7 +1027,7 @@
             
             <div class="menu-item fade-in" data-category="pizze-rosse">
                 <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Pizza Capricciosa">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Pizza Capricciosa">
                 </div>
                 <div class="menu-item-info">
                     <div class="menu-item-title">
@@ -971,7 +1054,7 @@
             
             <div class="menu-item fade-in" data-category="pizze-bianche">
                 <div class="menu-item-image">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.fqcER29bURf_xCeK0xfkSQHaFQ?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Pizza Estiva">
+                    <img src="https://images.unsplash.com/photo-1627626775846-122c4c4840d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Pizza Estiva">
                 </div>
                 <div class="menu-item-info">
                     <div class="menu-item-title">
@@ -985,7 +1068,7 @@
             <!-- Antipasti -->
             <div class="menu-item fade-in" data-category="antipasti">
                 <div class="menu-item-image">
-                    <img src="https://www.thetops.fr/wp-content/uploads/2024/08/recette-salade-poulpe-corse.jpg" alt="Insalata di Mare">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Insalata di Mare">
                 </div>
                 <div class="menu-item-info">
                     <div class="menu-item-title">
@@ -998,7 +1081,7 @@
             
             <div class="menu-item fade-in" data-category="antipasti">
                 <div class="menu-item-image">
-                    <img src="https://th.bing.com/th/id/R.3734d98f26b1ebc13a824dce79fb0b74?rik=g8VVgC5%2bcFG2FQ&pid=ImgRaw&r=0" alt="Cozze Tarantina">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cozze Tarantina">
                 </div>
                 <div class="menu-item-info">
                     <div class="menu-item-title">
@@ -1130,7 +1213,7 @@
                     </div>
                     <div>
                         <h3>Orari di Apertura</h3>
-                        <p>Martedi - : 12:00 - 15:00, 19:00 - 23:00<br>Sabato - Domenica: 12:00 - 23:00</p>
+                        <p>Martedì - Venerdì: 12:00 - 15:00, 19:00 - 23:00<br>Sabato - Domenica: 12:00 - 23:00</p>
                     </div>
                 </div>
             </div>
