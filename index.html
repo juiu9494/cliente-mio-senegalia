@@ -190,16 +190,6 @@
             50% { transform: translateY(-10px); }
         }
         
-        @keyframes zoomIn {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -468px 0; }
-            100% { background-position: 468px 0; }
-        }
-        
         /* Header et Navigation */
         header {
             background: rgba(26, 26, 26, 0.95);
@@ -235,6 +225,8 @@
             transition: all 0.5s ease;
             filter: brightness(0) invert(1);
         }
+        
+
         
         nav ul {
             display: flex;
@@ -407,12 +399,10 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
-            filter: brightness(0.9);
         }
         
         .about-image:hover img {
             transform: scale(1.05);
-            filter: brightness(1);
         }
         
         /* Section Vidéo */
@@ -517,23 +507,6 @@
             background-position: center;
             position: relative;
             overflow: hidden;
-        }
-        
-        .menu-item-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
-            z-index: 1;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .menu-item:hover .menu-item-image::before {
-            opacity: 1;
         }
         
         .menu-item-info {
@@ -713,12 +686,10 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
-            filter: brightness(0.9);
         }
         
         .gallery-item:hover img {
             transform: scale(1.1);
-            filter: brightness(1);
         }
         
         /* Section Contact */
@@ -987,7 +958,6 @@
             
             .about-image {
                 width: 100%;
-                height: 400px;
             }
             
             .reservation-container {
@@ -996,14 +966,6 @@
             
             .contact-container {
                 grid-template-columns: 1fr;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            
-            .gallery-item {
-                height: 150px;
             }
         }
         
@@ -1041,24 +1003,18 @@
             
             .about-stats {
                 justify-content: center;
-                flex-wrap: wrap;
             }
             
             .menu-grid {
                 grid-template-columns: 1fr;
             }
             
-            .reservation-form {
-                padding: 25px 20px;
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .social-links {
-                justify-content: center;
+            .gallery-item {
+                height: 150px;
             }
         }
         
@@ -1077,25 +1033,7 @@
             }
             
             .reservation-form {
-                padding: 20px 15px;
-            }
-            
-            .menu-categories {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .category-btn {
-                width: 100%;
-                max-width: 250px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .gallery-item {
-                height: 120px;
+                padding: 30px 20px;
             }
         }
     </style>
@@ -1186,7 +1124,7 @@
                     </div>
                 </div>
                 <div class="about-image slide-in-right">
-                    <img src="logo senegalia.png" alt="Ristorante IN&OUT">
+                    <img src="logo senegalia.png" alt="">
                 </div>
             </div>
         </div>
@@ -1219,173 +1157,9 @@
                 <button class="category-btn" data-category="secondi">Secondi Piatti</button>
                 <button class="category-btn" data-category="contorni">Contorni</button>
             </div>
-            <div class="menu-grid">
-                <!-- Pizze Rosse -->
-                <div class="menu-item fade-in" data-category="pizze-rosse">
-                    <div class="menu-item-badge">Popolare</div>
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Margherita</h3>
-                            <span class="menu-item-price">€7,00</span>
-                        </div>
-                        <p class="menu-item-description">Pomodoro, mozzarella, basilico fresco</p>
-                    </div>
-                </div>
-                
-                <div class="menu-item fade-in" data-category="pizze-rosse">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Napoli</h3>
-                            <span class="menu-item-price">€9,00</span>
-                        </div>
-                        <p class="menu-item-description">Pomodoro, mozzarella, acciughe, olive, capperi</p>
-                    </div>
-                </div>
-                
-                <div class="menu-item fade-in" data-category="pizze-rosse">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Capricciosa</h3>
-                            <span class="menu-item-price">€10,00</span>
-                        </div>
-                        <p class="menu-item-description">Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive</p>
-                    </div>
-                </div>
-                
-                <!-- Pizze Bianche -->
-                <div class="menu-item fade-in" data-category="pizze-bianche">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Poppy</h3>
-                            <span class="menu-item-price">€6,00</span>
-                        </div>
-                        <p class="menu-item-description">Mozzarella, stracchino, rucola, scaglie di grana</p>
-                    </div>
-                </div>
-                
-                <div class="menu-item fade-in" data-category="pizze-bianche">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1627626775846-122c4c4840d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Estiva</h3>
-                            <span class="menu-item-price">€9,00</span>
-                        </div>
-                        <p class="menu-item-description">Mozzarella, zucchine, melanzane, peperoni grigliati</p>
-                    </div>
-                </div>
-                
-                <!-- Antipasti -->
-                <div class="menu-item fade-in" data-category="antipasti">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Insalata Mare</h3>
-                            <span class="menu-item-price">€10,00</span>
-                        </div>
-                        <p class="menu-item-description">Misto di frutti di mare freschi con limone e prezzemolo</p>
-                    </div>
-                </div>
-                
-                <div class="menu-item fade-in" data-category="antipasti">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Cozze Tarantina</h3>
-                            <span class="menu-item-price">€10,00</span>
-                        </div>
-                        <p class="menu-item-description">Cozze fresche in umido con pomodoro, aglio e prezzemolo</p>
-                    </div>
-                </div>
-                
-                <!-- Primi Piatti -->
-                <div class="menu-item fade-in" data-category="primi">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1154&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Tagliatelle al Ragu</h3>
-                            <span class="menu-item-price">€10,00</span>
-                        </div>
-                        <p class="menu-item-description">Tagliatelle fresche con ragù di carne tradizionale</p>
-                    </div>
-                </div>
-                
-                <div class="menu-item fade-in" data-category="primi">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Penne all'Arrabbiata</h3>
-                            <span class="menu-item-price">€7,00</span>
-                        </div>
-                        <p class="menu-item-description">Penne con salsa di pomodoro piccante, aglio e peperoncino</p>
-                    </div>
-                </div>
-                
-                <!-- Secondi Piatti -->
-                <div class="menu-item fade-in" data-category="secondi">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Fritto Calamari & Gamberi</h3>
-                            <span class="menu-item-price">€15,00</span>
-                        </div>
-                        <p class="menu-item-description">Calamari e gamberi fritti croccanti serviti con limone</p>
-                    </div>
-                </div>
-                
-                <div class="menu-item fade-in" data-category="secondi">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Spiedino di Gamberi & Calamari</h3>
-                            <span class="menu-item-price">€15,00</span>
-                        </div>
-                        <p class="menu-item-description">Spiedini di gamberi e calamari alla griglia con verdure</p>
-                    </div>
-                </div>
-                
-                <!-- Contorni -->
-                <div class="menu-item fade-in" data-category="contorni">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Patatine Fritte</h3>
-                            <span class="menu-item-price">€5,00</span>
-                        </div>
-                        <p class="menu-item-description">Patate fritte croccanti servite con sale marino</p>
-                    </div>
-                </div>
-                
-                <div class="menu-item fade-in" data-category="contorni">
-                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80');">
-                    </div>
-                    <div class="menu-item-info">
-                        <div class="menu-item-title">
-                            <h3 class="menu-item-name">Insalata Verde</h3>
-                            <span class="menu-item-price">€4,00</span>
-                        </div>
-                        <p class="menu-item-description">Misto di insalate fresche con pomodori e cetrioli</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+           
+             <h1  align="center"><img src="MENU.png" width="400px"></h1>
+            
     <!-- Section Réservation -->
     <section class="reservation section-padding" id="reservation">
         <div class="container">
@@ -1401,7 +1175,7 @@
                         </div>
                         <div class="info-details">
                             <h3>La Nostra Posizione</h3>
-                            <p>Via Istria, 1<br>60019 Senigallia (AN)</p>
+                            <p>Via Lungomare Italia, 123<br>60019 Senigallia (AN)</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1414,12 +1188,6 @@
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Email</h3>
-                            <p>Cotadamoraffaele@gmail.com</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1428,9 +1196,8 @@
                         </div>
                         <div class="info-details">
                             <h3>Orari di Apertura</h3>
-                            <p>Lunedì - Mercoledì: Chiuso</p>
-                            <p>Giovedì - Sabato: 19:00 - 23:00</p>
-                            <p>Domenica: 12:00 - 14:00 / 19:00 - 23:00</p>
+                            <p>lunedì - mercoledì: chiudere<br>Giovedì  - Sabato: 19:00 - 23:00</p>
+                            <p> Domenica 12:00 - 14:00 Pausa 19:00 23:00</p>
                         </div>
                     </div>
                 </div>
@@ -1484,35 +1251,7 @@
         </div>
     </section>
 
-    <!-- Section Galerie -->
-    <section class="gallery section-padding" id="gallery">
-        <div class="container">
-            <div class="section-title">
-                <h2>La Nostra Galleria</h2>
-                <p>Scopri l'atmosfera del nostro ristorante</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Interno del ristorante">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Piatto gourmet">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1081&q=80" alt="Pizza gourmet">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Terrazza">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Antipasti">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Cucina">
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Section Contact -->
     <section class="contact section-padding" id="contact">
@@ -1529,7 +1268,7 @@
                         </div>
                         <div class="info-details">
                             <h3>Indirizzo</h3>
-                            <p>Via Istria, 1<br>60019 Senigallia (AN)</p>
+                            <p>Via Istria, 1, Senigallia, Marche, Italia<br>60019 Senigallia (AN)</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1556,9 +1295,8 @@
                         </div>
                         <div class="info-details">
                             <h3>Orari</h3>
-                            <p>Lunedì - Mercoledì: Chiuso</p>
-                            <p>Giovedì - Sabato: 19:00 - 23:00</p>
-                            <p>Domenica: 12:00 - 14:00 / 19:00 - 23:00</p>
+                            <p>Il lunedì è chiuso</p>
+                            <p>Aperto dal martedì alla domenica dalle 12:00 alle 23:00</p>
                         </div>
                     </div>
                 </div>
@@ -1600,16 +1338,17 @@
                 <div class="footer-section">
                     <h3>Orari di Apertura</h3>
                     <ul class="footer-links">
-                        <li><a><i class="fas fa-times"></i> Lunedì - Mercoledì: Chiuso</a></li>
-                        <li><a><i class="fas fa-clock"></i> Giovedì - Sabato</a></li>
+                        <li><a><i class="fas fa-times"></i> Lunedì Martedì mercoledì : Chiuso</a></li>
+                        <li><a><i class="fas fa-clock"></i> Giovedì -Sabato</a></li>
                         <li><a>19:00 - 23:00</a></li>
                         <li><a><i class="fas fa-clock"></i> Domenica</a></li>
-                        <li><a>12:00 - 14:00 / 19:00 - 23:00</a></li>
+                        <li><a>12:00 - 14:00 pausa 19:00 - 23:00</a></li>
+                    
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Ristorante IN&OUT Senigallia. Iva: 02067180428 Tutti i diritti riservati.</p>
+                <p>&copy; 2023 Ristorante IN&OUT Senigallia. Iva : 02067180428 Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
@@ -1744,3 +1483,4 @@
     </script>
 </body>
 </html>
+
