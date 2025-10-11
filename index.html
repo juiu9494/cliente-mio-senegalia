@@ -190,6 +190,16 @@
             50% { transform: translateY(-10px); }
         }
         
+        @keyframes zoomIn {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -468px 0; }
+            100% { background-position: 468px 0; }
+        }
+        
         /* Header et Navigation */
         header {
             background: rgba(26, 26, 26, 0.95);
@@ -225,8 +235,6 @@
             transition: all 0.5s ease;
             filter: brightness(0) invert(1);
         }
-        
-
         
         nav ul {
             display: flex;
@@ -399,10 +407,12 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
+            filter: brightness(0.9);
         }
         
         .about-image:hover img {
             transform: scale(1.05);
+            filter: brightness(1);
         }
         
         /* Section Vidéo */
@@ -507,6 +517,23 @@
             background-position: center;
             position: relative;
             overflow: hidden;
+        }
+        
+        .menu-item-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .menu-item:hover .menu-item-image::before {
+            opacity: 1;
         }
         
         .menu-item-info {
@@ -686,10 +713,12 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
+            filter: brightness(0.9);
         }
         
         .gallery-item:hover img {
             transform: scale(1.1);
+            filter: brightness(1);
         }
         
         /* Section Contact */
@@ -958,6 +987,7 @@
             
             .about-image {
                 width: 100%;
+                height: 400px;
             }
             
             .reservation-container {
@@ -966,6 +996,14 @@
             
             .contact-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 150px;
             }
         }
         
@@ -1003,18 +1041,24 @@
             
             .about-stats {
                 justify-content: center;
+                flex-wrap: wrap;
             }
             
             .menu-grid {
                 grid-template-columns: 1fr;
             }
             
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            .reservation-form {
+                padding: 25px 20px;
             }
             
-            .gallery-item {
-                height: 150px;
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
             }
         }
         
@@ -1033,7 +1077,25 @@
             }
             
             .reservation-form {
-                padding: 30px 20px;
+                padding: 20px 15px;
+            }
+            
+            .menu-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-item {
+                height: 120px;
             }
         }
     </style>
@@ -1124,7 +1186,7 @@
                     </div>
                 </div>
                 <div class="about-image slide-in-right">
-                    <img src="logo senegalia.png" alt="">
+                    <img src="logo senegalia.png" alt="Ristorante IN&OUT">
                 </div>
             </div>
         </div>
@@ -1339,7 +1401,7 @@
                         </div>
                         <div class="info-details">
                             <h3>La Nostra Posizione</h3>
-                            <p>Via Lungomare Italia, 123<br>60019 Senigallia (AN)</p>
+                            <p>Via Istria, 1<br>60019 Senigallia (AN)</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1352,6 +1414,12 @@
                         </div>
                     </div>
                     <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Email</h3>
+                            <p>Cotadamoraffaele@gmail.com</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1360,8 +1428,9 @@
                         </div>
                         <div class="info-details">
                             <h3>Orari di Apertura</h3>
-                            <p>lunedì - mercoledì: chiudere<br>Giovedì  - Sabato: 19:00 - 23:00</p>
-                            <p> Domenica 12:00 - 14:00 Pausa 19:00 23:00</p>
+                            <p>Lunedì - Mercoledì: Chiuso</p>
+                            <p>Giovedì - Sabato: 19:00 - 23:00</p>
+                            <p>Domenica: 12:00 - 14:00 / 19:00 - 23:00</p>
                         </div>
                     </div>
                 </div>
@@ -1415,7 +1484,35 @@
         </div>
     </section>
 
-
+    <!-- Section Galerie -->
+    <section class="gallery section-padding" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>La Nostra Galleria</h2>
+                <p>Scopri l'atmosfera del nostro ristorante</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Interno del ristorante">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Piatto gourmet">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1081&q=80" alt="Pizza gourmet">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Terrazza">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Antipasti">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Cucina">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Section Contact -->
     <section class="contact section-padding" id="contact">
@@ -1432,7 +1529,7 @@
                         </div>
                         <div class="info-details">
                             <h3>Indirizzo</h3>
-                            <p>Via Istria, 1, Senigallia, Marche, Italia<br>60019 Senigallia (AN)</p>
+                            <p>Via Istria, 1<br>60019 Senigallia (AN)</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1459,8 +1556,9 @@
                         </div>
                         <div class="info-details">
                             <h3>Orari</h3>
-                            <p>Il lunedì è chiuso</p>
-                            <p>Aperto dal martedì alla domenica dalle 12:00 alle 23:00</p>
+                            <p>Lunedì - Mercoledì: Chiuso</p>
+                            <p>Giovedì - Sabato: 19:00 - 23:00</p>
+                            <p>Domenica: 12:00 - 14:00 / 19:00 - 23:00</p>
                         </div>
                     </div>
                 </div>
@@ -1502,17 +1600,16 @@
                 <div class="footer-section">
                     <h3>Orari di Apertura</h3>
                     <ul class="footer-links">
-                        <li><a><i class="fas fa-times"></i> Lunedì Martedì mercoledì : Chiuso</a></li>
-                        <li><a><i class="fas fa-clock"></i> Giovedì -Sabato</a></li>
+                        <li><a><i class="fas fa-times"></i> Lunedì - Mercoledì: Chiuso</a></li>
+                        <li><a><i class="fas fa-clock"></i> Giovedì - Sabato</a></li>
                         <li><a>19:00 - 23:00</a></li>
                         <li><a><i class="fas fa-clock"></i> Domenica</a></li>
-                        <li><a>12:00 - 14:00 pausa 19:00 - 23:00</a></li>
-                    
+                        <li><a>12:00 - 14:00 / 19:00 - 23:00</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Ristorante IN&OUT Senigallia. Iva : 02067180428 Tutti i diritti riservati.</p>
+                <p>&copy; 2023 Ristorante IN&OUT Senigallia. Iva: 02067180428 Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
@@ -1647,6 +1744,3 @@
     </script>
 </body>
 </html>
-
-
-
