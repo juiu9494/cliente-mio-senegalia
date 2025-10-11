@@ -215,9 +215,10 @@
         }
         
         .logo-container {
-            width: 200px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            flex: 1;
         }
         
         .logo {
@@ -225,8 +226,6 @@
             transition: all 0.5s ease;
             filter: brightness(0) invert(1);
         }
-        
-
         
         nav ul {
             display: flex;
@@ -535,6 +534,19 @@
         .menu-item-description {
             color: var(--gray);
             margin-bottom: 15px;
+        }
+        
+        .menu-image-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        
+        .menu-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
         
         /* Section Réservation */
@@ -967,6 +979,27 @@
             .contact-container {
                 grid-template-columns: 1fr;
             }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .logo-container {
+                order: 1;
+                flex: 0 0 100%;
+                margin-bottom: 10px;
+            }
+            
+            nav {
+                order: 2;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .nav-cta {
+                order: 3;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1016,6 +1049,19 @@
             .gallery-item {
                 height: 150px;
             }
+            
+            .header-container {
+                justify-content: space-between;
+            }
+            
+            .logo-container {
+                flex: 0;
+                justify-content: flex-start;
+            }
+            
+            .logo {
+                width: 80px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1034,6 +1080,16 @@
             
             .reservation-form {
                 padding: 30px 20px;
+            }
+            
+            .menu-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 100%;
+                max-width: 250px;
             }
         }
     </style>
@@ -1157,9 +1213,14 @@
                 <button class="category-btn" data-category="secondi">Secondi Piatti</button>
                 <button class="category-btn" data-category="contorni">Contorni</button>
             </div>
-           
-             <h1  align="center"><img src="MENU.png" width="300px"></h1>
             
+            <div class="menu-image-container">
+                <img src="MENU.png" alt="Menu Ristorante IN&OUT" class="menu-image">
+            </div>
+            
+        </div>
+    </section>
+
     <!-- Section Réservation -->
     <section class="reservation section-padding" id="reservation">
         <div class="container">
@@ -1188,15 +1249,12 @@
                         </div>
                     </div>
                     <div class="info-item">
-                        </div>
-                    </div>
-                    <div class="info-item">
                         <div class="info-icon">
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="info-details">
                             <h3>Orari di Apertura</h3>
-                            <p>lunedì - mercoledì: chiudere<br>Giovedì  - Sabato: 19:00 - 23:00</p>
+                            <p>lunedì - mercoledì: chiuso<br>Giovedì - Sabato: 19:00 - 23:00</p>
                             <p> Domenica 12:00 - 14:00 Pausa 19:00 23:00</p>
                         </div>
                     </div>
@@ -1250,8 +1308,6 @@
             </div>
         </div>
     </section>
-
-
 
     <!-- Section Contact -->
     <section class="contact section-padding" id="contact">
@@ -1483,5 +1539,3 @@
     </script>
 </body>
 </html>
-
-
