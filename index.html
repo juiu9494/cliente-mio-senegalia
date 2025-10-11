@@ -5,22 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ristorante IN&OUT - Senigallia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* Variables et styles de base */
         :root {
-            --primary: #d4af37;
-            --secondary: #8b0000;
+            --primary: #c62828;
+            --primary-light: #ff5f52;
+            --primary-dark: #8e0000;
+            --secondary: #ffd54f;
+            --secondary-light: #ffff81;
+            --secondary-dark: #c8a415;
+            --accent: #2e7d32;
+            --accent-light: #60ad5e;
             --dark: #1a1a1a;
             --light: #f5f5f5;
-            --accent: #2e8b57;
-            --nav-bg: rgba(26, 26, 26, 0.95);
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --gray: #757575;
+            --gray-light: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+            --radius: 12px;
+            --transition: all 0.3s ease;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         html {
@@ -29,8 +42,80 @@
         
         body {
             background-color: var(--light);
-            color: var(--dark);
+            color: var(--text-dark);
             overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(198, 40, 40, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(198, 40, 40, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
         }
         
         /* Écran de chargement */
@@ -56,9 +141,10 @@
         
         .loader-logo {
             font-size: 3rem;
-            color: var(--primary);
+            color: var(--secondary);
             margin-bottom: 2rem;
             text-align: center;
+            font-family: 'Playfair Display', serif;
             animation: pulse 2s infinite;
         }
         
@@ -74,7 +160,7 @@
             height: 60px;
             border: 5px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top-color: var(--primary);
+            border-top-color: var(--secondary);
             animation: spin 1s ease-in-out infinite;
         }
         
@@ -104,72 +190,43 @@
             50% { transform: translateY(-10px); }
         }
         
-        @keyframes slideInLeft {
-            from { transform: translateX(-100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideInRight {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes zoomIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        
-        @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.05); }
-            70% { transform: scale(0.9); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        @keyframes rotateIn {
-            from { transform: rotate(-180deg) scale(0.3); opacity: 0; }
-            to { transform: rotate(0) scale(1); opacity: 1; }
-        }
-        
-        @keyframes fadeInUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
         /* Header et Navigation */
         header {
-            background: var(--nav-bg);
+            background: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 1rem 0;
             transition: all 0.5s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         header.scrolled {
-            padding: 0.7rem 5%;
+            padding: 0.7rem 0;
             background: rgba(26, 26, 26, 0.98);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
         
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
         .logo-container {
+            width: 200px;
             display: flex;
             align-items: center;
         }
         
         .logo {
-            height: 70px;
+            width: 100px;
             transition: all 0.5s ease;
+            filter: brightness(0) invert(1);
         }
         
-        header.scrolled .logo {
-            height: 60px;
-        }
+
         
         nav ul {
             display: flex;
@@ -184,15 +241,15 @@
         nav a {
             color: var(--light);
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: var(--transition);
             position: relative;
             font-size: 0.9rem;
             padding: 0.5rem 0;
         }
         
         nav a:hover {
-            color: var(--primary);
+            color: var(--secondary);
         }
         
         nav a::after {
@@ -202,12 +259,29 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
+            background-color: var(--secondary);
+            transition: var(--transition);
         }
         
         nav a:hover::after {
             width: 100%;
+        }
+        
+        .nav-cta {
+            background-color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-left: 2rem;
+            transition: var(--transition);
+        }
+        
+        .nav-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .nav-cta a::after {
+            display: none;
         }
         
         .mobile-menu-btn {
@@ -233,9 +307,10 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: var(--light);
         }
         
@@ -246,111 +321,94 @@
         }
         
         .hero-content h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1.5s ease-out 0.5s both;
+            animation: fadeIn 1.5s ease-out 0.5s both;
         }
         
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 2rem;
-            animation: fadeInUp 1.5s ease-out 1s both;
+            animation: fadeIn 1.5s ease-out 1s both;
         }
         
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--primary);
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite 1s, fadeInUp 1.5s ease-out 1.5s both;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeIn 1.5s ease-out 1.5s both;
         }
         
-        .cta-button:hover {
-            background: var(--light);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Sections générales */
-        section {
-            padding: 3rem 5%;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-            color: var(--secondary);
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: width 0.5s ease;
-        }
-        
-        .section-title:hover::after {
-            width: 120px;
+        .hero-btns .btn {
+            margin: 0 10px;
         }
         
         /* Section À propos */
         .about {
-            background-color: var(--light);
+            background-color: white;
         }
         
         .about-content {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 2rem;
+            gap: 50px;
         }
         
         .about-text {
-            width: 100%;
+            flex: 1;
         }
         
         .about-text p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            text-align: justify;
+            margin-bottom: 20px;
+        }
+        
+        .about-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+        
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--text-dark);
         }
         
         .about-image {
-            width: 100%;
+            flex: 1;
+            height: 500px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
             position: relative;
-            animation: float 6s infinite;
         }
         
         .about-image img {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.5s ease;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
         }
         
         .about-image:hover img {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
         
         /* Section Vidéo */
         .video-section {
             background-color: var(--dark);
-            padding: 3rem 5%;
+            padding: 80px 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -363,115 +421,120 @@
             height: auto;
             aspect-ratio: 16/9;
             overflow: hidden;
-            border: 12px solid #fff;
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-            transition: transform 2s ease-in-out;
-            animation: zoomIn 3s ease forwards;
+            border-radius: var(--radius);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s ease;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        .video-container:hover {
+            transform: scale(1.02);
         }
 
         video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: contrast(1.1) brightness(1.1) saturate(1.3);
-            animation: fadeIn 4s ease-in-out;
+            filter: contrast(1.1) brightness(1.1);
         }
         
         /* Section Menu */
         .menu {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 0, 0, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(198, 40, 40, 0.05) 0%, rgba(255, 213, 79, 0.05) 100%);
         }
         
         .menu-categories {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 2rem;
-            gap: 0.5rem;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
         }
         
         .category-btn {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            color: var(--dark);
-            border: 2px solid var(--secondary);
-            border-radius: 50px;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--text-dark);
+            padding: 8px 20px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
+            transition: var(--transition);
+            font-weight: 500;
         }
         
         .category-btn.active, .category-btn:hover {
-            background: var(--secondary);
-            color: var(--light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary);
+            color: white;
         }
         
         .menu-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
         }
         
         .menu-item {
-            background: var(--light);
-            border-radius: 10px;
+            background-color: white;
+            border-radius: var(--radius);
             overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            animation: zoomIn 0.5s ease-out;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
         }
         
         .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .menu-item-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
         }
         
         .menu-item-image {
-            height: 180px;
+            height: 200px;
+            background-color: var(--primary);
+            background-size: cover;
+            background-position: center;
+            position: relative;
             overflow: hidden;
         }
         
-        .menu-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .menu-item:hover .menu-item-image img {
-            transform: scale(1.05);
-        }
-        
         .menu-item-info {
-            padding: 1.2rem;
+            padding: 25px;
         }
         
         .menu-item-title {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
         }
         
         .menu-item-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            flex: 1;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
         
         .menu-item-price {
-            color: var(--secondary);
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-left: 1rem;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
         }
         
         .menu-item-description {
-            color: #666;
-            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 15px;
         }
         
         /* Section Réservation */
@@ -481,24 +544,22 @@
         }
         
         .reservation-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
         }
         
         .reservation-info {
-            width: 100%;
-        }
-        
-        .reservation-form {
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
         
         .info-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease;
+            align-items: flex-start;
+            gap: 15px;
+            transition: var(--transition);
         }
         
         .info-item:hover {
@@ -506,88 +567,114 @@
         }
         
         .info-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--primary);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            background: var(--primary);
+            color: var(--light);
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.1rem;
-            color: var(--dark);
-            transition: all 0.3s ease;
+            align-items: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transition: var(--transition);
         }
         
         .info-item:hover .info-icon {
-            background: var(--accent);
+            background: var(--secondary);
+            color: var(--dark);
             transform: scale(1.1);
         }
         
+        .info-details h3 {
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        .reservation-form {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 20px;
         }
         
-        .form-group input, .form-group select, .form-group textarea {
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
             width: 100%;
-            padding: 0.9rem;
-            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            color: var(--light);
+            border-radius: 8px;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
         }
         
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--primary);
+        .form-control:focus {
+            border-color: var(--secondary);
             outline: none;
-            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 0 3px rgba(255, 213, 79, 0.3);
+            background: rgba(255, 255, 255, 0.15);
         }
         
-        .form-group textarea {
-            height: 120px;
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
             resize: vertical;
         }
         
         .submit-btn {
-            padding: 1rem 2rem;
-            background: var(--primary);
+            width: 100%;
+            padding: 15px;
+            background: var(--secondary);
             color: var(--dark);
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-            width: 100%;
+            transition: var(--transition);
+            font-size: 1rem;
         }
         
         .submit-btn:hover {
-            background: var(--accent);
+            background: var(--secondary-light);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         /* Section Galerie */
         .gallery {
-            background-color: var(--light);
+            background-color: white;
         }
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 0.8rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
         }
         
         .gallery-item {
-            height: 150px;
+            height: 200px;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: var(--radius);
             position: relative;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
         
         .gallery-item:hover {
@@ -598,7 +685,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: var(--transition);
         }
         
         .gallery-item:hover img {
@@ -607,25 +694,27 @@
         
         /* Section Contact */
         .contact {
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.1) 0%, rgba(46, 139, 87, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(198, 40, 40, 0.05) 0%, rgba(46, 125, 50, 0.05) 100%);
         }
         
         .contact-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
         }
         
         .contact-info {
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
         
         .contact-map {
             width: 100%;
-            border-radius: 10px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
         
         .contact-map:hover {
@@ -634,69 +723,186 @@
         
         .contact-map iframe {
             width: 100%;
-            height: 300px;
+            height: 100%;
+            min-height: 400px;
             border: none;
         }
         
         /* Footer */
         footer {
-            background: var(--dark);
+            background-color: var(--dark);
             color: var(--light);
-            padding: 2rem 5%;
+            padding: 70px 0 0;
         }
         
         .footer-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
         }
         
         .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
         }
         
         .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
         }
         
         .footer-links a {
-            color: var(--light);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color 0.3s ease;
-            position: relative;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
         }
         
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--secondary);
+            padding-left: 5px;
         }
         
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .footer-links a:hover::after {
-            width: 100%;
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 0.9rem;
         }
         
         .copyright {
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            margin-top: 1.5rem;
-            color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Menu mobile */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--dark);
+            z-index: 999;
+            transition: right 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+            margin-top: 3rem;
+        }
+        
+        .mobile-nav li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            display: block;
+            padding: 0.5rem 0;
+        }
+        
+        .mobile-nav a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .close-menu {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .close-menu:hover {
+            transform: rotate(90deg);
         }
         
         /* Animations au défilement */
@@ -733,178 +939,101 @@
             transform: translateX(0);
         }
         
-        /* Menu mobile */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            height: 100vh;
-            background: var(--dark);
-            z-index: 999;
-            transition: right 0.5s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            padding: 2rem;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .mobile-nav.active {
-            right: 0;
-        }
-        
-        .mobile-nav ul {
-            list-style: none;
-            margin-top: 3rem;
-        }
-        
-        .mobile-nav li {
-            margin-bottom: 1.5rem;
-        }
-        
-        .mobile-nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-            display: block;
-            padding: 0.5rem 0;
-        }
-        
-        .mobile-nav a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-        
-        .close-menu {
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.5rem;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .close-menu:hover {
-            transform: rotate(90deg);
-        }
-        
         /* Media Queries pour desktop */
         @media (min-width: 768px) {
             .hero-content h1 {
-                font-size: 3.5rem;
+                font-size: 4rem;
             }
             
             .hero-content p {
                 font-size: 1.5rem;
             }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .about-content {
-                flex-direction: row;
-                align-items: center;
-                gap: 3rem;
-            }
-            
-            .about-text {
-                flex: 1;
-            }
-            
-            .about-image {
-                flex: 1;
-            }
-            
-            .menu-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .reservation-container {
-                flex-direction: row;
-            }
-            
-            .contact-container {
-                flex-direction: row;
-            }
-            
-            .footer-content {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .gallery-item {
-                height: 200px;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .menu-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
         }
         
         /* Media Queries pour mobile */
-        @media (max-width: 767px) {
-            .desktop-nav {
-                display: none;
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+            }
+            
+            .reservation-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 250px;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
             
-            .hero-content h1 {
-                font-size: 2rem;
+            nav {
+                display: none;
             }
             
-            .hero-content p {
-                font-size: 1rem;
+            .about-stats {
+                justify-content: center;
             }
             
-            .section-title {
-                font-size: 1.8rem;
+            .menu-grid {
+                grid-template-columns: 1fr;
             }
             
-            .about-text p {
-                text-align: left;
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
             
-            .video-container {
-                border-width: 6px;
+            .gallery-item {
+                height: 150px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-padding {
+                padding: 60px 0;
             }
             
-            .menu-categories {
-                gap: 0.3rem;
+            .hero {
+                padding: 100px 0;
             }
             
-            .category-btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-            
-            .info-item {
+            .about-stats {
                 flex-direction: column;
-                text-align: center;
+                gap: 20px;
             }
             
-            .info-icon {
-                margin-right: 0;
-                margin-bottom: 0.5rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
+            .reservation-form {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -919,22 +1048,25 @@
 
     <!-- Header -->
     <header>
-        <div class="logo-container">
-            <img src="logo senegalia.png" alt="Logo senegalia.png" class="logo">
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="logo senegalia.png" alt="Ristorante IN&OUT" class="logo">
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Chi Siamo</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#reservation">Prenotazione</a></li>
+                    <li><a href="#gallery">Galleria</a></li>
+                    <li><a href="#contact">Contatti</a></li>
+                    <li class="nav-cta"><a href="#reservation">Prenota Ora</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <nav class="desktop-nav">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Chi Siamo</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#reservation">Prenotazione</a></li>
-                <li><a href="#gallery">Galleria</a></li>
-                <li><a href="#contact">Contatti</a></li>
-            </ul>
-        </nav>
-        <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
     </header>
 
     <!-- Navigation mobile -->
@@ -954,407 +1086,441 @@
 
     <!-- Section Hero -->
     <section class="hero" id="home">
-        <div class="hero-content">
+        <div class="container hero-content">
             <h1>Ristorante IN&OUT Senigallia</h1>
             <p>Cucina autentica italiana a Senigallia</p>
-            <a href="#reservation" class="cta-button">Prenota un Tavolo</a>
+            <div class="hero-btns">
+                <a href="#menu" class="btn">Scopri il Menu</a>
+                <a href="#reservation" class="btn btn-secondary">Prenota un Tavolo</a>
+            </div>
         </div>
     </section>
 
     <!-- Section À propos -->
-    <section class="about" id="about">
-        <h2 class="section-title">La Nostra Storia</h2>
-        <div class="about-content">
-            <div class="about-text slide-in-left">
-                <p>Fondato nel 1985, il Ristorante IN&OUT è un gioiello culinario nel cuore di Senigallia. La nostra passione per la cucina tradizionale italiana si unisce all'eleganza della costa adriatica per offrire un'esperienza gastronomica indimenticabile.</p>
-                <p>Il nostro chef, Giovanni Moretti, con oltre 30 anni di esperienza, seleziona personalmente gli ingredienti più freschi dai mercati locali per creare piatti che raccontano la storia e la cultura della nostra terra.</p>
-                <p>Il nostro ristorante vanta una terrazza panoramica con vista sul mare, perfetta per cene romantiche e occasioni speciali. La nostra cantina offre una selezione curata dei migliori vini delle Marche e di tutta Italia.</p>
+    <section class="about section-padding" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>La Nostra Storia</h2>
+                <p>Scopri la tradizione e la passione che ci distinguono</p>
             </div>
-            <div class="about-image slide-in-right">
-                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Interno del ristorante">
+            <div class="about-content">
+                <div class="about-text slide-in-left">
+                    <p>Fondato nel 1985, il Ristorante IN&OUT è un gioiello culinario nel cuore di Senigallia. La nostra passione per la cucina tradizionale italiana si unisce all'eleganza della costa adriatica per offrire un'esperienza gastronomica indimenticabile.</p>
+                    <p>Il nostro chef, Giovanni Moretti, con oltre 30 anni di esperienza, seleziona personalmente gli ingredienti più freschi dai mercati locali per creare piatti che raccontano la storia e la cultura della nostra terra.</p>
+                    <p>Il nostro ristorante vanta una terrazza panoramica con vista sul mare, perfetta per cene romantiche e occasioni speciali. La nostra cantina offre una selezione curata dei migliori vini delle Marche e di tutta Italia.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-text">Anni di Esperienza</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-text">Piatti nel Menu</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">10.000+</span>
+                            <span class="stat-text">Clienti Soddisfatti</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image slide-in-right">
+                    <img src="logo senegalia.png" alt="">
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Section Vidéo -->
     <section class="video-section">
-        <div class="video-container">
-            <video autoplay muted loop playsinline>
-                <source src="https://player.vimeo.com/external/469588414.sd.mp4?s=4a3b3e6e7e4b8b0b8b0b8b0b8b0b8b0b8b0b8b0b&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
-                Il tuo browser non supporta il tag video.
-            </video>
+        <div class="container">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="video.mp4" type="video/mp4">
+                    Il tuo browser non supporta il tag video.
+                </video>
+            </div>
         </div>
     </section>
 
     <!-- Section Menu -->
-    <section class="menu" id="menu">
-        <h2 class="section-title">Il Nostro Menu</h2>
-        <div class="menu-categories">
-            <button class="category-btn active" data-category="pizze-rosse">Pizze Rosse</button>
-            <button class="category-btn" data-category="pizze-bianche">Pizze Bianche</button>
-            <button class="category-btn" data-category="antipasti">Antipasti</button>
-            <button class="category-btn" data-category="primi">Primi Piatti</button>
-            <button class="category-btn" data-category="secondi">Secondi Piatti</button>
-            <button class="category-btn" data-category="contorni">Contorni</button>
-        </div>
-        <div class="menu-grid">
-            <!-- Pizze Rosse -->
-            <div class="menu-item fade-in" data-category="pizze-rosse">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Pizza Margherita">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Margherita</h3>
-                        <span class="menu-item-price">€7,00</span>
-                    </div>
-                    <p class="menu-item-description">Pomodoro, mozzarella, basilico fresco</p>
-                </div>
+    <section class="menu section-padding" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Il Nostro Menu</h2>
+                <p>Scopri la nostra selezione di piatti tradizionali</p>
             </div>
-            
-            <div class="menu-item fade-in" data-category="pizze-rosse">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Pizza Napoli">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Napoli</h3>
-                        <span class="menu-item-price">€9,00</span>
-                    </div>
-                    <p class="menu-item-description">Pomodoro, mozzarella, acciughe, olive, capperi</p>
-                </div>
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="pizze-rosse">Pizze Rosse</button>
+                <button class="category-btn" data-category="pizze-bianche">Pizze Bianche</button>
+                <button class="category-btn" data-category="antipasti">Antipasti</button>
+                <button class="category-btn" data-category="primi">Primi Piatti</button>
+                <button class="category-btn" data-category="secondi">Secondi Piatti</button>
+                <button class="category-btn" data-category="contorni">Contorni</button>
             </div>
-            
-            <div class="menu-item fade-in" data-category="pizze-rosse">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Pizza Capricciosa">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Capricciosa</h3>
-                        <span class="menu-item-price">€10,00</span>
+            <div class="menu-grid">
+                <!-- Pizze Rosse -->
+                <div class="menu-item fade-in" data-category="pizze-rosse">
+                    <div class="menu-item-badge">Popolare</div>
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
                     </div>
-                    <p class="menu-item-description">Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive</p>
-                </div>
-            </div>
-            
-            <!-- Pizze Bianche -->
-            <div class="menu-item fade-in" data-category="pizze-bianche">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80" alt="Pizza Poppy">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Poppy</h3>
-                        <span class="menu-item-price">€6,00</span>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Margherita</h3>
+                            <span class="menu-item-price">€7,00</span>
+                        </div>
+                        <p class="menu-item-description">Pomodoro, mozzarella, basilico fresco</p>
                     </div>
-                    <p class="menu-item-description">Mozzarella, stracchino, rucola, scaglie di grana</p>
                 </div>
-            </div>
-            
-            <div class="menu-item fade-in" data-category="pizze-bianche">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1627626775846-122c4c4840d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Pizza Estiva">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Estiva</h3>
-                        <span class="menu-item-price">€9,00</span>
+                
+                <div class="menu-item fade-in" data-category="pizze-rosse">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
                     </div>
-                    <p class="menu-item-description">Mozzarella, zucchine, melanzane, peperoni grigliati</p>
-                </div>
-            </div>
-            
-            <!-- Antipasti -->
-            <div class="menu-item fade-in" data-category="antipasti">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Insalata di Mare">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Insalata Mare</h3>
-                        <span class="menu-item-price">€10,00</span>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Napoli</h3>
+                            <span class="menu-item-price">€9,00</span>
+                        </div>
+                        <p class="menu-item-description">Pomodoro, mozzarella, acciughe, olive, capperi</p>
                     </div>
-                    <p class="menu-item-description">Misto di frutti di mare freschi con limone e prezzemolo</p>
                 </div>
-            </div>
-            
-            <div class="menu-item fade-in" data-category="antipasti">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cozze Tarantina">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Cozze Tarantina</h3>
-                        <span class="menu-item-price">€10,00</span>
+                
+                <div class="menu-item fade-in" data-category="pizze-rosse">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80');">
                     </div>
-                    <p class="menu-item-description">Cozze fresche in umido con pomodoro, aglio e prezzemolo</p>
-                </div>
-            </div>
-            
-            <!-- Primi Piatti -->
-            <div class="menu-item fade-in" data-category="primi">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1154&q=80" alt="Tagliatelle al Ragu">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Tagliatelle al Ragu</h3>
-                        <span class="menu-item-price">€10,00</span>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Capricciosa</h3>
+                            <span class="menu-item-price">€10,00</span>
+                        </div>
+                        <p class="menu-item-description">Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive</p>
                     </div>
-                    <p class="menu-item-description">Tagliatelle fresche con ragù di carne tradizionale</p>
                 </div>
-            </div>
-            
-            <div class="menu-item fade-in" data-category="primi">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Penne all'Arrabbiata">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Penne all'Arrabbiata</h3>
-                        <span class="menu-item-price">€7,00</span>
+                
+                <!-- Pizze Bianche -->
+                <div class="menu-item fade-in" data-category="pizze-bianche">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80');">
                     </div>
-                    <p class="menu-item-description">Penne con salsa di pomodoro piccante, aglio e peperoncino</p>
-                </div>
-            </div>
-            
-            <!-- Secondi Piatti -->
-            <div class="menu-item fade-in" data-category="secondi">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Fritto di Calamari e Gamberi">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Fritto Calamari & Gamberi</h3>
-                        <span class="menu-item-price">€15,00</span>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Poppy</h3>
+                            <span class="menu-item-price">€6,00</span>
+                        </div>
+                        <p class="menu-item-description">Mozzarella, stracchino, rucola, scaglie di grana</p>
                     </div>
-                    <p class="menu-item-description">Calamari e gamberi fritti croccanti serviti con limone</p>
                 </div>
-            </div>
-            
-            <div class="menu-item fade-in" data-category="secondi">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Spiedino di Gamberi e Calamari">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Spiedino di Gamberi & Calamari</h3>
-                        <span class="menu-item-price">€15,00</span>
+                
+                <div class="menu-item fade-in" data-category="pizze-bianche">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1627626775846-122c4c4840d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
                     </div>
-                    <p class="menu-item-description">Spiedini di gamberi e calamari alla griglia con verdure</p>
-                </div>
-            </div>
-            
-            <!-- Contorni -->
-            <div class="menu-item fade-in" data-category="contorni">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Patatine Fritte">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Patatine Fritte</h3>
-                        <span class="menu-item-price">€5,00</span>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Estiva</h3>
+                            <span class="menu-item-price">€9,00</span>
+                        </div>
+                        <p class="menu-item-description">Mozzarella, zucchine, melanzane, peperoni grigliati</p>
                     </div>
-                    <p class="menu-item-description">Patate fritte croccanti servite con sale marino</p>
                 </div>
-            </div>
-            
-            <div class="menu-item fade-in" data-category="contorni">
-                <div class="menu-item-image">
-                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80" alt="Insalata Verde">
-                </div>
-                <div class="menu-item-info">
-                    <div class="menu-item-title">
-                        <h3 class="menu-item-name">Insalata Verde</h3>
-                        <span class="menu-item-price">€4,00</span>
+                
+                <!-- Antipasti -->
+                <div class="menu-item fade-in" data-category="antipasti">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80');">
                     </div>
-                    <p class="menu-item-description">Misto di insalate fresche con pomodori e cetrioli</p>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Insalata Mare</h3>
+                            <span class="menu-item-price">€10,00</span>
+                        </div>
+                        <p class="menu-item-description">Misto di frutti di mare freschi con limone e prezzemolo</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item fade-in" data-category="antipasti">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Cozze Tarantina</h3>
+                            <span class="menu-item-price">€10,00</span>
+                        </div>
+                        <p class="menu-item-description">Cozze fresche in umido con pomodoro, aglio e prezzemolo</p>
+                    </div>
+                </div>
+                
+                <!-- Primi Piatti -->
+                <div class="menu-item fade-in" data-category="primi">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1154&q=80');">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Tagliatelle al Ragu</h3>
+                            <span class="menu-item-price">€10,00</span>
+                        </div>
+                        <p class="menu-item-description">Tagliatelle fresche con ragù di carne tradizionale</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item fade-in" data-category="primi">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80');">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Penne all'Arrabbiata</h3>
+                            <span class="menu-item-price">€7,00</span>
+                        </div>
+                        <p class="menu-item-description">Penne con salsa di pomodoro piccante, aglio e peperoncino</p>
+                    </div>
+                </div>
+                
+                <!-- Secondi Piatti -->
+                <div class="menu-item fade-in" data-category="secondi">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Fritto Calamari & Gamberi</h3>
+                            <span class="menu-item-price">€15,00</span>
+                        </div>
+                        <p class="menu-item-description">Calamari e gamberi fritti croccanti serviti con limone</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item fade-in" data-category="secondi">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Spiedino di Gamberi & Calamari</h3>
+                            <span class="menu-item-price">€15,00</span>
+                        </div>
+                        <p class="menu-item-description">Spiedini di gamberi e calamari alla griglia con verdure</p>
+                    </div>
+                </div>
+                
+                <!-- Contorni -->
+                <div class="menu-item fade-in" data-category="contorni">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Patatine Fritte</h3>
+                            <span class="menu-item-price">€5,00</span>
+                        </div>
+                        <p class="menu-item-description">Patate fritte croccanti servite con sale marino</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item fade-in" data-category="contorni">
+                    <div class="menu-item-image" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80');">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-title">
+                            <h3 class="menu-item-name">Insalata Verde</h3>
+                            <span class="menu-item-price">€4,00</span>
+                        </div>
+                        <p class="menu-item-description">Misto di insalate fresche con pomodori e cetrioli</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Section Réservation -->
-    <section class="reservation" id="reservation">
-        <h2 class="section-title">Prenota un Tavolo</h2>
-        <div class="reservation-container">
-            <div class="reservation-info">
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div>
-                        <h3>La Nostra Posizione</h3>
-                        <p>Via Lungomare Italia, 123<br>60019 Senigallia (AN)</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div>
-                        <h3>Telefono</h3>
-                        <p>+39 071 123 4567</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                        <h3>Email</h3>
-                        <p>info@inoutsenigallia.it</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div>
-                        <h3>Orari di Apertura</h3>
-                        <p>Martedì - Venerdì: 12:00 - 15:00, 19:00 - 23:00<br>Sabato - Domenica: 12:00 - 23:00</p>
-                    </div>
-                </div>
+    <section class="reservation section-padding" id="reservation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Prenota un Tavolo</h2>
+                <p>Assicurati il tuo posto per una serata indimenticabile</p>
             </div>
-            <div class="reservation-form">
-                <form id="booking-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Nome e Cognome" required>
+            <div class="reservation-container">
+                <div class="reservation-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>La Nostra Posizione</h3>
+                            <p>Via Lungomare Italia, 123<br>60019 Senigallia (AN)</p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email" required>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Telefono</h3>
+                            <p>+39 071 123 4567</p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="Telefono" required>
+                    <div class="info-item">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="date" required>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Orari di Apertura</h3>
+                            <p>lunedì - mercoledì: chiudere<br>Giovedì  - Sabato: 19:00 - 23:00</p>
+                            <p> Domenica 12:00 - 14:00 Pausa 19:00 23:00</p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <select required>
-                            <option value="" disabled selected>Seleziona l'orario</option>
-                            <option value="12:00">12:00</option>
-                            <option value="12:30">12:30</option>
-                            <option value="13:00">13:00</option>
-                            <option value="13:30">13:30</option>
-                            <option value="19:00">19:00</option>
-                            <option value="19:30">19:30</option>
-                            <option value="20:00">20:00</option>
-                            <option value="20:30">20:30</option>
-                            <option value="21:00">21:00</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select required>
-                            <option value="" disabled selected>Numero di persone</option>
-                            <option value="1">1 persona</option>
-                            <option value="2">2 persone</option>
-                            <option value="3">3 persone</option>
-                            <option value="4">4 persone</option>
-                            <option value="5">5 persone</option>
-                            <option value="6">6 persone</option>
-                            <option value="7">7+ persone</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Note speciali (allergie, celebrazioni, ecc.)"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Conferma Prenotazione</button>
-                </form>
+                </div>
+                <div class="reservation-form">
+                    <form id="booking-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nome e Cognome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Telefono" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Seleziona l'orario</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="19:00">19:00</option>
+                                <option value="19:30">19:30</option>
+                                <option value="20:00">20:00</option>
+                                <option value="20:30">20:30</option>
+                                <option value="21:00">21:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Numero di persone</option>
+                                <option value="1">1 persona</option>
+                                <option value="2">2 persone</option>
+                                <option value="3">3 persone</option>
+                                <option value="4">4 persone</option>
+                                <option value="5">5 persone</option>
+                                <option value="6">6 persone</option>
+                                <option value="7">7+ persone</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Note speciali (allergie, celebrazioni, ecc.)"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Conferma Prenotazione</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Section Galerie -->
-    <section class="gallery" id="gallery">
-        <h2 class="section-title">La Nostra Galleria</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item fade-in">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Interno del ristorante">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Tavolo apparecchiato">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="https://images.unsplash.com/photo-1578474846611-2c7e0b0b0b0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Chef al lavoro">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Piatto di pasta">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Piatto di pesce">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="https://images.unsplash.com/photo-1563379091339-03246963d96f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Antipasto di mare">
-            </div>
-        </div>
-    </section>
+
 
     <!-- Section Contact -->
-    <section class="contact" id="contact">
-        <h2 class="section-title">Contattaci</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div>
-                        <h3>Indirizzo</h3>
-                        <p>Via Istria, 1, Senigallia, Marche, Italia<br>60019 Senigallia (AN)</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div>
-                        <h3>Telefono</h3>
-                        <p>+39 071 123 4567</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                        <h3>Email</h3>
-                        <p>info@inoutsenigallia.it</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div>
-                        <h3>Orari</h3>
-                        <p>Il lunedì è chiuso</p>
-                        <p>Aperto dal martedì alla domenica dalle 12:00 alle 23:00</p>
-                    </div>
-                </div>
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contattaci</h2>
+                <p>Vieni a trovarci o contattaci per qualsiasi informazione</p>
             </div>
-            <div class="contact-map">
-               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.9276324752873!2d13.226063475567436!3d43.71205297109936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d7384ffc72add%3A0x46053ddafcecfe4e!2sPizzeria%20In%26Out!5e0!3m2!1sfr!2sit!4v1760022690015!5m2!1sfr!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Indirizzo</h3>
+                            <p>Via Istria, 1, Senigallia, Marche, Italia<br>60019 Senigallia (AN)</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Telefono</h3>
+                            <p>+39 071 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Email</h3>
+                            <p>Cotadamoraffaele@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3>Orari</h3>
+                            <p>Il lunedì è chiuso</p>
+                            <p>Aperto dal martedì alla domenica dalle 12:00 alle 23:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.9276324752873!2d13.226063475567436!3d43.71205297109936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d7384ffc72add%3A0x46053ddafcecfe4e!2sPizzeria%20In%26Out!5e0!3m2!1sfr!2sit!4v1760022690015!5m2!1sfr!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">IN&OUT Senigallia</div>
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#about">Chi Siamo</a>
-                <a href="#menu">Menu</a>
-                <a href="#reservation">Prenotazione</a>
-                <a href="#gallery">Galleria</a>
-                <a href="#contact">Contatti</a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">IN&OUT Senigallia</div>
+                    <p>Dal 1985 portiamo la tradizione culinaria italiana nel cuore di Senigallia con ingredienti freschi e piatti preparati con passione.</p>
+                    <div class="contact-mini">
+                        <p><i class="fas fa-map-marker-alt"></i> Via Istria, 1, 60019 Senigallia (AN)</p>
+                        <p><i class="fas fa-phone"></i> +39 071 123 4567</p>
+                        <p><i class="fas fa-envelope"></i> Cotadamoraffaele@gmail.com</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Link Veloci</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Chi Siamo</a></li>
+                        <li><a href="#menu"><i class="fas fa-chevron-right"></i> Menu</a></li>
+                        <li><a href="#reservation"><i class="fas fa-chevron-right"></i> Prenotazione</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contatti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Orari di Apertura</h3>
+                    <ul class="footer-links">
+                        <li><a><i class="fas fa-times"></i> Lunedì Martedì mercoledì : Chiuso</a></li>
+                        <li><a><i class="fas fa-clock"></i> Giovedì -Sabato</a></li>
+                        <li><a>19:00 - 23:00</a></li>
+                        <li><a><i class="fas fa-clock"></i> Domenica</a></li>
+                        <li><a>12:00 - 14:00 pausa 19:00 - 23:00</a></li>
+                    
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Ristorante IN&OUT Senigallia. Iva : 02067180428 Tutti i diritti riservati.</p>
             </div>
         </div>
-        <p class="copyright">&copy; 2023 Ristorante IN&OUT Senigallia. Tutti i diritti riservati.</p>
     </footer>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <script>
         // Écran de chargement
@@ -1423,10 +1589,14 @@
         // Animation du header au défilement
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
+            const backToTop = document.querySelector('.back-to-top');
+            
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
+                backToTop.classList.add('active');
             } else {
                 header.classList.remove('scrolled');
+                backToTop.classList.remove('active');
             }
         });
         
@@ -1463,8 +1633,20 @@
         const dateInput = document.querySelector('input[type="date"]');
         const today = new Date().toISOString().split('T')[0];
         dateInput.setAttribute('min', today);
+        
+        // Back to top functionality
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 </html>
+
 
 
