@@ -307,7 +307,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('entree.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -438,103 +438,14 @@
             filter: contrast(1.1) brightness(1.1);
         }
         
-        /* Section Menu */
+        /* Section Menu - Version Simplifiée */
         .menu {
             background: linear-gradient(135deg, rgba(198, 40, 40, 0.05) 0%, rgba(255, 213, 79, 0.05) 100%);
         }
         
-        .menu-categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-        
-        .category-btn {
-            background: white;
-            border: 2px solid var(--primary);
-            color: var(--text-dark);
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-        }
-        
-        .category-btn.active, .category-btn:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .menu-item {
-            background-color: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .menu-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .menu-item-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--primary);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 2;
-        }
-        
-        .menu-item-image {
-            height: 200px;
-            background-color: var(--primary);
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .menu-item-info {
-            padding: 25px;
-        }
-        
-        .menu-item-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-        
-        .menu-item-name {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-        
-        .menu-item-price {
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-        
-        .menu-item-description {
-            color: var(--gray);
-            margin-bottom: 15px;
+        .menu-link-container {
+            text-align: center;
+            margin: 40px 0;
         }
         
         .menu-image-container {
@@ -548,6 +459,13 @@
             height: auto;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .menu-image:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
         
         /* Section Réservation */
@@ -1039,10 +957,6 @@
                 justify-content: center;
             }
             
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
@@ -1081,16 +995,6 @@
             
             .reservation-form {
                 padding: 30px 20px;
-            }
-            
-            .menu-categories {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .category-btn {
-                width: 100%;
-                max-width: 250px;
             }
         }
     </style>
@@ -1147,7 +1051,7 @@
             <h1>Ristorante IN&OUT Senigallia</h1>
             <p>Cucina autentica italiana a Senigallia</p>
             <div class="hero-btns">
-                <a href="#menu" class="btn">Scopri il Menu</a>
+                <a href="menu.html" class="btn">Scopri il Menu</a>
                 <a href="#reservation" class="btn btn-secondary">Prenota un Tavolo</a>
             </div>
         </div>
@@ -1162,12 +1066,15 @@
             </div>
             <div class="about-content">
                 <div class="about-text slide-in-left">
-                    <p>Fondato nel 1985, il Ristorante IN&OUT è un gioiello culinario nel cuore di Senigallia. La nostra passione per la cucina tradizionale italiana si unisce all'eleganza della costa adriatica per offrire un'esperienza gastronomica indimenticabile.</p>
-                    <p>Il nostro chef, Giovanni Moretti, con oltre 30 anni di esperienza, seleziona personalmente gli ingredienti più freschi dai mercati locali per creare piatti che raccontano la storia e la cultura della nostra terra.</p>
-                    <p>Il nostro ristorante vanta una terrazza panoramica con vista sul mare, perfetta per cene romantiche e occasioni speciali. La nostra cantina offre una selezione curata dei migliori vini delle Marche e di tutta Italia.</p>
+                    <p>In&Out è il ristorante–pizzeria di Senigallia nato nel 2001 dalla volontà di portare avanti una lunga storia di famiglia nel mondo della ristorazione, con solide radici pugliesi. Dopo anni trascorsi a gestire diversi locali, l'apertura di In&Out segna il punto d'incontro tra l'esperienza maturata in sala e in cucina e la voglia di creare un luogo informale, conviviale e genuino, dove sentirsi subito a casa.</p>
+                    
+                    <p>La nostra cucina unisce sapori del Sud e tradizione marchigiana: materie prime selezionate, ricette semplici ma curate, piatti di carne e di mare, antipasti sfiziosi e proposte del giorno che seguono la stagionalità. Siamo però soprattutto conosciuti per la nostra pizza spettacolare, leggera e fragrante, cotta a regola d'arte e proposta in tante varianti, dalle classiche intramontabili alle combinazioni più creative che negli anni ci hanno resi famosi in città.</p>
+                    
+                    <p>L'atmosfera è calda e accogliente, pensata per famiglie, coppie e gruppi di amici che cercano una serata piacevole senza rinunciare alla qualità. Servizio cordiale, porzioni generose e un ottimo rapporto qualità–prezzo fanno di In&Out un punto di riferimento a Senigallia per chi ama mangiare bene, tra profumi di Puglia e ospitalità marchigiana.</p>
+                    
                     <div class="about-stats">
                         <div class="stat">
-                            <span class="stat-number">30+</span>
+                            <span class="stat-number">20+</span>
                             <span class="stat-text">Anni di Esperienza</span>
                         </div>
                         <div class="stat">
@@ -1181,7 +1088,7 @@
                     </div>
                 </div>
                 <div class="about-image slide-in-right">
-                    <img src="logo senegalia.png" alt="">
+                    <img src="logo senegalia.png" alt="Ristorante IN&OUT Senigallia">
                 </div>
             </div>
         </div>
@@ -1199,26 +1106,23 @@
         </div>
     </section>
 
-    <!-- Section Menu -->
+    <!-- Section Menu - Version Simplifiée -->
     <section class="menu section-padding" id="menu">
         <div class="container">
             <div class="section-title">
                 <h2>Il Nostro Menu</h2>
                 <p>Scopri la nostra selezione di piatti tradizionali</p>
             </div>
-            <div class="menu-categories">
-                <button class="category-btn active" data-category="pizze-rosse">Pizze Rosse</button>
-                <button class="category-btn" data-category="pizze-bianche">Pizze Bianche</button>
-                <button class="category-btn" data-category="antipasti">Antipasti</button>
-                <button class="category-btn" data-category="primi">Primi Piatti</button>
-                <button class="category-btn" data-category="secondi">Secondi Piatti</button>
-                <button class="category-btn" data-category="contorni">Contorni</button>
+            
+            <div class="menu-link-container">
+                <a href="menu.html" class="btn">Vedi il Menu Completo</a>
             </div>
             
             <div class="menu-image-container">
-                <img src="MENU.png" alt="Menu Ristorante IN&OUT" class="menu-image">
+                <a href="menu.html">
+                    <img src="MENU.png" alt="Menu Ristorante IN&OUT" class="menu-image">
+                </a>
             </div>
-            
         </div>
     </section>
 
@@ -1237,7 +1141,7 @@
                         </div>
                         <div class="info-details">
                             <h3>La Nostra Posizione</h3>
-                            <p>Via Lungomare Italia, 123<br>60019 Senigallia (AN)</p>
+                            <p>Via Istria, 1<br>60019 Senigallia (AN)</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1255,8 +1159,9 @@
                         </div>
                         <div class="info-details">
                             <h3>Orari di Apertura</h3>
-                            <p>lunedì - mercoledì: chiuso<br>Giovedì - Sabato: 19:00 - 23:00</p>
-                            <p> Domenica 12:00 - 14:00 Pausa 19:00 23:00</p>
+                            <p>Lunedì - Mercoledì: Chiuso</p>
+                            <p>Giovedì - Sabato: 19:00 - 23:00</p>
+                            <p>Domenica: 12:00 - 14:00 / Pausa / 19:00 - 23:00</p>
                         </div>
                     </div>
                 </div>
@@ -1325,7 +1230,7 @@
                         </div>
                         <div class="info-details">
                             <h3>Indirizzo</h3>
-                            <p>Via Istria, 1, Senigallia, Marche, Italia<br>60019 Senigallia (AN)</p>
+                            <p>Via Istria, 1<br>60019 Senigallia (AN)</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1352,8 +1257,10 @@
                         </div>
                         <div class="info-details">
                             <h3>Orari</h3>
-                            <p>Il lunedì è chiuso</p>
-                            <p>Aperto dal martedì alla domenica dalle 12:00 alle 23:00</p>
+                            <p>Lunedì - Mercoledì: Chiuso</p>
+                            <p>Aperto dal giovedì alla domenica</p>
+                            <p>Giovedì - Sabato: 19:00 - 23:00</p>
+                            <p>Domenica: 12:00 - 14:00 / 19:00 - 23:00</p>
                         </div>
                     </div>
                 </div>
@@ -1370,7 +1277,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">IN&OUT Senigallia</div>
-                    <p>Dal 1985 portiamo la tradizione culinaria italiana nel cuore di Senigallia con ingredienti freschi e piatti preparati con passione.</p>
+                    <p>Dal 2001 portiamo la tradizione culinaria italiana nel cuore di Senigallia con ingredienti freschi e piatti preparati con passione.</p>
                     <div class="contact-mini">
                         <p><i class="fas fa-map-marker-alt"></i> Via Istria, 1, 60019 Senigallia (AN)</p>
                         <p><i class="fas fa-phone"></i> +39 071 123 4567</p>
@@ -1394,17 +1301,16 @@
                 <div class="footer-section">
                     <h3>Orari di Apertura</h3>
                     <ul class="footer-links">
-                        <li><a><i class="fas fa-times"></i> Lunedì Martedì mercoledì : Chiuso</a></li>
-                        <li><a><i class="fas fa-clock"></i> Giovedì -Sabato</a></li>
+                        <li><a><i class="fas fa-times"></i> Lunedì - Mercoledì: Chiuso</a></li>
+                        <li><a><i class="fas fa-clock"></i> Giovedì - Sabato</a></li>
                         <li><a>19:00 - 23:00</a></li>
                         <li><a><i class="fas fa-clock"></i> Domenica</a></li>
-                        <li><a>12:00 - 14:00 pausa 19:00 - 23:00</a></li>
-                    
+                        <li><a>12:00 - 14:00 / Pausa / 19:00 - 23:00</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Ristorante IN&OUT Senigallia. Iva : 02067180428 Tutti i diritti riservati.</p>
+                <p>&copy; 2023 Ristorante IN&OUT Senigallia. Iva: 02067180428 Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
@@ -1420,7 +1326,7 @@
             const loader = document.getElementById('loader');
             setTimeout(function() {
                 loader.classList.add('hidden');
-            }, 2000);
+            }, 1500);
         });
         
         // Animation au défilement
@@ -1444,38 +1350,6 @@
         
         fadeElements.forEach(element => {
             appearOnScroll.observe(element);
-        });
-        
-        // Filtrage du menu
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const menuItems = document.querySelectorAll('.menu-item');
-        
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Retirer la classe active de tous les boutons
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                // Ajouter la classe active au bouton cliqué
-                button.classList.add('active');
-                
-                const filterValue = button.getAttribute('data-category');
-                
-                menuItems.forEach(item => {
-                    const categories = item.getAttribute('data-category');
-                    if (categories === filterValue) {
-                        item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 100);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
         });
         
         // Animation du header au défilement
@@ -1539,6 +1413,3 @@
     </script>
 </body>
 </html>
-
-
-
