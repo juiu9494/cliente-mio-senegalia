@@ -27,6 +27,8 @@
             --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
             --radius: 12px;
             --transition: all 0.3s ease;
+            --whatsapp-green: #25D366;
+            --whatsapp-green-dark: #128C7E;
         }
         
         * {
@@ -118,20 +120,42 @@
             color: white;
         }
         
-        /* Écran de chargement */
+        .btn-whatsapp {
+            background-color: var(--whatsapp-green);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: var(--whatsapp-green-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Écran de chargement professionnel */
         #loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--dark);
+            background: linear-gradient(135deg, var(--dark) 0%, #2c2c2c 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s, visibility 0.5s;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
         }
         
         #loader.hidden {
@@ -139,45 +163,65 @@
             visibility: hidden;
         }
         
+        .loader-content {
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        
         .loader-logo {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: var(--secondary);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
             font-family: 'Playfair Display', serif;
-            animation: pulse 2s infinite;
+            letter-spacing: 1px;
+        }
+        
+        .loader-logo span {
+            color: var(--light);
+            font-weight: 300;
         }
         
         .loader-text {
             color: var(--light);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
             text-align: center;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
         }
         
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--secondary);
-            animation: spin 1s ease-in-out infinite;
+        .loader-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .loader-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 10px;
+            animation: loading 2.5s ease-in-out forwards;
+        }
+        
+        @keyframes loading {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
         }
         
         /* Animations principales */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes slideUp {
@@ -405,47 +449,9 @@
             transform: scale(1.05);
         }
         
-        /* Section Vidéo */
-        .video-section {
-            background-color: var(--dark);
-            padding: 80px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-            border-radius: var(--radius);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
-            transition: transform 0.5s ease;
-            animation: fadeIn 2s ease forwards;
-        }
-
-        .video-container:hover {
-            transform: scale(1.02);
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.1) brightness(1.1);
-        }
-        
         /* Section Menu - Version Simplifiée */
         .menu {
             background: linear-gradient(135deg, rgba(198, 40, 40, 0.05) 0%, rgba(255, 213, 79, 0.05) 100%);
-        }
-        
-        .menu-link-container {
-            text-align: center;
-            margin: 40px 0;
         }
         
         .menu-image-container {
@@ -468,19 +474,114 @@
             box-shadow: var(--shadow-hover);
         }
         
-        /* Section Réservation */
+        /* Section Réservation WhatsApp uniquement */
         .reservation {
             background-color: var(--dark);
             color: var(--light);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .reservation-container {
+        .reservation-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .whatsapp-icon-large {
+            font-size: 5rem;
+            color: var(--whatsapp-green);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .whatsapp-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .whatsapp-steps {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            color: var(--dark);
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .whatsapp-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            text-align: left;
+        }
+        
+        .benefit-icon {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Section Contact */
+        .contact {
+            background: linear-gradient(135deg, rgba(198, 40, 40, 0.05) 0%, rgba(46, 125, 50, 0.05) 100%);
+        }
+        
+        .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
         }
         
-        .reservation-info {
+        .contact-info {
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -522,124 +623,6 @@
             color: var(--secondary);
         }
         
-        .reservation-form {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .form-control:focus {
-            border-color: var(--secondary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 213, 79, 0.3);
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--secondary);
-            color: var(--dark);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            font-size: 1rem;
-        }
-        
-        .submit-btn:hover {
-            background: var(--secondary-light);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Section Galerie */
-        .gallery {
-            background-color: white;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .gallery-item {
-            height: 200px;
-            overflow: hidden;
-            border-radius: var(--radius);
-            position: relative;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        /* Section Contact */
-        .contact {
-            background: linear-gradient(135deg, rgba(198, 40, 40, 0.05) 0%, rgba(46, 125, 50, 0.05) 100%);
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        
         .contact-map {
             width: 100%;
             border-radius: var(--radius);
@@ -657,6 +640,53 @@
             height: 100%;
             min-height: 400px;
             border: none;
+        }
+        
+        /* Float WhatsApp button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--whatsapp-green);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            transition: var(--transition);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: var(--whatsapp-green-dark);
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-text {
+            position: absolute;
+            left: 70px;
+            background: var(--dark);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: var(--transition);
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+        
+        .whatsapp-float:hover .whatsapp-text {
+            opacity: 1;
+            transform: translateX(0);
         }
         
         /* Footer */
@@ -891,10 +921,6 @@
                 width: 100%;
             }
             
-            .reservation-container {
-                grid-template-columns: 1fr;
-            }
-            
             .contact-container {
                 grid-template-columns: 1fr;
             }
@@ -957,12 +983,14 @@
                 justify-content: center;
             }
             
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            .whatsapp-steps {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .gallery-item {
-                height: 150px;
+            .step {
+                width: 100%;
+                max-width: 300px;
             }
             
             .header-container {
@@ -976,6 +1004,18 @@
             
             .logo {
                 width: 80px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 90px;
+                left: 20px;
+            }
+            
+            .whatsapp-text {
+                display: none;
             }
         }
         
@@ -993,18 +1033,29 @@
                 gap: 20px;
             }
             
-            .reservation-form {
+            .reservation-content {
                 padding: 30px 20px;
+            }
+            
+            .whatsapp-icon-large {
+                font-size: 4rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Écran de chargement -->
+    <!-- Écran de chargement professionnel -->
     <div id="loader">
-        <div class="loader-logo">Ristorante IN&OUT<br>Senigallia</div>
-        <div class="loader-text">Caricamento...</div>
-        <div class="spinner"></div>
+        <div class="loader-content">
+            <div class="loader-logo">IN<span>&</span>OUT<br>Senigallia</div>
+            <div class="loader-text">Benvenuti nel nostro ristorante</div>
+            <div class="loader-progress">
+                <div class="loader-progress-bar"></div>
+            </div>
+            <div style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; letter-spacing: 1px;">
+                CARICAMENTO IN CORSO...
+            </div>
+        </div>
     </div>
 
     <!-- Header -->
@@ -1098,99 +1149,90 @@
     <section class="menu section-padding" id="menu">
         <div class="container">
             <div class="section-title">
-                <h2>Offerta del Momento </h2>
+                <h2>Offerta del Momento</h2>
             </div>
-            
-                    <img src="Offerta_pizza.jpg" alt="Menu Ristorante IN&OUT" class="menu-image">
-                </a>
+            <div class="menu-image-container">
+                <img src="Offerta_pizza.jpg" alt="Menu Ristorante IN&OUT" class="menu-image">
             </div>
         </div>
     </section>
 
-    <!-- Section Réservation -->
+    <!-- Section Réservation WhatsApp uniquement -->
     <section class="reservation section-padding" id="reservation">
         <div class="container">
-            <div class="section-title">
-                <h2>Prenota un Tavolo</h2>
-                <p>Assicurati il tuo posto per una serata indimenticabile</p>
-            </div>
-            <div class="reservation-container">
-                <div class="reservation-info">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+            <div class="reservation-content">
+                <div class="section-title">
+                    <h2>Prenota su WhatsApp</h2>
+                    <p>Prenotazioni rapide e dirette via WhatsApp</p>
+                </div>
+                
+                <div class="whatsapp-icon-large">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                
+                <p class="whatsapp-description">
+                    Prenotare un tavolo non è mai stato così semplice! Scrivici su WhatsApp per una prenotazione rapida e diretta. Riceverai una conferma immediata e potrai comunicare con noi facilmente per qualsiasi modifica o richiesta speciale.
+                </p>
+                
+                <div class="whatsapp-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Clicca sul Bottone</h3>
+                        <p>Clicca sul pulsante WhatsApp qui sotto per avviare la conversazione.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Invia il Messaggio</h3>
+                        <p>Inviaci un messaggio con i dettagli della tua prenotazione.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Ricevi Conferma</h3>
+                        <p>Ricevi immediatamente la conferma della tua prenotazione.</p>
+                    </div>
+                </div>
+                
+                <div class="whatsapp-benefits">
+                    <div class="benefit">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check-circle"></i>
                         </div>
-                        <div class="info-details">
-                            <h3>La Nostra Posizione</h3>
-                            <p>Via Istria, 1<br>60019 Senigallia (AN)</p>
+                        <div>
+                            <h3>Conferma Immediata</h3>
+                            <p>Risposta rapida e conferma istantanea della prenotazione.</p>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="info-details">
-                            <h3>Telefono</h3>
-                            <p>+39 071 123 4567</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
+                    
+                    <div class="benefit">
+                        <div class="benefit-icon">
                             <i class="fas fa-clock"></i>
                         </div>
-                        <div class="info-details">
-                            <h3>Orari di Apertura</h3>
-                            <p>Lunedì : Chiuso</p>
-                            <p>Martedì - Venerdì : chiuso </p>
-                            <p>Domenica - Sabato: 12:00 - 14:00 / Pausa / 19:00 - 23:00</p>
+                        <div>
+                            <h3>24/7 Disponibile</h3>
+                            <p>Puoi prenotare in qualsiasi momento, anche fuori orario di apertura.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit">
+                        <div class="benefit-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div>
+                            <h3>Comunicazione Diretta</h3>
+                            <p>Comunica direttamente con il ristorante per qualsiasi necessità.</p>
                         </div>
                     </div>
                 </div>
-                <div class="reservation-form">
-                    <form id="booking-form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nome e Cognome" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Telefono" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="date" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" required>
-                                <option value="" disabled selected>Seleziona l'orario</option>
-                                <option value="12:00">12:00</option>
-                                <option value="12:30">12:30</option>
-                                <option value="13:00">13:00</option>
-                                <option value="13:30">13:30</option>
-                                <option value="19:00">19:00</option>
-                                <option value="19:30">19:30</option>
-                                <option value="20:00">20:00</option>
-                                <option value="20:30">20:30</option>
-                                <option value="21:00">21:00</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" required>
-                                <option value="" disabled selected>Numero di persone</option>
-                                <option value="1">1 persona</option>
-                                <option value="2">2 persone</option>
-                                <option value="3">3 persone</option>
-                                <option value="4">4 persone</option>
-                                <option value="5">5 persone</option>
-                                <option value="6">6 persone</option>
-                                <option value="7">7+ persone</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Note speciali (allergie, celebrazioni, ecc.)"></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Conferma Prenotazione</button>
-                    </form>
+                
+                <a href="https://wa.me/390717931259?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo%20al%20ristorante%20IN%26OUT%20Senigallia" 
+                   target="_blank" class="btn-whatsapp" style="font-size: 1.2rem; padding: 15px 40px;">
+                    <i class="fab fa-whatsapp whatsapp-icon"></i> Prenota Ora su WhatsApp
+                </a>
+                
+                <div style="margin-top: 30px; color: rgba(255, 255, 255, 0.8);">
+                    <p><i class="fas fa-info-circle"></i> <strong>Numero WhatsApp:</strong> +39 071 793 1259</p>
                 </div>
             </div>
         </div>
@@ -1239,9 +1281,16 @@
                         <div class="info-details">
                             <h3>Orari</h3>
                              <p>Lunedì : Chiuso</p>
-                             <p>Martedì - Venerdì : chiuso </p>
+                             <p>Martedì - Venerdì : chiuso</p>
                              <p>Domenica - Sabato: 12:00 - 14:00 / Pausa / 19:00 - 23:00</p>
                         </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="https://wa.me/390717931259?text=Ciao%21%20Ho%20una%20domanda%20per%20il%20ristorante%20IN%26OUT%20Senigallia" 
+                           target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Scrivici su WhatsApp
+                        </a>
                     </div>
                 </div>
                 <div class="contact-map">
@@ -1260,7 +1309,7 @@
                     <p>Dal 2001 portiamo la tradizione culinaria italiana nel cuore di Senigallia con ingredienti freschi e piatti preparati con passione.</p>
                     <div class="contact-mini">
                         <p><i class="fas fa-map-marker-alt"></i> Via Istria, 1, 60019 Senigallia (AN)</p>
-                        <p><i class="fas fa-phone"></i> +39 0717931259 </p>
+                        <p><i class="fas fa-phone"></i> +39 0717931259</p>
                         <p><i class="fas fa-envelope"></i> Cotadamoraffaele@gmail.com</p>
                     </div>
                     <div class="social-links">
@@ -1280,10 +1329,9 @@
                 </div>
                 <div class="footer-section">
                     <h3>Orari di Apertura</h3>
-                            <p>Lunedì : Chiuso</p>
-                            <p>Martedì - Venerdì : chiuso </p>
-                            <p>Domenica - Sabato: 12:00 - 14:00 / Pausa / 19:00 - 23:00</p>
-                    </ul>
+                    <p>Lunedì : Chiuso</p>
+                    <p>Martedì - Venerdì : chiuso</p>
+                    <p>Domenica - Sabato: 12:00 - 14:00 / Pausa / 19:00 - 23:00</p>
                 </div>
             </div>
             <div class="copyright">
@@ -1292,18 +1340,26 @@
         </div>
     </footer>
 
+    <!-- Float WhatsApp button -->
+    <a href="https://wa.me/390717931259?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo%20al%20ristorante%20IN%26OUT%20Senigallia" 
+       target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Prenota su WhatsApp</span>
+    </a>
+
     <!-- Back to top button -->
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
 
     <script>
-        // Écran de chargement
+        // Écran de chargement professionnel
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader');
+            // Simulation d'un chargement progressif
             setTimeout(function() {
                 loader.classList.add('hidden');
-            }, 1500);
+            }, 2500); // Augmenté à 2.5s pour un effet plus professionnel
         });
         
         // Animation au défilement
@@ -1343,14 +1399,6 @@
             }
         });
         
-        // Gestion du formulaire de réservation
-        const bookingForm = document.getElementById('booking-form');
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Grazie per la tua prenotazione! Ti contatteremo presto per confermare.');
-            bookingForm.reset();
-        });
-        
         // Menu mobile
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileNav = document.getElementById('mobileNav');
@@ -1372,11 +1420,6 @@
             });
         });
         
-        // Date minimum pour la réservation (aujourd'hui)
-        const dateInput = document.querySelector('input[type="date"]');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
-        
         // Back to top functionality
         const backToTopBtn = document.querySelector('.back-to-top');
         
@@ -1390,8 +1433,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
