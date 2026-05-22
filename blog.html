@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - IN&OUT Senigallia | Pizza spettacolare e cucina autentica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c62828;
+            --primary-dark: #8e0000;
+            --secondary: #ffd54f;
+            --dark: #1a1a1a;
+            --light: #f5f5f5;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        body { background:var(--light); color:var(--text-dark); line-height:1.8; }
+        h1,h2,h3 { font-family:'Playfair Display',serif; font-weight:700; line-height:1.3; }
+        .container { max-width:1000px; margin:0 auto; padding:0 20px; }
+
+        /* Header */
+        header {
+            background:rgba(26,26,26,0.95); backdrop-filter:blur(10px); position:fixed; width:100%; z-index:1000;
+            padding:1rem 0; box-shadow:0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-container { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:0 20px; }
+        .logo { width:80px; filter:brightness(0) invert(1); }
+        nav a { color:var(--text-light); text-decoration:none; margin-left:1.5rem; font-weight:500; transition:var(--transition); }
+        nav a:hover { color:var(--secondary); }
+        .mobile-menu-btn { display:none; background:none; border:none; color:var(--text-light); font-size:1.5rem; cursor:pointer; }
+
+        /* Contenuto Blog */
+        .blog-section { padding:140px 0 80px; background:white; }
+        .blog-header { text-align:center; margin-bottom:50px; }
+        .blog-header h1 { font-size:2.8rem; color:var(--primary); margin-bottom:10px; }
+        .blog-meta { color:#666; font-size:0.95rem; margin-bottom:30px; }
+        .featured-img { width:100%; max-height:450px; object-fit:cover; border-radius:var(--radius); margin-bottom:40px; box-shadow:var(--shadow); }
+        .blog-content { font-size:1.1rem; color:var(--text-dark); }
+        .blog-content p { margin-bottom:25px; }
+        .blog-content h2 { font-size:2rem; color:var(--primary); margin:40px 0 15px; }
+        .blog-content h3 { font-size:1.5rem; color:var(--dark); margin:25px 0 10px; }
+        .highlight { background:linear-gradient(135deg, rgba(198,40,40,0.05) 0%, rgba(255,213,79,0.08) 100%); padding:25px; border-radius:var(--radius); margin:30px 0; }
+        .btn-back { display:inline-block; background:var(--primary); color:white; padding:12px 28px; border-radius:30px; text-decoration:none; font-weight:600; transition:var(--transition); margin-top:40px; }
+        .btn-back:hover { background:var(--primary-dark); transform:translateY(-2px); }
+
+        /* Footer */
+        footer { background:var(--dark); color:var(--text-light); padding:30px 0; text-align:center; font-size:0.9rem; }
+        footer .container { opacity:0.8; }
+
+        /* Mobile */
+        @media (max-width:768px) {
+            .blog-header h1 { font-size:2rem; }
+            .blog-content { font-size:1rem; }
+            nav { display:none; }
+            .mobile-menu-btn { display:block; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logo senegalia.png" alt="IN&OUT" class="logo"></a>
+            <nav>
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">Chi Siamo</a>
+                <a href="index.html#menu">Menu</a>
+                <a href="index.html#reservation">Prenotazione</a>
+                <a href="index.html#contact">Contatti</a>
+            </nav>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-header">
+                <h1>IN&OUT Senigallia: pizza spettacolare e cucina autentica nel cuore delle Marche</h1>
+                <p class="blog-meta"><i class="far fa-calendar-alt"></i> Pubblicato il 22 maggio 2026 &nbsp;|&nbsp; <i class="far fa-clock"></i> 4 min di lettura</p>
+            </div>
+
+            <img src="entree.jpg" alt="Ristorante IN&OUT Senigallia" class="featured-img">
+
+            <div class="blog-content">
+                <p>C'è un indirizzo a Senigallia che nel fine settimana si trasforma in un piccolo crocevia di profumi pugliesi e sapori marchigiani. Si chiama <strong>IN&OUT</strong>, un ristorante-pizzeria aperto nel 2001, dove l'accoglienza è di casa e la pizza è una cosa seria. Se ancora non lo conosci, preparati a segnarlo sulla mappa delle tue prossime cene fuori.</p>
+
+                <h2>Una storia di famiglia e di passione</h2>
+                <p>IN&OUT nasce dalla volontà di portare avanti una lunga tradizione familiare nel mondo della ristorazione, con solide radici in Puglia. Dopo anni trascorsi a gestire diversi locali, l'apertura di questo ristorante ha rappresentato il punto d'incontro tra l'esperienza maturata in sala e in cucina e il desiderio di creare un ambiente informale, conviviale e genuino, dove sentirsi subito a proprio agio.</p>
+                <p>La cucina unisce il meglio del Sud e della tradizione marchigiana: materie prime selezionate, ricette semplici ma curate, piatti di carne e di mare, antipasti sfiziosi e proposte del giorno che seguono la stagionalità. Ma il vero fiore all'occhiello è <strong>la pizza</strong>.</p>
+
+                <h2>La pizza che ha reso famoso IN&OUT</h2>
+                <p>Leggera, fragrante, cotta a regola d'arte. La pizza di IN&OUT è il motivo per cui in tanti tornano, weekend dopo weekend. La carta spazia dalle intramontabili classiche a combinazioni più creative, capaci di sorprendere anche i palati più esigenti. Ogni morso racconta la cura nell'impasto e nella scelta degli ingredienti, sempre freschi e di qualità.</p>
+
+                <div class="highlight">
+                    <h3>🍕 Lo sapevi?</h3>
+                    <p>La pizza di IN&OUT è preparata con una lievitazione lenta che la rende leggerissima e altamente digeribile. Gli impasti sono fatti in casa ogni giorno e le farine sono selezionate con attenzione.</p>
+                </div>
+
+                <h2>Non solo pizza</h2>
+                <p>Sarebbe un errore fermarsi alla pizza. La cucina propone anche piatti di carne e di pesce, antipasti colorati e porzioni generose. Il tutto in un'atmosfera calda e accogliente, pensata per famiglie, coppie e gruppi di amici che cercano una serata piacevole senza rinunciare alla qualità. Il servizio è cordiale e il rapporto qualità-prezzo è uno dei punti di forza del locale.</p>
+
+                <h2>Aperto solo nel fine settimana</h2>
+                <p>Attenzione agli orari: IN&OUT apre esclusivamente <strong>il sabato e la domenica</strong>, con servizio a pranzo (12:00 – 14:00) e a cena (19:00 – 23:00), con una pausa nel pomeriggio. Dal lunedì al venerdì il locale rimane chiuso. Questa scelta permette alla famiglia di concentrare tutte le energie nel weekend, garantendo un'esperienza sempre all'altezza delle aspettative.</p>
+                <p>Proprio per questo motivo <strong>ti consiglio di prenotare</strong>, soprattutto se hai in programma una cena del sabato sera o una domenica a pranzo.</p>
+
+                <h2>Prenotazione facile e veloce su WhatsApp</h2>
+                <p>Dimentica le attese al telefono o le email senza risposta. IN&OUT ha scelto la strada più diretta: <strong>WhatsApp</strong>. Basta inviare un messaggio al numero <a href="https://wa.me/393713813563">+39 3713813563</a> con i dettagli della prenotazione (data, numero di persone, eventuali richieste particolari) e riceverai una conferma quasi immediata.</p>
+                <p>Puoi anche usare WhatsApp per chiedere informazioni sul menu, comunicare intolleranze o semplicemente curiosare sulle proposte del giorno.</p>
+
+                <h2>Informazioni utili</h2>
+                <ul style="margin-bottom:25px; padding-left:20px;">
+                    <li><strong>Indirizzo:</strong> Via Istria, 1 – 60019 Senigallia (AN)</li>
+                    <li><strong>Telefono:</strong> +39 0717931259</li>
+                    <li><strong>Email:</strong> Cotadamoraffaele@gmail.com</li>
+                    <li><strong>WhatsApp per prenotazioni:</strong> +39 3713813563</li>
+                    <li><strong>Orari di apertura:</strong><br>
+                        Lunedì – Venerdì: chiuso<br>
+                        Sabato e Domenica: 12:00 – 14:00 / 19:00 – 23:00
+                    </li>
+                    <li><strong>Social:</strong> Facebook e Instagram come "InOut Senigallia"</li>
+                </ul>
+
+                <p>Che tu voglia assaporare una pizza indimenticabile o provare i piatti della tradizione, IN&OUT è una tappa obbligata per chi ama mangiare bene a Senigallia. <strong>Prenota il tuo tavolo e lasciati coccolare dai sapori autentici di Puglia e Marche!</strong></p>
+
+                <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Torna al sito</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Ristorante IN&OUT Senigallia – Via Istria, 1 – P. IVA 02067180428</p>
+        </div>
+    </footer>
+</body>
+</html>
