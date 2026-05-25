@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>IN&OUT Ristorante · Blog | Perché mangiare da noi | Senigallia</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: eleganti e leggibili -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fefaf5;
+            font-family: 'Inter', sans-serif;
+            color: #2d2a24;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* palette ristorante: calore, tradizione, freschezza */
+        :root {
+            --rosso-inout: #b3402c;
+            --oro-inout: #dfa35b;
+            --crema: #fff6ed;
+            --scuro-testo: #2a241f;
+            --grigio-caldo: #7a6e64;
+            --verde-accento: #4f7942;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* HEADER & NAV */
+        .site-header {
+            background: white;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #f0e4d8;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .logo-area h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-area h1 span {
+            color: var(--rosso-inout);
+        }
+
+        .logo-area p {
+            font-size: 0.85rem;
+            color: var(--grigio-caldo);
+            letter-spacing: 0.3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #3a2c24;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--rosso-inout);
+        }
+
+        .btn-prenota {
+            background: var(--rosso-inout);
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            color: white !important;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(179, 64, 44, 0.2);
+        }
+
+        .btn-prenota:hover {
+            background: #942f1d;
+            transform: translateY(-2px);
+        }
+
+        /* mobile menu */
+        .menu-toggle {
+            display: none;
+            font-size: 1.7rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--scuro-testo);
+        }
+
+        /* hero blog */
+        .hero-blog {
+            background: linear-gradient(105deg, #fff1e4 0%, #fbe9db 100%);
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid #f0ddcf;
+        }
+
+        .hero-blog .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .badge-blog {
+            background: var(--oro-inout);
+            color: #2d241e;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-blog h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2f2822;
+            max-width: 850px;
+        }
+
+        .hero-blog p {
+            font-size: 1.2rem;
+            color: #5c4c3e;
+            margin-top: 1rem;
+            max-width: 680px;
+        }
+
+        /* sezione motivi (perché mangiare da noi) */
+        .motivi-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header .sottotitolo {
+            color: var(--rosso-inout);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .section-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #33261e;
+            margin-top: 0.5rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-motivo {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease;
+            border: 1px solid #f3e7de;
+            text-align: center;
+        }
+
+        .card-motivo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.1);
+            border-color: #ecd9cb;
+        }
+
+        .icona-motivo {
+            font-size: 2.8rem;
+            color: var(--rosso-inout);
+            background: #fff0e9;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            border-radius: 60px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .card-motivo h4 {
+            font-size: 1.7rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+        }
+
+        .card-motivo p {
+            color: #5c534b;
+            margin-bottom: 1rem;
+        }
+
+        /* sezione pizza & specialità */
+        .specialita {
+            background: #fef5ed;
+            padding: 5rem 0;
+        }
+
+        .flex-speciale {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .speciale-text {
+            flex: 1;
+        }
+
+        .speciale-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #2f241d;
+        }
+
+        .speciale-text .citazione {
+            border-left: 4px solid var(--oro-inout);
+            padding-left: 1.2rem;
+            font-style: italic;
+            margin: 1.5rem 0;
+            color: #5b4b3d;
+        }
+
+        .speciale-img {
+            flex: 1;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .speciale-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .speciale-img:hover img {
+            transform: scale(1.02);
+        }
+
+        /* testimonianze rapide */
+        .testimonianze {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .testo-card {
+            background: #fcf8f3;
+            border-radius: 24px;
+            padding: 1.8rem;
+            font-style: normal;
+        }
+
+        .testo-card i {
+            color: var(--oro-inout);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .testo-card p {
+            font-weight: 500;
+            margin: 0.8rem 0;
+            color: #2c241e;
+        }
+
+        .testo-card span {
+            font-size: 0.85rem;
+            color: #8f7b6b;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* Prenotazione CTA - solo WhatsApp */
+        .cta-wa {
+            background: linear-gradient(120deg, #2c5e2a, #1e3d1c);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-wa h3 {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .btn-wa {
+            background: #25D366;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            margin-top: 1.8rem;
+            transition: 0.2s;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-wa:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+        }
+
+        /* footer */
+        .footer {
+            background: #1f1b17;
+            color: #cfc3b8;
+            padding: 3rem 0 2rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer h4 {
+            color: #e9cfb5;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer a {
+            color: #cfc3b8;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #342d27;
+            font-size: 0.8rem;
+        }
+
+        /* responsive */
+        @media (max-width: 850px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 75%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: 0.3s;
+                box-shadow: 5px 0 30px rgba(0,0,0,0.05);
+                z-index: 99;
+            }
+            .nav-links.open {
+                left: 0;
+            }
+            .hero-blog h2 {
+                font-size: 2.2rem;
+            }
+            .section-header h3 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 650px) {
+            .flex-speciale {
+                flex-direction: column;
+            }
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        /* animazioni fade scroll */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-flex">
+        <div class="logo-area">
+            <h1>IN<span>&</span>OUT</h1>
+            <p>Senigallia · dal 2001</p>
+        </div>
+        <button class="menu-toggle" id="mobileMenuBtn" aria-label="menu"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#chi-siamo">Chi siamo</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="#motivi">Perché noi</a></li>
+            <li><a href="#prenotazione" class="btn-prenota">Prenota</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <!-- hero blog: perché mangiare da noi -->
+    <section class="hero-blog" id="home">
+        <div class="container">
+            <div class="badge-blog"><i class="fas fa-utensils"></i> Racconti di gusto</div>
+            <h2>Perché scegliere IN&OUT? <br> Cinque motivi che parlano di cuore</h2>
+            <p>Tradizione pugliese, anima marchigiana e un sorriso autentico. Ecco perché a Senigallia siamo il posto dove tornare.</p>
+        </div>
+    </section>
+
+    <!-- MOTIVI PRINCIPALI (BLOG SECTION) -->
+    <section class="motivi-section" id="motivi">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="sottotitolo"><i class="fas fa-star"></i> Il nostro valore</div>
+                <h3>Mangiare bene è un’esperienza,<br> da noi diventa memoria</h3>
+            </div>
+            <div class="cards-grid">
+                <div class="card-motivo fade-up">
+                    <div class="icona-motivo"><i class="fas fa-leaf"></i></div>
+                    <h4>Materie prime eccellenti</h4>
+                    <p>Selezioniamo solo ingredienti freschi e a km zero: verdure di stagione, pescato locale, carni provenienti da allevamenti responsabili. Ogni piatto racconta la terra.</p>
+                </div>
+                <div class="card-motivo fade-up">
+                    <div class="icona-motivo"><i class="fas fa-pizza-slice"></i></div>
+                    <h4>La pizza che conquista</h4>
+                    <p>Impasto idratato, lunga lievitazione, farine selezionate. Croccante fuori, soffice dentro. I nostri ospiti ci dicono: “la migliore pizza di Senigallia”. Provare per credere.</p>
+                </div>
+                <div class="card-motivo fade-up">
+                    <div class="icona-motivo"><i class="fas fa-hand-sparkles"></i></div>
+                    <h4>Accoglienza familiare</h4>
+                    <p>Dalla Puglia alle Marche, la nostra famiglia ti accoglie come a casa. Servizio attento, sorriso genuino e nessuna formalità: vogliamo che ogni cena sia una festa.</p>
+                </div>
+                <div class="card-motivo fade-up">
+                    <div class="icona-motivo"><i class="fas fa-wine-bottle"></i></div>
+                    <h4>Cantina e abbinamenti</h4>
+                    <p>Oltre 40 etichette tra regionali e nazionali. Dai rossi corposi del Salento ai bianchi freschi marchigiani, il nostro staff ti consiglia il calice perfetto.</p>
+                </div>
+                <div class="card-motivo fade-up">
+                    <div class="icona-motivo"><i class="fas fa-moon"></i></div>
+                    <h4>Atmosfera IN&OUT</h4>
+                    <p>Interno caldo con mattoni a vista e dehor rilassante. Estate: cene all’aperto tra luci soffuse e brezza di mare. Inverno: camino acceso e brindisi conviviali.</p>
+                </div>
+                <div class="card-motivo fade-up">
+                    <div class="icona-motivo"><i class="fas fa-history"></i></div>
+                    <h4>Radici & innovazione</h4>
+                    <p>Oltre 20 anni di storia, ma sempre uno sguardo avanti. Piatti della tradizione rivisitati con creatività, senza mai snaturare l’anima del Sud Italia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECIALITÀ DELLA CASA + STORIA -->
+    <section class="specialita" id="chi-siamo">
+        <div class="container flex-speciale">
+            <div class="speciale-text fade-up">
+                <div class="sottotitolo" style="color:var(--rosso-inout);">il racconto</div>
+                <h3>Un viaggio tra Puglia e Marche<br> nel piatto</h3>
+                <p>Il nostro fondatore, Raffaele, dopo anni di esperienza tra Lecce e Ancona, ha deciso di portare a Senigallia l’autenticità delle orecchiette fatte a mano, del pane cotto a legna e del pesce azzurro marinato come si faceva una volta. Oggi IN&OUT è un punto di riferimento per chi cerca cucina sincera, porzioni generose e quella cura che solo la passione trasmette.</p>
+                <div class="citazione">
+                    «Qui non troverete piatti banali, ma il calore di una tavola imbandita con amore. E un profumo di basilico e pomodoro che vi seguirà a casa.»
+                </div>
+                <p><strong>Ti aspettiamo per condividere un pasto che diventa ricordo.</strong></p>
+            </div>
+            <div class="speciale-img fade-up">
+                <!-- immagine concettuale della cucina - usiamo placeholder illustrativo, ma richiama l'atmosfera -->
+                <img src="https://placehold.co/600x450/f4e5d9/a66a44?text=IN%26OUT+Cucina+%26+Accoglienza" alt="Atmosfera ristorante IN&OUT" style="background:#e9d5c2; object-fit:cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- piccolo assaggio del menù in formato blog: offerte e foto -->
+    <section class="testimonianze" id="menu-anteprima">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="sottotitolo">gusta l’esperienza</div>
+                <h3>Il menu? Un omaggio ai sapori autentici</h3>
+                <p style="max-width: 680px; margin:0.5rem auto;">Dalle pizze gourmet ai primi della tradizione, passando per secondi di carne e pesce. Ogni venerdì “Pesce fresco del mercato”.</p>
+            </div>
+            <div class="menu-image-container" style="text-align: center; margin: 2rem 0 0;">
+                <!-- immagine che rappresenta il menu attuale o un piatto simbolo (modifica src con immagine reale se disponibile) -->
+                <img src="offerta.jpg" alt="Antipasto misto e pizza IN&OUT" style="max-width: 100%; border-radius: 32px; box-shadow: 0 15px 30px rgba(0,0,0,0.05);" onerror="this.onerror=null; this.src='https://placehold.co/1000x500/e6cfbb/9c6e4a?text=Antipasto+%26+Pizza+IN%26OUT'">
+                <p style="margin-top: 0.8rem; font-size: 0.8rem; color:#947e6b;"><i class="fas fa-camera"></i> La nostra pizza farcita con specialità locali</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- testimonianze / recensioni -->
+    <section class="testimonianze" style="background: #fef5ed;">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="sottotitolo">Voce agli ospiti</div>
+                <h3>Dicono di noi</h3>
+            </div>
+            <div class="testi-grid">
+                <div class="testo-card fade-up">
+                    <i class="fas fa-quote-left"></i>
+                    <p>“Pizza leggera e digeribile, ingredienti di primissima qualità. Ambiente rilassante e personale gentilissimo. Ormai è la nostra tappa fissa!”</p>
+                    <span>— Elena & Marco, Senigallia</span>
+                </div>
+                <div class="testo-card fade-up">
+                    <i class="fas fa-quote-left"></i>
+                    <p>“Un tuffo in Puglia. Le orecchiette alle cime di rapa sono divine, e l’accoglienza ti fa sentire subito in famiglia. Rapporto qualità/prezzo incredibile.”</p>
+                    <span>— Davide R., Ancona</span>
+                </div>
+                <div class="testo-card fade-up">
+                    <i class="fas fa-quote-left"></i>
+                    <p>“Ho festeggiato il mio compleanno da IN&OUT, cura dei dettagli e disponibilità su menù senza glutine. Tutti hanno apprezzato. Grazie!”</p>
+                    <span>— Chiara S.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRENOTAZIONE ESCLUSIVAMENTE WHATSAPP come richiesto -->
+    <section id="prenotazione" class="cta-wa">
+        <div class="container">
+            <h3><i class="fab fa-whatsapp"></i> Prenota il tuo tavolo in 30 secondi</h3>
+            <p style="margin-top: 0.5rem; max-width: 520px; margin-left: auto; margin-right: auto;">Scrivici su WhatsApp, comunica data, ora e numero di persone. Conferma immediata, zero attese. Semplice e veloce.</p>
+            <a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo%20per%20%5B%3F%5D%20persone%20il%20%5Bgiorno%5D%20alle%20%5Bora%5D.%20Grazie%20" target="_blank" class="btn-wa">
+                <i class="fab fa-whatsapp" style="font-size: 1.8rem;"></i> Prenota su WhatsApp
+            </a>
+            <p style="margin-top: 1.5rem; font-size: 0.85rem;">📲 +39 371 381 3563 (attivo tutti i giorni) | anche per richieste catering e takeaway</p>
+        </div>
+    </section>
+
+    <!-- Contatti e mappa (integrati) -->
+    <section style="background: #fff7f0; padding: 3rem 0;">
+        <div class="container">
+            <div class="contact-flex" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+                <div style="flex:1">
+                    <h4 style="font-family: 'Playfair Display'; font-size: 1.6rem; color: #2a241f;"><i class="fas fa-location-dot" style="color: var(--rosso-inout);"></i> Dove trovarci</h4>
+                    <p style="margin: 1rem 0;">Via Istria, 1 · 60019 Senigallia (AN) <br>📍 Parcheggio disponibile nelle vicinanze.</p>
+                    <p><strong>Orari:</strong><br> Lunedì: chiuso<br> Martedì–Venerdì: chiuso<br> Sabato e Domenica: 12:00–14:00 / 19:00–23:00</p>
+                    <p><i class="fas fa-phone-alt"></i> Telefono: 071 7931259  <br> <i class="fas fa-envelope"></i> Cotadamoraffaele@gmail.com</p>
+                    <a href="https://wa.me/393713813563?text=Salve%20vorrei%20info%20sul%20vostro%20ristorante" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #f0e1d4; padding: 8px 20px; border-radius: 40px; text-decoration: none; color:#b33d2a; margin-top: 1rem;"><i class="fab fa-whatsapp"></i> Chat veloce</a>
+                </div>
+                <div style="flex:1.2; border-radius: 28px; overflow: hidden; min-height: 280px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.9276324752873!2d13.226063475567436!3d43.71205297109936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d7384ffc72add%3A0x46053ddafcecfe4e!2sPizzeria%20In%26Out!5e0!3m2!1sfr!2sit!4v1760022690015!5m2!1sfr!2sit" width="100%" height="280" style="border:0; border-radius: 24px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <h4>IN&OUT Senigallia</h4>
+            <p>Dal 2001, cucina pugliese e marchigiana con ingredienti freschi e passione. La nostra famiglia ti aspetta per condividere sapori autentici.</p>
+        </div>
+        <div>
+            <h4>Naviga</h4>
+            <p><a href="#motivi">Perché mangiare da noi</a><br><a href="#chi-siamo">La nostra storia</a><br><a href="#prenotazione">Prenota via WhatsApp</a><br><a href="menu.html">Scopri il menu</a></p>
+        </div>
+        <div>
+            <h4>Contatti diretti</h4>
+            <p><i class="fab fa-whatsapp"></i> +39 371 381 3563<br>📞 071 7931259<br>✉️ Cotadamoraffaele@gmail.com</p>
+            <div style="margin-top: 0.5rem;">
+                <a href="https://www.facebook.com/InOutSenigallia" style="margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/inoutsenigallia/p/CLUJ_E0F676/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright container">
+        <p>© 2025 Ristorante IN&OUT Senigallia · P.IVA 02067180428 · Tutti i diritti riservati | Le immagini sono rappresentative della nostra proposta</p>
+    </div>
+</footer>
+
+<!-- pulsante WhatsApp flottante (opzionale ma comodo) -->
+<a href="https://wa.me/393713813563?text=Ciao%20IN%26OUT%20vorrei%20prenotare%20un%20tavolo" class="whatsapp-float" style="position: fixed; bottom: 25px; left: 25px; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 99; transition: 0.2s; text-decoration: none;" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+    // menu mobile toggle
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    if(menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+    }
+
+    // animazione fade-up allo scroll
+    const faders = document.querySelectorAll('.fade-up');
+    const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -40px 0px" };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, appearOptions);
+    faders.forEach(el => appearOnScroll.observe(el));
+
+    // aggiungi classi extra per migliorare l'esperienza
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '1';
+        // se l'immagine offerta non esiste, non rompe layout
+    });
+</script>
+</body>
+</html>
