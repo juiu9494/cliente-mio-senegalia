@@ -1,908 +1,533 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Ristorante IN&OUT Senigallia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        /* RESET & VARIABLES */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary: #c62828;
-            --primary-light: #ff5f52;
-            --primary-dark: #8e0000;
-            --secondary: #ffd54f;
-            --secondary-light: #ffff81;
-            --dark: #1a1a1a;
-            --light: #f5f5f5;
-            --text-light: #ffffff;
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            --radius: 20px;
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
-            color: var(--text-light);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-        
-        /* LOADER ULTRA STYLÉ */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        
-        .loader-content {
-            text-align: center;
-            position: relative;
-        }
-        
-        .loader-logo {
-            font-size: 4.5rem;
-            background: linear-gradient(45deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        
-        .loader-subtitle {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-        }
-        
-        .pulse-ring {
-            width: 100px;
-            height: 100px;
-            border: 3px solid var(--primary);
-            border-radius: 50%;
-            position: relative;
-            margin: 0 auto 2rem;
-        }
-        
-        .pulse-ring:before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 3px solid var(--secondary);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-        
-        .loader-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-        
-        /* NAVIGATION FIXE */
-        .main-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 0;
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo-nav {
-            width: 80px;
-            filter: brightness(0) invert(1);
-            transition: transform 0.3s ease;
-        }
-        
-        .logo-nav:hover {
-            transform: scale(1.1);
-        }
-        
-        .home-btn {
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
-        }
-        
-        .home-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(198, 40, 40, 0.4);
-        }
-        
-        /* MAIN CONTENT */
-        .main-content {
-            padding-top: 100px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 100px 2rem 4rem;
-        }
-        
-        .page-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 1s 0.8s forwards;
-        }
-        
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .page-title h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(45deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-        
-        .page-title p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* MENU DISPLAY - GRAND ET STYLÉ */
-        .menu-display-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius);
-            padding: 3rem;
-            margin-bottom: 3rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: scale(0.95);
-            animation: zoomIn 1s 1s forwards;
-        }
-        
-        @keyframes zoomIn {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        .menu-display-section h2 {
-            color: var(--secondary);
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        .menu-display-section h2:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-        
-        .menu-image-container {
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: zoom-in;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .menu-image-container:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4);
-        }
-        
-        .menu-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .menu-image-container:hover .menu-image {
-            transform: scale(1.02);
-        }
-        
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .menu-image-container:hover .image-overlay {
-            opacity: 1;
-        }
-        
-        .image-overlay h3 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .image-overlay p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-        }
-        
-        .menu-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .control-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1.2rem;
-            backdrop-filter: blur(5px);
-        }
-        
-        .control-btn:hover {
-            background: var(--primary);
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
-        }
-        
-        /* DOWNLOAD SECTION - ULTRA STYLÉ */
-        .download-section {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            border-radius: var(--radius);
-            padding: 4rem;
-            margin-top: 4rem;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: slideUp 1s 1.2s forwards;
-        }
-        
-        .download-section:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .download-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-        
-        .download-content h2 {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .download-content p {
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .download-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .download-btn {
-            background: var(--secondary);
-            color: var(--dark);
-            padding: 1.2rem 2.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: var(--transition);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            min-width: 250px;
-            justify-content: center;
-        }
-        
-        .download-btn:hover {
-            background: var(--secondary-light);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .download-btn i {
-            font-size: 1.5rem;
-        }
-        
-        /* BACK TO TOP */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 999;
-            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
-        }
-        
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 20px rgba(198, 40, 40, 0.4);
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .page-title h1 {
-                font-size: 2.5rem;
-            }
-            
-            .menu-display-section {
-                padding: 2rem;
-            }
-            
-            .menu-display-section h2 {
-                font-size: 1.8rem;
-            }
-            
-            .download-section {
-                padding: 2rem;
-            }
-            
-            .download-content h2 {
-                font-size: 2rem;
-            }
-            
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .download-btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .nav-container {
-                padding: 0 1rem;
-            }
-            
-            .home-btn {
-                padding: 0.6rem 1.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .logo-nav {
-                width: 60px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .page-title h1 {
-                font-size: 2rem;
-            }
-            
-            .main-content {
-                padding: 80px 1rem 2rem;
-            }
-            
-            .menu-display-section {
-                padding: 1.5rem;
-            }
-        }
-        
-        /* ZOOM MODAL */
-        .zoom-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .zoom-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .zoom-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .zoom-image {
-            width: 100%;
-            height: auto;
-            border-radius: var(--radius);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-        
-        .close-zoom {
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            background: var(--primary);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-        
-        .close-zoom:hover {
-            background: var(--primary-dark);
-            transform: rotate(90deg);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu – Ristorante IN&OUT Senigallia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --noir:       #0e0700;
+  --rouge:      #c62828;
+  --rouge-dark: #8e0000;
+  --rouge-glow: rgba(198,40,40,.35);
+  --or:         #e8c97a;
+  --or-light:   #f5e4a8;
+  --creme:      #f5efe6;
+  --gris:       #8a8070;
+  --r:          10px;
+  --trans:      0.4s cubic-bezier(.4,0,.2,1);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Inter',sans-serif;
+  background:var(--noir);
+  color:var(--creme);
+  min-height:100vh;
+  overflow-x:hidden;
+  line-height:1.65;
+}
+h1,h2,h3,h4 { font-family:'Cormorant Garamond',serif; font-weight:600; line-height:1.2; }
+
+/* ── LOADER ── */
+#loader {
+  position:fixed; inset:0;
+  background:var(--noir);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  z-index:9999;
+  transition:opacity .7s ease, visibility .7s ease;
+}
+#loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+.loader-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:4rem;
+  background:linear-gradient(45deg,var(--or),var(--rouge));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  letter-spacing:4px;
+  animation:fadeUp .7s ease both;
+}
+.loader-sub {
+  font-size:.75rem;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--gris);
+  margin-top:.5rem;
+  animation:fadeUp .7s .15s ease both;
+}
+.ring {
+  width:64px; height:64px;
+  border-radius:50%;
+  border:2px solid rgba(232,201,122,.2);
+  border-top-color:var(--or);
+  animation:spin 1s linear infinite, fadeUp .7s .3s ease both;
+  margin:2rem 0 1.5rem;
+}
+@keyframes spin{ to{transform:rotate(360deg)} }
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── NAV ── */
+.main-nav {
+  position:fixed; top:0; left:0; width:100%;
+  background:rgba(14,7,0,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(232,201,122,.1);
+  padding:1rem 0;
+  z-index:1000;
+  transition:padding .4s ease;
+}
+.main-nav.slim { padding:.7rem 0; }
+.nav-row {
+  max-width:1180px; margin:0 auto; padding:0 28px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.logo-img { width:60px; filter:brightness(0) invert(1); transition:var(--trans); }
+.logo-img:hover { transform:scale(1.08); }
+.home-link {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--rouge);
+  color:#fff;
+  text-decoration:none;
+  font-size:.8rem;
+  font-weight:500;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:.65rem 1.6rem;
+  border-radius:30px;
+  transition:all var(--trans);
+  box-shadow:0 4px 18px var(--rouge-glow);
+}
+.home-link:hover { background:var(--rouge-dark); transform:translateY(-2px); }
+
+/* ── HERO BANNER ── */
+.menu-hero {
+  padding:140px 0 60px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.menu-hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(198,40,40,.12) 0%, transparent 65%);
+  pointer-events:none;
+}
+.menu-hero .eyebrow {
+  display:inline-block;
+  font-size:.65rem;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--or);
+  border:1px solid rgba(232,201,122,.3);
+  padding:.4rem 1.2rem;
+  border-radius:30px;
+  margin-bottom:1.4rem;
+  animation:fadeUp .7s .3s ease both;
+}
+.menu-hero h1 {
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  background:linear-gradient(120deg,var(--or-light),var(--or));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-weight:300;
+  animation:fadeUp .7s .5s ease both;
+}
+.menu-hero h1 em { font-style:italic; }
+.menu-hero p {
+  color:rgba(245,239,230,.65);
+  margin-top:1rem;
+  font-size:.95rem;
+  animation:fadeUp .7s .7s ease both;
+}
+.gold-sep {
+  width:60px; height:2px;
+  background:linear-gradient(90deg,var(--rouge),var(--or));
+  border-radius:2px;
+  margin:2rem auto 0;
+  animation:fadeUp .7s .9s ease both;
+}
+
+/* ── MAIN CONTAINER ── */
+.wrap {
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 28px 80px;
+}
+
+/* ── MENU CARD ── */
+.menu-card {
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(232,201,122,.1);
+  border-radius:20px;
+  padding:48px;
+  margin-bottom:48px;
+  backdrop-filter:blur(8px);
+  transition:border-color var(--trans);
+  opacity:0; transform:translateY(30px);
+  animation:cardIn .7s ease forwards;
+}
+.menu-card:nth-child(2){ animation-delay:.15s; }
+@keyframes cardIn{
+  to{opacity:1;transform:translateY(0)}
+}
+.menu-card:hover { border-color:rgba(232,201,122,.3); }
+
+.card-header {
+  display:flex; align-items:center; gap:16px;
+  margin-bottom:2rem;
+}
+.card-icon {
+  width:50px; height:50px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--rouge-dark),var(--rouge));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem;
+  flex-shrink:0;
+  box-shadow:0 6px 20px var(--rouge-glow);
+}
+.card-header h2 {
+  font-size:1.9rem;
+  color:var(--or-light);
+  font-weight:300;
+}
+.card-header h2 em { font-style:italic; color:var(--or); }
+
+/* image display */
+.img-viewer {
+  position:relative;
+  border-radius:var(--r);
+  overflow:hidden;
+  cursor:zoom-in;
+  box-shadow:0 20px 50px rgba(0,0,0,.45);
+  transition:box-shadow .4s ease;
+}
+.img-viewer:hover { box-shadow:0 30px 60px rgba(0,0,0,.6); }
+.img-viewer img {
+  width:100%; display:block;
+  transform-origin:center;
+  transition:transform .5s ease;
+}
+.img-viewer:hover img { transform:scale(1.015); }
+
+/* hover overlay */
+.img-viewer .over {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(14,7,0,.7) 0%, transparent 50%);
+  display:flex; align-items:flex-end;
+  padding:24px;
+  opacity:0; transition:opacity .4s ease;
+}
+.img-viewer:hover .over { opacity:1; }
+.over-text h3 { font-size:1.2rem; color:var(--or); }
+.over-text p  { font-size:.8rem; color:rgba(245,239,230,.8); margin-top:.2rem; }
+
+/* controls */
+.ctrl-bar {
+  display:flex; gap:10px; justify-content:center; margin-top:1.5rem; flex-wrap:wrap;
+}
+.ctrl {
+  width:44px; height:44px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(232,201,122,.2);
+  color:var(--or);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition:all .35s ease;
+  font-size:.95rem;
+}
+.ctrl:hover { background:var(--rouge); border-color:var(--rouge); color:#fff; transform:scale(1.1); }
+.ctrl.full { width:auto; padding:0 16px; border-radius:22px; font-size:.78rem; letter-spacing:1px; gap:6px; }
+
+/* ── DOWNLOAD SECTION ── */
+.dl-section {
+  position:relative; overflow:hidden;
+  background:linear-gradient(135deg,var(--rouge-dark),var(--rouge));
+  border-radius:20px;
+  padding:60px 48px;
+  margin-top:16px;
+  text-align:center;
+}
+.dl-section::before {
+  content:'';
+  position:absolute; top:-60%; left:-60%;
+  width:220%; height:220%;
+  background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.06) 0%, transparent 60%);
+  animation:slowSpin 24s linear infinite;
+}
+@keyframes slowSpin { to{transform:rotate(360deg)} }
+.dl-inner { position:relative; z-index:2; }
+.dl-inner h2 {
+  font-size:2.4rem;
+  color:var(--or);
+  font-weight:300;
+  margin-bottom:.8rem;
+}
+.dl-inner h2 em { font-style:italic; }
+.dl-inner p { color:rgba(255,255,255,.8); max-width:500px; margin:0 auto 2.5rem; font-size:.92rem; }
+.dl-row {
+  display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap;
+}
+.dl-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--or);
+  color:var(--noir);
+  text-decoration:none;
+  font-weight:600;
+  font-size:.85rem;
+  letter-spacing:.5px;
+  padding:1rem 2rem;
+  border-radius:30px;
+  transition:all var(--trans);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+  min-width:240px; justify-content:center;
+}
+.dl-btn:hover { background:var(--or-light); transform:translateY(-4px) scale(1.04); box-shadow:0 14px 30px rgba(0,0,0,.3); }
+.dl-btn i { font-size:1.1rem; }
+
+/* ── ZOOM MODAL ── */
+.z-modal {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.92);
+  display:flex; align-items:center; justify-content:center;
+  z-index:9998;
+  opacity:0; visibility:hidden;
+  transition:opacity .4s ease, visibility .4s ease;
+  backdrop-filter:blur(4px);
+}
+.z-modal.on { opacity:1; visibility:visible; }
+.z-wrap {
+  position:relative;
+  max-width:92vw; max-height:90vh;
+}
+.z-wrap img {
+  max-width:100%; max-height:85vh;
+  border-radius:var(--r);
+  display:block;
+  box-shadow:0 24px 60px rgba(0,0,0,.6);
+}
+.z-close {
+  position:absolute; top:-16px; right:-16px;
+  width:38px; height:38px; border-radius:50%;
+  background:var(--rouge); border:none;
+  color:#fff; font-size:1rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:var(--trans);
+}
+.z-close:hover { background:var(--rouge-dark); transform:rotate(90deg); }
+
+/* ── BACK TO TOP ── */
+.btt {
+  position:fixed; bottom:28px; right:28px;
+  width:48px; height:48px; border-radius:50%;
+  background:var(--rouge);
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  text-decoration:none;
+  opacity:0; visibility:hidden;
+  transition:var(--trans);
+  z-index:200;
+  box-shadow:0 4px 18px var(--rouge-glow);
+}
+.btt.show { opacity:1; visibility:visible; }
+.btt:hover { background:var(--rouge-dark); transform:translateY(-3px); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .menu-card { padding:28px 20px; }
+  .dl-section { padding:40px 24px; }
+  .dl-btn { min-width:100%; max-width:320px; }
+  .ctrl { width:40px; height:40px; font-size:.85rem; }
+  .card-header h2 { font-size:1.5rem; }
+}
+</style>
 </head>
 <body>
-    <!-- Écran de chargement -->
-    <div id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">IN&OUT</div>
-            <div class="loader-subtitle">Ristorante • Senigallia</div>
-            <div class="pulse-ring"></div>
-            <div class="loader-text">Caricamento del menu...</div>
-        </div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">IN&amp;OUT</div>
+  <div class="loader-sub">Ristorante · Senigallia</div>
+  <div class="ring"></div>
+  <div style="font-size:.78rem;color:var(--gris);letter-spacing:2px;">Caricamento del menu…</div>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav" id="mainNav">
+  <div class="nav-row">
+    <img src="logo senegalia.png" alt="IN&OUT" class="logo-img">
+    <a href="index.html" class="home-link">
+      <i class="fas fa-home"></i> Torna all'Home
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="menu-hero">
+  <span class="eyebrow"><i class="fas fa-book-open" style="margin-right:6px;font-size:.6rem;"></i>Cucina autentica italiana</span>
+  <h1>Il nostro <em>Menu</em></h1>
+  <p>Tradizione pugliese e marchigiana · Ingredienti freschi del territorio</p>
+  <div class="gold-sep"></div>
+</div>
+
+<!-- CONTENT -->
+<div class="wrap">
+
+  <!-- MENU 1 -->
+  <div class="menu-card">
+    <div class="card-header">
+      <div class="card-icon"><i class="fas fa-utensils"></i></div>
+      <h2>Menu <em>Gastronomico</em></h2>
     </div>
-
-    <!-- Navigation fixe -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <img src="logo senegalia.png" alt="Logo IN&OUT" class="logo-nav">
-            <a href="index.html" class="home-btn">
-                <i class="fas fa-home"></i>
-                <span>HOME</span>
-            </a>
+    <div class="img-viewer" id="v1">
+      <img src="menu1.jpg" alt="Menu Principale IN&OUT" id="img1">
+      <div class="over">
+        <div class="over-text">
+          <h3>Menu Completo</h3>
+          <p>Piatti tradizionali e specialità della casa — doppio clic per ingrandire</p>
         </div>
-    </nav>
+      </div>
+    </div>
+    <div class="ctrl-bar">
+      <button class="ctrl" data-action="zin" data-target="img1" title="Zoom in"><i class="fas fa-search-plus"></i></button>
+      <button class="ctrl" data-action="zout" data-target="img1" title="Zoom out"><i class="fas fa-search-minus"></i></button>
+      <button class="ctrl" data-action="reset" data-target="img1" title="Reset"><i class="fas fa-sync-alt"></i></button>
+      <button class="ctrl full" data-action="full" data-target="img1"><i class="fas fa-expand"></i> Ingrandisci</button>
+    </div>
+  </div>
 
-    <!-- Contenu principal -->
-    <main class="main-content">
-        <!-- Titre -->
-        <div class="page-title">
-            <h1>Il Nostro Menu</h1>
-            <p>Scopri l'eccellenza della cucina italiana a Senigallia</p>
+  <!-- MENU 2 -->
+  <div class="menu-card">
+    <div class="card-header">
+      <div class="card-icon"><i class="fas fa-star"></i></div>
+      <h2>Menu <em>Specialità</em></h2>
+    </div>
+    <div class="img-viewer" id="v2">
+      <img src="menu2.jpg" alt="Menu Specialità IN&OUT" id="img2">
+      <div class="over">
+        <div class="over-text">
+          <h3>Specialità della Casa</h3>
+          <p>Creazioni esclusive e proposte stagionali — doppio clic per ingrandire</p>
         </div>
+      </div>
+    </div>
+    <div class="ctrl-bar">
+      <button class="ctrl" data-action="zin" data-target="img2" title="Zoom in"><i class="fas fa-search-plus"></i></button>
+      <button class="ctrl" data-action="zout" data-target="img2" title="Zoom out"><i class="fas fa-search-minus"></i></button>
+      <button class="ctrl" data-action="reset" data-target="img2" title="Reset"><i class="fas fa-sync-alt"></i></button>
+      <button class="ctrl full" data-action="full" data-target="img2"><i class="fas fa-expand"></i> Ingrandisci</button>
+    </div>
+  </div>
 
-        <!-- Menu Principal -->
-        <section class="menu-display-section">
-            <h2>Menu Gastronomico</h2>
-            <div class="menu-image-container" id="main-menu">
-                <img src="menu1.jpg" alt="Menu Principale IN&OUT" class="menu-image">
-                <div class="image-overlay">
-                    <h3>Menu Completo</h3>
-                    <p>La nostra selezione di piatti tradizionali e specialità della casa</p>
-                </div>
-            </div>
-            
-            <div class="menu-controls">
-                <button class="control-btn" id="zoom-in">
-                    <i class="fas fa-search-plus"></i>
-                </button>
-                <button class="control-btn" id="zoom-out">
-                    <i class="fas fa-search-minus"></i>
-                </button>
-                <button class="control-btn" id="reset-zoom">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-                <button class="control-btn" id="fullscreen-btn">
-                    <i class="fas fa-expand"></i>
-                </button>
-            </div>
-        </section>
+  <!-- DOWNLOAD -->
+  <div class="dl-section">
+    <div class="dl-inner">
+      <h2>Scarica i <em>Menu</em></h2>
+      <p>Portali con te, consultali quando vuoi o condividili con amici e familiari.</p>
+      <div class="dl-row">
+        <a href="menu1.jpg" download="Menu_Principale_INOUT.jpg" class="dl-btn">
+          <i class="fas fa-download"></i> Menu Gastronomico
+        </a>
+        <a href="menu2.jpg" download="Menu_Specialita_INOUT.jpg" class="dl-btn">
+          <i class="fas fa-download"></i> Menu Specialità
+        </a>
+      </div>
+    </div>
+  </div>
 
-        <!-- Menu Spécialités -->
-        <section class="menu-display-section">
-            <h2>Menu Specialità</h2>
-            <div class="menu-image-container" id="special-menu">
-                <img src="menu2.jpg" alt="Menu Specialità IN&OUT" class="menu-image">
-                <div class="image-overlay">
-                    <h3>Specialità della Casa</h3>
-                    <p>Le nostre creazioni esclusive e piatti stagionali</p>
-                </div>
-            </div>
-            
-            <div class="menu-controls">
-                <button class="control-btn" id="zoom-in-2">
-                    <i class="fas fa-search-plus"></i>
-                </button>
-                <button class="control-btn" id="zoom-out-2">
-                    <i class="fas fa-search-minus"></i>
-                </button>
-                <button class="control-btn" id="reset-zoom-2">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-                <button class="control-btn" id="fullscreen-btn-2">
-                    <i class="fas fa-expand"></i>
-                </button>
-            </div>
-        </section>
+</div><!-- /wrap -->
 
-        <!-- Section Téléchargement -->
-        <section class="download-section">
-            <div class="download-content">
-                <h2>Scarica i Nostri Menu</h2>
-                <p>Porta con te i nostri menu per consultarli quando vuoi o condividerli con amici e familiari</p>
-                
-                <div class="download-buttons">
-                    <a href="menu1.jpg" download="Menu_Principale_INOUT.jpg" class="download-btn">
-                        <i class="fas fa-download"></i>
-                        <span>SCARICA MENU PRINCIPALE</span>
-                    </a>
-                    
-                    <a href="menu2.jpg" download="Menu_Specialita_INOUT.jpg" class="download-btn">
-                        <i class="fas fa-download"></i>
-                        <span>SCARICA MENU SPECIALITÀ</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-    <p style="font-size:14px; color:#999; text-align:center; margin-top:20px;">
-  By 
-  <a href="https://ankoautca.it/" 
-     target="_blank"
-     style="color:#ffffff; text-decoration:none; font-weight:600; transition:0.3s;">
-     Ankoautca
-  </a>
+<p style="font-size:.75rem;color:rgba(138,128,112,.45);text-align:center;padding:0 0 32px;">
+  By <a href="https://ankoautca.it/" target="_blank" style="color:rgba(232,201,122,.45);text-decoration:none;font-weight:600;">Ankoautca</a>
 </p>
 
-    <!-- Back to top -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+<!-- ZOOM MODAL -->
+<div class="z-modal" id="zModal">
+  <div class="z-wrap">
+    <img src="" alt="" id="zImg">
+    <button class="z-close" id="zClose"><i class="fas fa-times"></i></button>
+  </div>
+</div>
 
-    <!-- Modal Zoom -->
-    <div class="zoom-modal" id="zoomModal">
-        <div class="zoom-content">
-            <img src="" alt="" class="zoom-image" id="modalImage">
-            <button class="close-zoom" id="closeModal">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
+<!-- BACK TO TOP -->
+<a href="#" class="btt" id="btt"><i class="fas fa-arrow-up"></i></a>
 
-    <script>
-        // Écran de chargement ultra-rapide
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('loader');
-            
-            // Simulation de progression rapide
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += 30;
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                    setTimeout(() => {
-                        loader.style.opacity = '0';
-                        setTimeout(() => {
-                            loader.style.display = 'none';
-                        }, 800);
-                    }, 200);
-                }
-            }, 100);
-        });
+<script>
+// LOADER
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('hidden'),1600);
+});
 
-        // Fonction de zoom générique
-        function setupZoom(imageContainerId, zoomInId, zoomOutId, resetId, fullscreenId) {
-            const container = document.getElementById(imageContainerId);
-            const image = container.querySelector('.menu-image');
-            const zoomInBtn = document.getElementById(zoomInId);
-            const zoomOutBtn = document.getElementById(zoomOutId);
-            const resetBtn = document.getElementById(resetId);
-            const fullscreenBtn = document.getElementById(fullscreenId);
-            
-            let scale = 1;
-            
-            // Zoom In
-            zoomInBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                scale = Math.min(scale + 0.2, 3);
-                image.style.transform = `scale(${scale})`;
-                zoomInBtn.style.transform = 'scale(1.2) rotate(15deg)';
-                setTimeout(() => zoomInBtn.style.transform = '', 300);
-            });
-            
-            // Zoom Out
-            zoomOutBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                scale = Math.max(scale - 0.2, 0.5);
-                image.style.transform = `scale(${scale})`;
-                zoomOutBtn.style.transform = 'scale(1.2) rotate(-15deg)';
-                setTimeout(() => zoomOutBtn.style.transform = '', 300);
-            });
-            
-            // Reset Zoom
-            resetBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                scale = 1;
-                image.style.transform = `scale(${scale})`;
-                resetBtn.style.transform = 'scale(1.2) rotate(360deg)';
-                setTimeout(() => resetBtn.style.transform = '', 300);
-            });
-            
-            // Fullscreen / Zoom Modal
-            fullscreenBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const modal = document.getElementById('zoomModal');
-                const modalImage = document.getElementById('modalImage');
-                modalImage.src = image.src;
-                modal.classList.add('active');
-            });
-            
-            // Double-clic sur l'image pour fullscreen
-            container.addEventListener('dblclick', (e) => {
-                e.preventDefault();
-                const modal = document.getElementById('zoomModal');
-                const modalImage = document.getElementById('modalImage');
-                modalImage.src = image.src;
-                modal.classList.add('active');
-            });
-            
-            // Molette de souris pour zoom
-            container.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                if (e.deltaY < 0) {
-                    // Scroll up - zoom in
-                    scale = Math.min(scale + 0.1, 3);
-                } else {
-                    // Scroll down - zoom out
-                    scale = Math.max(scale - 0.1, 0.5);
-                }
-                
-                image.style.transform = `scale(${scale})`;
-                image.style.transition = 'transform 0.3s ease';
-                setTimeout(() => {
-                    image.style.transition = '';
-                }, 300);
-            });
-        }
+// NAV slim on scroll
+const nav = document.getElementById('mainNav');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('slim',window.scrollY>60);
+  btt.classList.toggle('show',window.scrollY>300);
+});
+document.getElementById('btt').addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
 
-        // Initialiser le zoom pour les deux menus
-        setupZoom('main-menu', 'zoom-in', 'zoom-out', 'reset-zoom', 'fullscreen-btn');
-        setupZoom('special-menu', 'zoom-in-2', 'zoom-out-2', 'reset-zoom-2', 'fullscreen-btn-2');
+// ZOOM state per image
+const scales = {};
 
-        // Gestion du modal de zoom
-        const zoomModal = document.getElementById('zoomModal');
-        const closeModal = document.getElementById('closeModal');
-        
-        closeModal.addEventListener('click', () => {
-            zoomModal.classList.remove('active');
-        });
-        
-        zoomModal.addEventListener('click', (e) => {
-            if (e.target === zoomModal) {
-                zoomModal.classList.remove('active');
-            }
-        });
-        
-        // Échap pour fermer le modal
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && zoomModal.classList.contains('active')) {
-                zoomModal.classList.remove('active');
-            }
-        });
+document.querySelectorAll('.ctrl').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const action = btn.dataset.action;
+    const id     = btn.dataset.target;
+    const img    = document.getElementById(id);
+    if(!scales[id]) scales[id]=1;
 
-        // Back to top functionality
-        const backToTop = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('active');
-            } else {
-                backToTop.classList.remove('active');
-            }
-        });
-        
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+    if(action==='zin')  scales[id] = Math.min(scales[id]+.2, 3);
+    if(action==='zout') scales[id] = Math.max(scales[id]-.2, .4);
+    if(action==='reset')scales[id] = 1;
+    if(action==='full'){
+      document.getElementById('zImg').src = img.src;
+      document.getElementById('zModal').classList.add('on');
+      return;
+    }
+    img.style.transform = `scale(${scales[id]})`;
+  });
+});
 
-        // Animation du header au scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.main-nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(26, 26, 26, 0.98)';
-                nav.style.boxShadow = '0 5px 25px rgba(0, 0, 0, 0.3)';
-            } else {
-                nav.style.background = 'rgba(26, 26, 26, 0.95)';
-                nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
-            }
-        });
+// Double-click on viewer → fullscreen
+document.querySelectorAll('.img-viewer').forEach(v=>{
+  v.addEventListener('dblclick',()=>{
+    document.getElementById('zImg').src = v.querySelector('img').src;
+    document.getElementById('zModal').classList.add('on');
+  });
+});
 
-        // Effet de parallax léger
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const title = document.querySelector('.page-title');
-            if (title) {
-                title.style.transform = `translateY(${scrolled * 0.1}px)`;
-            }
-        });
+// Wheel zoom
+document.querySelectorAll('.img-viewer').forEach(v=>{
+  v.addEventListener('wheel',e=>{
+    e.preventDefault();
+    const img = v.querySelector('img');
+    const id  = img.id;
+    if(!scales[id]) scales[id]=1;
+    scales[id] = e.deltaY<0
+      ? Math.min(scales[id]+.08, 3)
+      : Math.max(scales[id]-.08, .4);
+    img.style.transition='transform .2s ease';
+    img.style.transform=`scale(${scales[id]})`;
+    setTimeout(()=>img.style.transition='',250);
+  },{passive:false});
+});
 
-        // Animation au hover des boutons de téléchargement
-        const downloadBtns = document.querySelectorAll('.download-btn');
-        downloadBtns.forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-5px) scale(1.05)';
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Animation des sections au scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        // Observer les sections
-        const sections = document.querySelectorAll('.menu-display-section, .download-section');
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Effet de brillance sur les titres
-        const titles = document.querySelectorAll('h1, h2');
-        titles.forEach(title => {
-            title.addEventListener('mouseenter', () => {
-                title.style.background = 'linear-gradient(45deg, var(--secondary-light), var(--primary-light))';
-                title.style.webkitBackgroundClip = 'text';
-                title.style.backgroundClip = 'text';
-            });
-            
-            title.addEventListener('mouseleave', () => {
-                title.style.background = 'linear-gradient(45deg, var(--secondary), var(--primary))';
-                title.style.webkitBackgroundClip = 'text';
-                title.style.backgroundClip = 'text';
-            });
-        });
-    </script>
+// Modal close
+const modal = document.getElementById('zModal');
+document.getElementById('zClose').addEventListener('click',()=>modal.classList.remove('on'));
+modal.addEventListener('click',e=>{ if(e.target===modal) modal.classList.remove('on'); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') modal.classList.remove('on'); });
+</script>
 </body>
 </html>
