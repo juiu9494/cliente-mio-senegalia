@@ -51,7 +51,12 @@
         .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--text); cursor: pointer; }
 
         /* Hero */
-        .hero { height: 100vh; display: flex; align-items: center; background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; color: white; text-align: center; }
+        .hero {
+            height: 100vh; display: flex; align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                        url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAGsu96dlSUXZlPQIWTtYn4V7farfOVbQkFNITiDAgmTHIxX6awNcz0r5i7cZMQ0cWDHAFBWku6k1jBu69MfKCqGhJfbqgT7ClqGSYp-9PYEU71nTXMkzC5IsgZ_rZtPhd_Z3lWL=s680-w680-h510') center/cover no-repeat;
+            color: white; text-align: center;
+        }
         .hero-content { max-width: 700px; margin: 0 auto; animation: fadeUp 1s ease; }
         .hero-content h1 { font-size: 4rem; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.4); }
         .hero-content p { font-size: 1.3rem; margin-bottom: 2.5rem; opacity: 0.95; }
@@ -67,7 +72,7 @@
         .stat-number { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--accent); }
         .stat-label { font-size: 0.9rem; color: #666; }
 
-        /* Menu section (grande image) */
+        /* Menu section */
         .menu-section { background: var(--cream); }
         .menu-image-container {
             max-width: 1000px; margin: 0 auto;
@@ -151,12 +156,11 @@
     </style>
 </head>
 <body>
-<!-- PAS DE LOADER – chargement direct -->
 
 <!-- Header -->
 <header>
     <div class="container header-inner">
-        <a href="#home"><img src="logo-senegalia-blanc.png" alt="IN&OUT" class="logo-img" onerror="this.style.background='#3a5a40'; this.style.padding='8px'; this.style.borderRadius='10px'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%2250%22%3E%3Crect width=%22140%22 height=%2250%22 fill=%22%233a5a40%22 rx=%2210%22/%3E%3Ctext x=%2270%22 y=%2233%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22serif%22 font-size=%2222%22%3EIN%26OUT%3C/text%3E%3C/svg%3E';"></a>
+        <a href="#home"><img src="logo-senegalia.png" alt="IN&OUT" class="logo-img" onerror="this.style.background='#3a5a40'; this.style.padding='8px'; this.style.borderRadius='10px'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%2250%22%3E%3Crect width=%22140%22 height=%2250%22 fill=%22%233a5a40%22 rx=%2210%22/%3E%3Ctext x=%2270%22 y=%2233%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22serif%22 font-size=%2222%22%3EIN%26OUT%3C/text%3E%3C/svg%3E';"></a>
         <nav class="desktop-nav">
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -219,14 +223,13 @@
     </div>
 </section>
 
-<!-- Menu (image en grand) -->
+<!-- Menu -->
 <section class="section menu-section" id="menu">
     <div class="container">
         <div class="section-title">
             <h2>Il nostro Menu</h2>
             <p>Scopri tutte le nostre specialità</p>
         </div>
-        <!-- Image du menu affichée en grand -->
         <div class="menu-image-container">
             <img src="menu_inout.jpeg" alt="Menu IN&OUT Senigallia">
         </div>
@@ -236,7 +239,7 @@
     </div>
 </section>
 
-<!-- Gallery -->
+<!-- Gallery avec les images demandées -->
 <section class="section" id="gallery">
     <div class="container">
         <div class="section-title">
@@ -244,19 +247,20 @@
             <p>Uno sguardo alle nostre creazioni culinarie</p>
         </div>
         <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=600&auto=format&fit=crop" alt="Pizza">
-            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=600&auto=format&fit=crop" alt="Pasta">
-            <img src="https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?q=80&w=600&auto=format&fit=crop" alt="Antipasti">
-            <img src="https://images.unsplash.com/photo-1604909052743-94e838986d24?q=80&w=600&auto=format&fit=crop" alt="Risotto">
-            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop" alt="Carne">
-            <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?q=80&w=600&auto=format&fit=crop" alt="Pesce">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600&auto=format&fit=crop" alt="Dolce">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600&auto=format&fit=crop" alt="Vino">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHtuCVkRlCYv8wNDDadQ1AgdFFYluttq1p1hCXGSXzoJQrH_So65nICxTwlN6ihOa0bF30LQKqWyhCruQ8O-rW9G89DNi28wam777Bv8yC3QliApLjgAca6-j-IDdsqMGZl73iWfEFo_eKE=s680-w680-h510" alt="Pizza">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF_Nr0qJlEh4W2WNQKGoC_3sLLRLyN4qyl5-ZD_9VAhWP6aW7GGbSWaPt92JdcKPmbFCFFd99OZ08HqsSymC4Mt6sZSn89b5TaunRDpeQ8mLqrI0B64jhxGTqcHNEQx9Dz3kHs=s680-w680-h510" alt="Pasta">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAE-5ePFOKTgd79uCNI57J2HPa3aHwIdqvDkq47WqEdceo_1ET84QjKoEevWOTrg8Gf3RsueoGwbGcR7iF-bT6nk7If_K6ddczvdNRGXsspDglh2zbIKL50tpVmlS3qb9jdkiDdyxg=s680-w680-h510" alt="Antipasti">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHzBYi0hqgIvTQNmVN76rw-hm9Y9zy4mDQ7VBPByW6EVJEVVFG6Z3YezC3y4hP0TVYl0UBQ4JvUIVBjOUi88Cs0kACEB13M1ioBKvnFP0Wy3wnWK-K_OCubAthS5V9OvNLMI1BWYg=s680-w680-h510" alt="Carne">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHkb2T7Ep1xlQ_oBxLcDKAHBVARngjp4guVZu4Q_3AV-27dnYB6M1ikbTSqxMPZtfLr4BUxAAu3jqVBt1pKFYsp82lJt_jvTCufN-hCYFx2mhBS44LfMHS7-y-sep6GURxMm_eP=s680-w680-h510" alt="Pesce">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGUEfDtn4123ExR8sQxJ8df119NMah6etEeEF5ZOlCYDeZrlccNoLSNQj2-ud_NmeKjEDZg7gmizrSI8RDIYSoPbTw-67m7r5wRPDzhnA_gbWQ2ylju7D7XJcNFXhyVqwh2EpGU=s680-w680-h510" alt="Dolce">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF7p4dt_NYsrNfcsKpQpmQtIwSjVKKUXQnT25lGOV2t6YUjzaneNKfcYt8Y2YMYgMFR5fzLa8cIvfC8nL90u4RLvTOh7jgdar7qR65gJ5GdYQjmIuAbn-DZzyHHIR2TVgYPX3T8=s680-w680-h510" alt="Risotto">
+            <!-- Image client qui mange -->
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGzTw_kNQOqfsJAR3_q5fYhKueHLZb8SIOtpFVV2UvH8Q9DMZ0LkvIgAJTRFBbIJEtEBxy_EhifC84O4FlSyBT-L7NBngGWAkveYrW-M20Vfm04S4HsVzKBXxM8NXkcM2oiGIwd=s680-w680-h510" alt="Clienti">
         </div>
     </div>
 </section>
 
-<!-- Reservation -->
+<!-- Réservation WhatsApp -->
 <section class="section reservation" id="reservation">
     <div class="container">
         <div class="section-title">
