@@ -68,6 +68,40 @@
         }
         .btn-whatsapp:hover { background: #1da851; transform: translateY(-3px); }
 
+        /* Loader */
+        #page-loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 1rem;
+        }
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--cream);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         /* Header */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -77,8 +111,32 @@
         }
         header.scrolled { background: var(--white); box-shadow: 0 5px 25px rgba(0,0,0,0.08); }
         .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
-        .logo-img { height: 50px; transition: transform 0.3s; }
+        /* Logo container (image + fallback) */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+        }
+        .logo-img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s;
+        }
         .logo-img:hover { transform: scale(1.05); }
+        .logo-fallback {
+            display: none; /* caché par défaut */
+            height: 50px;
+            width: auto;
+        }
+        /* Si l'image ne charge pas, on cache l'img et on montre le fallback SVG */
+        .logo-img.error + .logo-fallback {
+            display: inline-block;
+        }
+        .logo-img.error {
+            display: none;
+        }
+
         nav ul { display: flex; list-style: none; gap: 2rem; }
         nav a {
             color: var(--text); text-decoration: none; font-weight: 500;
@@ -234,6 +292,7 @@
             .hero-content h1 { font-size: 2.8rem; }
             .section-title h2 { font-size: 2.2rem; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .logo-img, .logo-fallback { height: 42px; } /* légèrement réduit sur mobile */
         }
         @media (max-width: 500px) {
             .gallery-grid { grid-template-columns: 1fr; }
@@ -242,10 +301,27 @@
 </head>
 <body>
 
+<!-- Page de chargement -->
+<div id="page-loader">
+    <div class="loader-logo">IN&OUT</div>
+    <div class="loader-spinner"></div>
+    <p style="margin-top:1rem; color:var(--accent);">Caricamento...</p>
+</div>
+
 <!-- Header -->
 <header>
     <div class="container header-inner">
-        <a href="#home"><img src="logo-senegalia.png" alt="IN&OUT" class="logo-img" onerror="this.style.background='#3a5a40'; this.style.padding='8px'; this.style.borderRadius='10px'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%2250%22%3E%3Crect width=%22140%22 height=%2250%22 fill=%22%233a5a40%22 rx=%2210%22/%3E%3Ctext x=%2270%22 y=%2233%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22serif%22 font-size=%2222%22%3EIN%26OUT%3C/text%3E%3C/svg%3E';"></a>
+        <a href="#home" class="logo-wrapper">
+            <!-- Image du logo originale (si disponible) -->
+            <img src="logo-senegalia.png" alt="IN&OUT Senigallia" class="logo-img" id="logoImg"
+                 onerror="this.classList.add('error'); document.getElementById('logoFallback').style.display='inline-block';">
+            <!-- Fallback SVG intégré (affiché uniquement si l'image ne charge pas) -->
+            <svg id="logoFallback" class="logo-fallback" width="130" height="50" viewBox="0 0 130 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="5" width="120" height="40" rx="10" fill="#3a5a40"/>
+                <text x="65" y="32" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="bold" font-size="22" fill="white">IN&amp;OUT</text>
+                <circle cx="65" cy="38" r="3" fill="#c17f59"/>
+            </svg>
+        </a>
         <nav class="desktop-nav">
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -453,6 +529,15 @@
 <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
 
 <script>
+    // Loader : masquer après chargement complet de la page
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('page-loader');
+        loader.classList.add('hidden');
+        // On supprime complètement le loader après la transition
+        setTimeout(() => { loader.style.display = 'none'; }, 600);
+    });
+
+    // Gestion du scroll pour le header et bouton retour en haut
     window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
         const backBtn = document.getElementById('backToTop');
@@ -460,6 +545,7 @@
         backBtn.classList.toggle('active', window.scrollY > 600);
     });
 
+    // Menu mobile
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav = document.getElementById('mobileNav');
     const closeMenu = document.getElementById('closeMenu');
@@ -469,9 +555,20 @@
         link.addEventListener('click', () => mobileNav.classList.remove('active'));
     });
 
+    // Retour en haut
     document.getElementById('backToTop').addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Correction supplémentaire logo : si l'image ne se charge pas, le fallback SVG est déjà activé via onerror
+    // Mais on peut aussi forcer un check au cas où le navigateur n'exécute pas onerror immédiatement
+    window.addEventListener('DOMContentLoaded', function() {
+        const logoImg = document.getElementById('logoImg');
+        if (logoImg && logoImg.naturalWidth === 0) {
+            logoImg.classList.add('error');
+            document.getElementById('logoFallback').style.display = 'inline-block';
+        }
     });
 </script>
 </body>
