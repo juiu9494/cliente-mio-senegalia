@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menù – IN&OUT Senigallia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0d0b09;
             --surface: #171412;
-            --card: #1f1b17;
             --text: #f5f1e8;
             --muted: #b0a89d;
             --accent: #d4a373;
             --accent-strong: #e6b17e;
             --gold: #c9a962;
             --whatsapp: #25D366;
+            --deliveroo: #00ccbc;
             --shadow: 0 12px 40px rgba(0,0,0,0.5);
-            --radius: 16px;
+            --radius: 20px;
             --transition: all 0.35s ease;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,145 +30,107 @@
             line-height: 1.7;
             overflow-x: hidden;
         }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
         .menu-header {
-            background: var(--surface); padding: 60px 0 40px;
-            text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: var(--surface);
+            padding: 50px 0 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .menu-header h1 { font-size: 3rem; color: var(--gold); margin-bottom: 10px; }
-        .menu-header p { color: var(--muted); font-size: 1.1rem; }
+        .menu-header h1 { font-size: 3.5rem; color: var(--gold); margin-bottom: 10px; }
+        .menu-header p { color: var(--muted); font-size: 1.2rem; }
         .back-btn {
-            display: inline-block; margin-top: 20px; color: var(--accent);
-            text-decoration: none; font-weight: 500; transition: color 0.3s;
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
         }
         .back-btn:hover { color: var(--accent-strong); }
-        .menu-section { padding: 40px 0; }
-        .menu-category {
-            background: var(--card); border-radius: var(--radius);
-            padding: 30px 25px; margin-bottom: 30px;
+        .menu-image-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .menu-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             border: 1px solid rgba(255,255,255,0.06);
         }
-        .menu-category h2 {
-            color: var(--gold); font-size: 2rem; margin-bottom: 20px;
-            padding-bottom: 10px; border-bottom: 2px solid var(--accent);
+        .deliveroo-btn-container {
+            text-align: center;
+            margin: 30px 0 50px;
         }
-        .menu-item {
-            display: flex; justify-content: space-between; align-items: baseline;
-            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+        .btn-deliveroo {
+            background: var(--deliveroo);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 42px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 204, 188, 0.3);
         }
-        .menu-item:last-child { border-bottom: none; }
-        .menu-item-name { font-weight: 600; font-size: 1.05rem; }
-        .menu-item-desc { color: var(--muted); font-size: 0.9rem; margin-top: 2px; }
-        .menu-item-price { color: var(--accent-strong); font-weight: 600; white-space: nowrap; margin-left: 15px; }
-        .menu-note {
-            text-align: center; margin-top: 30px; color: var(--muted); font-size: 0.95rem;
+        .btn-deliveroo:hover {
+            background: #00b3a4;
+            transform: translateY(-4px);
         }
         .whatsapp-float {
-            position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px;
-            background: var(--whatsapp); border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: white; font-size: 1.8rem;
-            box-shadow: 0 6px 20px rgba(37,211,102,0.4); z-index: 99; text-decoration: none;
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--whatsapp);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+            z-index: 99;
+            text-decoration: none;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
-        @media (max-width: 600px) {
-            .menu-header h1 { font-size: 2.2rem; }
-            .menu-category h2 { font-size: 1.6rem; }
-            .menu-item { flex-direction: column; gap: 5px; }
-            .menu-item-price { margin-left: 0; }
+        @media (max-width: 768px) {
+            .menu-header h1 { font-size: 2.5rem; }
+            .menu-image-container { margin: 20px auto; }
+            .btn-deliveroo { padding: 16px 30px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
 <div class="menu-header">
-    <div class="container">
+    <div class="container" style="max-width: 1000px; margin: 0 auto;">
         <h1>Il Nostro Menù</h1>
         <p>Pizzeria Ristorante – Senigallia</p>
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
     </div>
 </div>
 
-<div class="container menu-section">
-
-    <!-- Antipasti -->
-    <div class="menu-category">
-        <h2>Antipasti</h2>
-        <div class="menu-item"><div><div class="menu-item-name">Bruschetta al Pomodoro</div><div class="menu-item-desc">Pane tostato, pomodoro fresco, basilico, olio EVO</div></div><span class="menu-item-price">€6.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Tagliere di Salumi e Formaggi</div><div class="menu-item-desc">Selezione di salumi italiani e formaggi locali</div></div><span class="menu-item-price">€12.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Carpaccio di Manzo</div><div class="menu-item-desc">Rucola, scaglie di parmigiano, olio al limone</div></div><span class="menu-item-price">€10.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Frittura di Calamari</div><div class="menu-item-desc">Calamari freschi, salsa tartara</div></div><span class="menu-item-price">€11.00</span></div>
-    </div>
-
-    <!-- Pizze -->
-    <div class="menu-category">
-        <h2>Pizze</h2>
-        <div class="menu-item"><div><div class="menu-item-name">Margherita</div><div class="menu-item-desc">Pomodoro, mozzarella, basilico</div></div><span class="menu-item-price">€6.50</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Diavola</div><div class="menu-item-desc">Pomodoro, mozzarella, salame piccante</div></div><span class="menu-item-price">€8.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Quattro Stagioni</div><div class="menu-item-desc">Pomodoro, mozzarella, funghi, prosciutto, carciofi, olive</div></div><span class="menu-item-price">€9.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Capricciosa</div><div class="menu-item-desc">Pomodoro, mozzarella, funghi, prosciutto, carciofi, uovo</div></div><span class="menu-item-price">€9.00</span></div>
-    </div>
-
-    <!-- Pizze Speciali -->
-    <div class="menu-category">
-        <h2>Pizze Speciali</h2>
-        <div class="menu-item"><div><div class="menu-item-name">In&Out Speciale</div><div class="menu-item-desc">Mozzarella, crudo, rucola, grana, pomodorini</div></div><span class="menu-item-price">€11.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Frutti di Mare</div><div class="menu-item-desc">Cozze, vongole, gamberi, calamari, aglio, prezzemolo</div></div><span class="menu-item-price">€13.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Tartufo e Porcini</div><div class="menu-item-desc">Crema di tartufo, funghi porcini, mozzarella</div></div><span class="menu-item-price">€12.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Bufala e Pesto</div><div class="menu-item-desc">Mozzarella di bufala, pesto, pomodorini, basilico</div></div><span class="menu-item-price">€10.50</span></div>
-    </div>
-
-    <!-- Primi -->
-    <div class="menu-category">
-        <h2>Primi</h2>
-        <div class="menu-item"><div><div class="menu-item-name">Spaghetti alle Vongole</div><div class="menu-item-desc">Vongole fresche, aglio, olio, prezzemolo</div></div><span class="menu-item-price">€12.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Tagliatelle al Ragù</div><div class="menu-item-desc">Ragù di carne tradizionale, parmigiano</div></div><span class="menu-item-price">€11.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Risotto ai Frutti di Mare</div><div class="menu-item-desc">Riso carnaroli, cozze, vongole, gamberi</div></div><span class="menu-item-price">€13.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Penne all'Arrabbiata</div><div class="menu-item-desc">Pomodoro, aglio, peperoncino, prezzemolo</div></div><span class="menu-item-price">€9.00</span></div>
-    </div>
-
-    <!-- Secondi -->
-    <div class="menu-category">
-        <h2>Secondi</h2>
-        <div class="menu-item"><div><div class="menu-item-name">Bistecca alla Griglia</div><div class="menu-item-desc">Manzo selezionato, rucola, grana</div></div><span class="menu-item-price">€15.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Scaloppine al Limone</div><div class="menu-item-desc">Vitello, limone, burro, prezzemolo</div></div><span class="menu-item-price">€13.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Grigliata Mista di Pesce</div><div class="menu-item-desc">Calamari, gamberi, seppie, pesce del giorno</div></div><span class="menu-item-price">€18.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Frittura di Paranza</div><div class="menu-item-desc">Pesce fresco fritto, limone</div></div><span class="menu-item-price">€14.00</span></div>
-    </div>
-
-    <!-- Contorni -->
-    <div class="menu-category">
-        <h2>Contorni</h2>
-        <div class="menu-item"><div><div class="menu-item-name">Insalata Mista</div><div class="menu-item-desc">Lattuga, pomodoro, carote, mais</div></div><span class="menu-item-price">€5.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Patate Arrosto</div><div class="menu-item-desc">Rosmarino, aglio, sale grosso</div></div><span class="menu-item-price">€5.50</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Verdure Grigliate</div><div class="menu-item-desc">Zucchine, melanzane, peperoni</div></div><span class="menu-item-price">€6.00</span></div>
-    </div>
-
-    <!-- Dolci -->
-    <div class="menu-category">
-        <h2>Dolci</h2>
-        <div class="menu-item"><div><div class="menu-item-name">Tiramisù della Casa</div><div class="menu-item-desc">Mascarpone, caffè, cacao</div></div><span class="menu-item-price">€6.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Panna Cotta</div><div class="menu-item-desc">Salsa ai frutti di bosco</div></div><span class="menu-item-price">€5.50</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Gelato Artigianale</div><div class="menu-item-desc">Assaggio di 3 gusti</div></div><span class="menu-item-price">€5.00</span></div>
-    </div>
-
-    <!-- Bevande -->
-    <div class="menu-category">
-        <h2>Bevande</h2>
-        <div class="menu-item"><div><div class="menu-item-name">Acqua Minerale</div><div class="menu-item-desc">Naturale o frizzante 750ml</div></div><span class="menu-item-price">€2.50</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Vino della Casa</div><div class="menu-item-desc">Rosso o Bianco, calice</div></div><span class="menu-item-price">€4.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Birra Artigianale</div><div class="menu-item-desc">Selezione locale, 33cl</div></div><span class="menu-item-price">€5.00</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Caffè Espresso</div><div class="menu-item-desc">Miscela italiana</div></div><span class="menu-item-price">€1.50</span></div>
-    </div>
-
-    <div class="menu-note">
-        <p><i class="fas fa-info-circle"></i> I prezzi sono IVA inclusa. Ingredienti freschi ogni giorno.</p>
-        <p style="color:#c0392b; margin-top:10px;"><strong>Martedì CHIUSO</strong></p>
-        <a href="index.html" class="back-btn" style="display:inline-block; margin-top:25px;"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
-    </div>
+<div class="menu-image-container">
+    <img src="menu2026.jpeg" alt="Menù IN&OUT Senigallia 2026" onerror="this.onerror=null; this.src='https://placehold.co/1000x1400/1f1b17/c9a962?text=Menù+IN%26OUT+2026';">
 </div>
 
-<a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<div class="deliveroo-btn-container">
+    <a href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&utm_medium=referrer&utm_source=menu_share" target="_blank" class="btn-deliveroo">
+        <i class="fas fa-motorcycle"></i> Ordina su Deliveroo
+    </a>
+</div>
+
+<a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
