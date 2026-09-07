@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IN&OUT Senigallia – Pizzeria Ristorante | Menù 2026</title>
+    <title>IN&OUT Senigallia – Pizzeria Ristorante Italiano</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0e0d0c;
-            --surface: #1a1918;
-            --card: #201f1e;
+            --bg: #0d0b09;
+            --surface: #171412;
+            --card: #1f1b17;
             --text: #f5f1e8;
             --muted: #b0a89d;
             --accent: #d4a373;
             --accent-strong: #e6b17e;
-            --green: #7f9f7f;
             --gold: #c9a962;
             --whatsapp: #25D366;
+            --red: #c0392b;
             --shadow: 0 12px 40px rgba(0,0,0,0.5);
             --shadow-hover: 0 25px 50px rgba(0,0,0,0.6);
-            --radius: 20px;
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --radius: 16px;
+            --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -31,159 +31,174 @@
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
-            letter-spacing: 0.2px;
         }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        .section { padding: 90px 0; position: relative; }
+        .section { padding: 100px 0; }
         .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 3.5rem; color: var(--gold); margin-bottom: 15px; position: relative; display: inline-block; }
-        .section-title h2::after {
-            content: ''; position: absolute; left: 50%; bottom: -12px;
-            transform: translateX(-50%); width: 90px; height: 3px;
-            background: var(--accent); border-radius: 2px;
-        }
-        .section-title p { font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 25px auto 0; }
+        .section-title h2 { font-size: 3rem; color: var(--gold); margin-bottom: 12px; }
+        .section-title p { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto; }
         .btn {
             display: inline-block; background: var(--accent); color: #1a1410;
-            padding: 16px 42px; border-radius: 50px; text-decoration: none;
-            font-weight: 600; letter-spacing: 1px; transition: var(--transition);
+            padding: 16px 40px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; letter-spacing: 0.5px; transition: var(--transition);
             border: none; cursor: pointer; font-size: 1rem;
-            box-shadow: 0 10px 30px rgba(212, 163, 115, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 163, 115, 0.25);
         }
-        .btn:hover {
-            background: var(--accent-strong);
-            transform: translateY(-6px);
-            box-shadow: 0 18px 35px rgba(212, 163, 115, 0.4);
-        }
-        .btn-outline {
-            background: transparent; border: 2px solid var(--accent);
-            color: var(--accent); box-shadow: none;
-        }
+        .btn:hover { background: var(--accent-strong); transform: translateY(-4px); }
+        .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); box-shadow: none; }
         .btn-outline:hover { background: var(--accent); color: #1a1410; }
         .btn-whatsapp {
             background: var(--whatsapp); color: white;
-            display: inline-flex; align-items: center; gap: 12px;
-            padding: 16px 38px; border-radius: 50px;
-            font-weight: 600; text-decoration: none; letter-spacing: 1px;
-            transition: var(--transition); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; border-radius: 50px; font-weight: 600;
+            text-decoration: none; transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
         }
-        .btn-whatsapp:hover { background: #1da851; transform: translateY(-5px); }
+        .btn-whatsapp:hover { background: #1da851; transform: translateY(-4px); }
 
-        /* loader */
+        /* Loader */
         #page-loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg); z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         #page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .loader-logo { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem; }
+        .loader-logo { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem; }
         .loader-spinner {
-            width: 60px; height: 60px; border: 4px solid var(--surface);
+            width: 55px; height: 55px; border: 4px solid var(--surface);
             border-top-color: var(--accent); border-radius: 50%;
             animation: spin 0.9s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* header */
+        /* Header */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(10, 9, 8, 0.7); backdrop-filter: blur(15px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            background: rgba(13, 11, 9, 0.85); backdrop-filter: blur(18px);
             transition: var(--transition);
         }
-        header.scrolled { background: rgba(10, 9, 8, 0.95); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
-        .logo-wrapper { display: flex; align-items: center; text-decoration: none; }
-        .logo-img { height: 52px; width: auto; transition: transform 0.3s; }
-        .logo-img:hover { transform: scale(1.05); }
-        .logo-fallback { display: none; height: 52px; width: auto; }
-        .logo-img.error + .logo-fallback { display: inline-block; }
-        .logo-img.error { display: none; }
-
-        nav ul { display: flex; list-style: none; gap: 2.2rem; }
-        nav a { color: var(--text); text-decoration: none; font-weight: 500; position: relative; padding: 6px 0; transition: color 0.3s; font-size: 1.05rem; }
+        header.scrolled { background: rgba(13, 11, 9, 0.97); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+        .logo-wrapper { display: flex; align-items: center; text-decoration: none; gap: 10px; }
+        .logo-icon {
+            width: 46px; height: 46px; background: var(--accent);
+            border-radius: 12px; display: flex; align-items: center;
+            justify-content: center; font-family: 'Playfair Display', serif;
+            font-weight: 700; font-size: 1.6rem; color: #1a1410;
+        }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--accent); }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a {
+            color: var(--text); text-decoration: none; font-weight: 500;
+            position: relative; padding: 6px 0; transition: color 0.3s; font-size: 1.05rem;
+        }
         nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
         nav a:hover { color: var(--accent-strong); }
         nav a:hover::after { width: 100%; }
         .menu-toggle { display: none; background: none; border: none; font-size: 2rem; color: var(--text); cursor: pointer; }
 
-        /* hero */
+        /* Hero */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            background: radial-gradient(circle at 20% 30%, #2a241e 0%, #0e0d0c 70%);
-            text-align: center;
-            position: relative;
+            height: 100vh; min-height: 600px;
+            background: linear-gradient(rgba(13, 11, 9, 0.6), rgba(13, 11, 9, 0.75)),
+                        url('https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative;
         }
-        .hero-content { max-width: 750px; margin: 0 auto; animation: fadeUp 1s ease; }
-        .hero-content h1 { font-size: 5rem; margin-bottom: 1rem; color: var(--gold); text-shadow: 0 4px 20px rgba(201, 169, 98, 0.3); }
-        .hero-content p { font-size: 1.5rem; margin-bottom: 2.5rem; color: var(--muted); }
-        .hero-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .hero-content { max-width: 800px; margin: 0 auto; animation: fadeUp 1.2s ease; }
+        .hero-badge {
+            display: inline-block; background: rgba(212, 163, 115, 0.15);
+            border: 1px solid var(--accent); color: var(--accent-strong);
+            padding: 8px 22px; border-radius: 30px; font-size: 0.9rem;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px;
+        }
+        .hero-content h1 { font-size: 5rem; color: #fff; margin-bottom: 1rem; text-shadow: 0 4px 30px rgba(0,0,0,0.6); }
+        .hero-content h1 span { color: var(--gold); }
+        .hero-content p { font-size: 1.5rem; color: #eee; margin-bottom: 2.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero-btns { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
 
-        /* menu grande section */
-        .menu-display { background: var(--surface); }
-        .menu-large-card {
-            max-width: 850px; margin: 0 auto; background: var(--card);
-            border-radius: var(--radius); box-shadow: var(--shadow-hover);
-            overflow: hidden; transition: var(--transition); border: 1px solid rgba(201,169,98,0.15);
+        /* About / Stats */
+        .stats-bar {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+            max-width: 900px; margin: -60px auto 0; position: relative; z-index: 5;
         }
-        .menu-large-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .menu-large-card img { width: 100%; display: block; cursor: zoom-in; }
-        .menu-card-body { padding: 30px; text-align: center; }
-        .menu-card-body h3 { font-size: 2rem; color: var(--gold); margin-bottom: 10px; }
-        .menu-card-body p { color: var(--muted); margin-bottom: 20px; }
-        .menu-badge {
-            display: inline-block; background: #c0392b; color: white;
-            padding: 8px 20px; border-radius: 30px; font-weight: 600;
-            font-size: 0.9rem; margin-bottom: 20px; letter-spacing: 1px;
+        .stat-item {
+            background: var(--card); padding: 25px; text-align: center;
+            border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: var(--shadow);
         }
+        .stat-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-weight: 700; }
+        .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 5px; }
 
-        /* galerie épurée */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-        .gallery-grid img {
-            width: 100%; aspect-ratio: 4/3; object-fit: cover;
-            border-radius: var(--radius); box-shadow: var(--shadow);
-            transition: var(--transition); border: 1px solid rgba(255,255,255,0.05);
+        /* Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: var(--radius); cursor: pointer; }
+        .gallery-item img {
+            width: 100%; height: 260px; object-fit: cover;
+            transition: transform 0.5s ease, filter 0.3s;
+            border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.06);
         }
-        .gallery-grid img:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--accent); }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item .overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px; color: white; opacity: 0; transition: opacity 0.3s;
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+        .gallery-item:hover .overlay { opacity: 1; }
+        .gallery-item .overlay span { font-weight: 600; font-size: 1.1rem; }
 
-        /* réservation */
+        /* Lightbox */
+        .lightbox {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 2000;
+            align-items: center; justify-content: center; cursor: zoom-out;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px; }
+        .lightbox-close {
+            position: absolute; top: 30px; right: 40px; font-size: 3rem;
+            color: white; cursor: pointer; transition: color 0.3s;
+        }
+        .lightbox-close:hover { color: var(--accent); }
+
+        /* Reservation */
         .reservation { background: var(--surface); }
-        .whatsapp-steps { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin: 40px 0; }
+        .whatsapp-steps { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; margin: 40px 0; }
         .step {
-            background: var(--card); padding: 30px 20px;
-            border-radius: var(--radius); flex: 1; min-width: 200px;
-            text-align: center; transition: var(--transition); border: 1px solid rgba(255,255,255,0.05);
+            background: var(--card); padding: 30px 25px; border-radius: var(--radius);
+            flex: 1; min-width: 220px; text-align: center; transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.06);
         }
-        .step:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .step:hover { transform: translateY(-6px); border-color: var(--accent); }
         .step-number {
-            display: inline-block; width: 45px; height: 45px;
-            background: var(--accent); border-radius: 50%;
-            line-height: 45px; font-weight: bold; margin-bottom: 15px; color: #1a1410;
+            display: inline-block; width: 48px; height: 48px; background: var(--accent);
+            border-radius: 50%; line-height: 48px; font-weight: bold; margin-bottom: 15px;
+            color: #1a1410; font-size: 1.2rem;
         }
-        .step h3 { margin-bottom: 10px; font-size: 1.3rem; color: var(--gold); }
+        .step h3 { margin-bottom: 8px; font-size: 1.3rem; color: var(--gold); }
 
-        /* contact */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .info-box { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 30px; }
+        /* Contact */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .info-box { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 28px; }
         .info-icon {
-            width: 55px; height: 55px; background: var(--card);
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: var(--accent);
-            font-size: 1.4rem; flex-shrink: 0; transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.05);
+            width: 55px; height: 55px; background: var(--card); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent); font-size: 1.4rem; transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
         }
         .info-box:hover .info-icon { background: var(--accent); color: #1a1410; }
-        .map iframe {
-            width: 100%; height: 100%; min-height: 350px;
-            border-radius: var(--radius); border: none; box-shadow: var(--shadow);
-            filter: grayscale(0.3);
-        }
+        .info-box h3 { color: var(--gold); margin-bottom: 5px; }
+        .info-box a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+        .info-box a:hover { color: var(--accent-strong); }
+        .map iframe { width: 100%; height: 100%; min-height: 380px; border-radius: var(--radius); border: none; box-shadow: var(--shadow); }
 
-        /* footer */
-        footer { background: #0a0908; color: #ddd; padding: 60px 0 20px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 40px; margin-bottom: 40px; }
+        /* Footer */
+        footer { background: #0a0806; color: #ddd; padding: 70px 0 25px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); }
         .footer-links { list-style: none; }
         .footer-links li { margin-bottom: 10px; }
@@ -191,38 +206,35 @@
         .footer-links a:hover { color: var(--accent-strong); }
         .social-icons { display: flex; gap: 15px; margin-top: 20px; }
         .social-icons a {
-            width: 42px; height: 42px; background: rgba(255,255,255,0.08);
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: white; transition: var(--transition);
+            width: 42px; height: 42px; background: rgba(255,255,255,0.08); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: white;
+            transition: var(--transition); text-decoration: none;
         }
         .social-icons a:hover { background: var(--accent); color: #1a1410; transform: translateY(-3px); }
         .copyright { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.9rem; opacity: 0.7; }
 
-        /* float buttons */
+        /* Float buttons */
         .whatsapp-float {
             position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px;
-            background: var(--whatsapp); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.8rem; box-shadow: 0 6px 20px rgba(37,211,102,0.4);
-            z-index: 99; transition: transform 0.3s; text-decoration: none;
+            background: var(--whatsapp); border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 1.8rem;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.4); z-index: 99; transition: transform 0.3s;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-            background: var(--accent); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: #1a1410; opacity: 0; visibility: hidden;
+            background: var(--accent); border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: #1a1410; opacity: 0; visibility: hidden;
             transition: var(--transition); z-index: 99;
         }
         .back-to-top.active { opacity: 1; visibility: visible; }
         .back-to-top:hover { background: var(--accent-strong); }
 
-        /* mobile menu */
+        /* Mobile nav */
         .mobile-nav {
-            position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
-            background: var(--surface); z-index: 1001;
-            flex-direction: column; padding: 2rem;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+            position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+            background: var(--surface); z-index: 1001; flex-direction: column;
+            padding: 2rem; box-shadow: -5px 0 25px rgba(0,0,0,0.5);
             transition: right 0.4s ease; display: flex;
         }
         .mobile-nav.active { right: 0; }
@@ -231,36 +243,25 @@
         .mobile-nav a { color: var(--text); text-decoration: none; font-size: 1.3rem; font-weight: 500; }
         .close-menu { background: none; border: none; font-size: 2rem; align-self: flex-end; cursor: pointer; color: var(--text); }
 
-        /* lightbox pour le menu agrandi */
-        .lightbox {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 2000;
-            align-items: center; justify-content: center; cursor: zoom-out;
-        }
-        .lightbox.active { display: flex; }
-        .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 10px; }
-        .lightbox-close {
-            position: absolute; top: 30px; right: 40px; font-size: 3rem;
-            color: white; cursor: pointer; transition: color 0.3s;
-        }
-        .lightbox-close:hover { color: var(--accent); }
-
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 992px) {
             .contact-grid { grid-template-columns: 1fr; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .desktop-nav { display: none; }
             .menu-toggle { display: block; }
             .hero-content h1 { font-size: 3rem; }
-            .section-title h2 { font-size: 2.4rem; }
+            .section-title h2 { font-size: 2.2rem; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .logo-img, .logo-fallback { height: 45px; }
+            .logo-text { font-size: 1.4rem; }
+            .logo-icon { width: 40px; height: 40px; font-size: 1.3rem; }
         }
         @media (max-width: 500px) {
             .gallery-grid { grid-template-columns: 1fr; }
             .hero-content h1 { font-size: 2.4rem; }
+            .stats-bar { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -276,22 +277,17 @@
 <!-- Header -->
 <header>
     <div class="container header-inner">
-        <a href="#home" class="logo-wrapper">
-            <img src="logo-senegalia.png" alt="IN&OUT Senigallia" class="logo-img" id="logoImg"
-                 onerror="this.classList.add('error'); document.getElementById('logoFallback').style.display='inline-block';">
-            <svg id="logoFallback" class="logo-fallback" width="130" height="50" viewBox="0 0 130 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="5" width="120" height="40" rx="10" fill="#1a1918"/>
-                <text x="65" y="32" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="bold" font-size="22" fill="#c9a962">IN&amp;OUT</text>
-                <circle cx="65" cy="38" r="3" fill="#d4a373"/>
-            </svg>
+        <a href="index.html" class="logo-wrapper">
+            <div class="logo-icon">I&O</div>
+            <span class="logo-text">IN&OUT <span>Senigallia</span></span>
         </a>
         <nav class="desktop-nav">
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#menu">Menù</a></li>
-                <li><a href="#gallery">Piatti</a></li>
-                <li><a href="#reservation">Prenota</a></li>
-                <li><a href="#contact">Contatti</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menù</a></li>
+                <li><a href="index.html#gallery">Piatti</a></li>
+                <li><a href="index.html#reservation">Prenota</a></li>
+                <li><a href="index.html#contact">Contatti</a></li>
             </ul>
         </nav>
         <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
@@ -302,109 +298,82 @@
 <div class="mobile-nav" id="mobileNav">
     <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
     <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#menu">Menù</a></li>
-        <li><a href="#gallery">Piatti</a></li>
-        <li><a href="#reservation">Prenota</a></li>
-        <li><a href="#contact">Contatti</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menù</a></li>
+        <li><a href="index.html#gallery">Piatti</a></li>
+        <li><a href="index.html#reservation">Prenota</a></li>
+        <li><a href="index.html#contact">Contatti</a></li>
     </ul>
 </div>
 
-<!-- Lightbox pour menu agrandi -->
-<div class="lightbox" id="menuLightbox">
-    <span class="lightbox-close" id="lightboxClose">&times;</span>
-    <img src="menu2026.jpeg" alt="Menù IN&OUT Senigallia 2026" id="lightboxImg">
-</div>
-
-<!-- Hero -->
+<!-- HERO -->
 <section class="hero" id="home">
     <div class="container hero-content">
-        <h1>IN&OUT Senigallia</h1>
-        <p>Il gusto autentico della cucina italiana sul mare Adriatico</p>
+        <span class="hero-badge">★ Dal 2001 – Pizzeria Ristorante</span>
+        <h1>IN&OUT <span>Senigallia</span></h1>
+        <p>Il vero gusto italiano sul mare Adriatico</p>
         <div class="hero-btns">
-            <a href="#menu" class="btn">Scopri il Menù</a>
+            <a href="menu.html" class="btn">Scopri il Menù</a>
             <a href="#reservation" class="btn btn-outline">Prenota un Tavolo</a>
         </div>
     </div>
 </section>
 
-<!-- Section Menu (grande image) -->
-<section class="section menu-display" id="menu">
-    <div class="container">
-        <div class="section-title">
-            <h2>Il nostro Menù</h2>
-            <p>Clicca sull'immagine per ingrandire</p>
-        </div>
-        <div class="menu-large-card">
-            <img src="menu2026.jpeg" alt="Menù IN&OUT Senigallia 2026" id="menuImage"
-                 onerror="this.onerror=null; this.src='https://placehold.co/850x1100/1a1918/c9a962?text=Menù+IN%26OUT+2026';">
-            <div class="menu-card-body">
-                <span class="menu-badge"><i class="fas fa-calendar-times"></i> Martedì CHIUSO</span>
-                <h3>Menù Completo 2026</h3>
-                <p>Consulta tutte le nostre specialità – pizza, mare, carne, dolci</p>
-                <a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20avere%20il%20menù%20in%20PDF" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Richiedi Menù PDF
-                </a>
-            </div>
-        </div>
-        <p style="text-align:center; margin-top:25px; color:var(--muted);">
-            <i class="far fa-clock"></i> Orari: Lun–Dom 12:00–14:00 e 19:00–23:00 – <strong style="color:#c0392b;">Martedì chiuso</strong>
-        </p>
+<!-- Stats Bar -->
+<section class="container">
+    <div class="stats-bar">
+        <div class="stat-item"><div class="stat-number">20+</div><div class="stat-label">Anni di esperienza</div></div>
+        <div class="stat-item"><div class="stat-number">4.5★</div><div class="stat-label">Oltre 800 recensioni</div></div>
+        <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Piatti originali</div></div>
+        <div class="stat-item"><div class="stat-number">10k+</div><div class="stat-label">Clienti felici</div></div>
     </div>
 </section>
 
-<!-- Galerie (photos des plats récupérées) -->
+<!-- Gallery -->
 <section class="section" id="gallery">
     <div class="container">
         <div class="section-title">
-            <h2>I nostri piatti</h2>
-            <p>Uno sguardo alle nostre creazioni culinarie</p>
+            <h2>I Nostri Piatti</h2>
+            <p>Scopri le nostre specialità preparate ogni giorno con ingredienti freschi</p>
         </div>
         <div class="gallery-grid">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHtuCVkRlCYv8wNDDadQ1AgdFFYluttq1p1hCXGSXzoJQrH_So65nICxTwlN6ihOa0bF30LQKqWyhCruQ8O-rW9G89DNi28wam777Bv8yC3QliApLjgAca6-j-IDdsqMGZl73iWfEFo_eKE=s680-w680-h510" alt="Pizza IN&OUT Senigallia">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF_Nr0qJlEh4W2WNQKGoC_3sLLRLyN4qyl5-ZD_9VAhWP6aW7GGbSWaPt92JdcKPmbFCFFd99OZ08HqsSymC4Mt6sZSn89b5TaunRDpeQ8mLqrI0B64jhxGTqcHNEQx9Dz3kHs=s680-w680-h510" alt="Pasta fresca">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAE-5ePFOKTgd79uCNI57J2HPa3aHwIdqvDkq47WqEdceo_1ET84QjKoEevWOTrg8Gf3RsueoGwbGcR7iF-bT6nk7If_K6ddczvdNRGXsspDglh2zbIKL50tpVmlS3qb9jdkiDdyxg=s680-w680-h510" alt="Antipasti di mare">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHzBYi0hqgIvTQNmVN76rw-hm9Y9zy4mDQ7VBPByW6EVJEVVFG6Z3YezC3y4hP0TVYl0UBQ4JvUIVBjOUi88Cs0kACEB13M1ioBKvnFP0Wy3wnWK-K_OCubAthS5V9OvNLMI1BWYg=s680-w680-h510" alt="Carne alla griglia">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHkb2T7Ep1xlQ_oBxLcDKAHBVARngjp4guVZu4Q_3AV-27dnYB6M1ikbTSqxMPZtfLr4BUxAAu3jqVBt1pKFYsp82lJt_jvTCufN-hCYFx2mhBS44LfMHS7-y-sep6GURxMm_eP=s680-w680-h510" alt="Pesce del giorno">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGUEfDtn4123ExR8sQxJ8df119NMah6etEeEF5ZOlCYDeZrlccNoLSNQj2-ud_NmeKjEDZg7gmizrSI8RDIYSoPbTw-67m7r5wRPDzhnA_gbWQ2ylju7D7XJcNFXhyVqwh2EpGU=s680-w680-h510" alt="Dolci artigianali">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF7p4dt_NYsrNfcsKpQpmQtIwSjVKKUXQnT25lGOV2t6YUjzaneNKfcYt8Y2YMYgMFR5fzLa8cIvfC8nL90u4RLvTOh7jgdar7qR65gJ5GdYQjmIuAbn-DZzyHHIR2TVgYPX3T8=s680-w680-h510" alt="Risotto">
-            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGzTw_kNQOqfsJAR3_q5fYhKueHLZb8SIOtpFVV2UvH8Q9DMZ0LkvIgAJTRFBbIJEtEBxy_EhifC84O4FlSyBT-L7NBngGWAkveYrW-M20Vfm04S4HsVzKBXxM8NXkcM2oiGIwd=s680-w680-h510" alt="Clienti felici">
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pizza"><div class="overlay"><span>Pizza</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pasta"><div class="overlay"><span>Pasta</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Antipasti"><div class="overlay"><span>Antipasti</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Carne"><div class="overlay"><span>Carne</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pesce"><div class="overlay"><span>Pesce</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Dolci"><div class="overlay"><span>Dolci</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Risotto"><div class="overlay"><span>Risotto</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ambiente"><div class="overlay"><span>Ambiente</span></div></div>
         </div>
     </div>
 </section>
 
-<!-- Réservation -->
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img src="" alt="Immagine" id="lightboxImg">
+</div>
+
+<!-- Reservation -->
 <section class="section reservation" id="reservation">
     <div class="container">
         <div class="section-title">
             <h2>Prenota con WhatsApp</h2>
             <p>Veloce, diretto e senza attese</p>
         </div>
-        <div style="text-align:center; margin-bottom: 40px;">
-            <i class="fab fa-whatsapp" style="font-size: 5rem; color: var(--whatsapp);"></i>
+        <div style="text-align:center; margin-bottom: 35px;">
+            <i class="fab fa-whatsapp" style="font-size: 4.5rem; color: var(--whatsapp);"></i>
         </div>
         <div class="whatsapp-steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Clicca</h3>
-                <p>Usa il pulsante WhatsApp</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Scrivi</h3>
-                <p>Data, ora e numero di persone</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Conferma</h3>
-                <p>Risposta immediata</p>
-            </div>
+            <div class="step"><div class="step-number">1</div><h3>Clicca</h3><p>Usa il pulsante WhatsApp</p></div>
+            <div class="step"><div class="step-number">2</div><h3>Scrivi</h3><p>Data, ora e numero di persone</p></div>
+            <div class="step"><div class="step-number">3</div><h3>Conferma</h3><p>Risposta immediata</p></div>
         </div>
         <div style="text-align:center;">
-            <a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo%20al%20ristorante%20IN%26OUT%20Senigallia" target="_blank" class="btn-whatsapp">
+            <a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo%20presso%20IN%26OUT%20Senigallia" target="_blank" class="btn-whatsapp">
                 <i class="fab fa-whatsapp"></i> Prenota Ora su WhatsApp
             </a>
-            <p style="margin-top:20px; opacity:0.8;"><i class="fas fa-phone-alt"></i> +39 371 381 3563</p>
         </div>
     </div>
 </section>
@@ -413,26 +382,38 @@
 <section class="section" id="contact">
     <div class="container">
         <div class="section-title">
-            <h2>Dove siamo</h2>
-            <p>Vieni a trovarci a Senigallia</p>
+            <h2>Dove Siamo</h2>
+            <p>Vieni a trovarci nel cuore di Senigallia</p>
         </div>
         <div class="contact-grid">
             <div>
                 <div class="info-box">
                     <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div><h3>Indirizzo</h3><p>Via Istria, 1<br>60019 Senigallia (AN)</p></div>
+                    <div>
+                        <h3>Indirizzo</h3>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Via+Istria+1+60019+Senigallia+AN" target="_blank">Via Istria, 1 – 60019 Senigallia (AN)</a>
+                    </div>
                 </div>
                 <div class="info-box">
                     <div class="info-icon"><i class="fas fa-phone"></i></div>
-                    <div><h3>Telefono</h3><p>+39 071 793 1259</p></div>
+                    <div>
+                        <h3>Telefono</h3>
+                        <a href="tel:+390717931259">+39 071 793 1259</a>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/393713813563" target="_blank">+39 371 381 3563</a>
+                    </div>
                 </div>
                 <div class="info-box">
                     <div class="info-icon"><i class="fas fa-clock"></i></div>
-                    <div><h3>Orari</h3><p><strong style="color:#c0392b;">Martedì: CHIUSO</strong><br>Lun–Dom: 12:00–14:00 e 19:00–23:00</p></div>
-                </div>
-                <div class="info-box">
-                    <div class="info-icon"><i class="fas fa-star"></i></div>
-                    <div><h3>Recensioni</h3><p>4,5/5 su Google – oltre 800 recensioni</p></div>
+                    <div>
+                        <h3>Orari</h3>
+                        <p style="color:var(--muted);"><strong style="color:#c0392b;">Martedì: CHIUSO</strong><br>Lun–Dom: 12:00–14:00 e 19:00–23:00</p>
+                    </div>
                 </div>
             </div>
             <div class="map">
@@ -447,111 +428,78 @@
     <div class="container">
         <div class="footer-grid">
             <div>
-                <div class="footer-logo">IN&OUT Senigallia</div>
+                <div class="footer-logo">IN&OUT <span style="color:var(--accent);">Senigallia</span></div>
                 <p style="margin-top:10px;">Pizzeria Ristorante – dal 2001 la vera cucina italiana nel cuore di Senigallia.</p>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/InOutSenigallia" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/inoutsenigallia/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook" onclick="return false;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram" onclick="return false;"><i class="fab fa-instagram"></i></a>
                 </div>
+                <p style="font-size:0.8rem; margin-top:10px; color:var(--muted);">Social da aggiornare</p>
             </div>
             <div>
-                <h3 style="color: var(--accent); margin-bottom:15px;">Link rapidi</h3>
+                <h3 style="color:var(--accent); margin-bottom:15px;">Link Rapidi</h3>
                 <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#menu">Menù</a></li>
-                    <li><a href="#gallery">Piatti</a></li>
-                    <li><a href="#reservation">Prenotazione</a></li>
-                    <li><a href="#contact">Contatti</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menù</a></li>
+                    <li><a href="index.html#gallery">Piatti</a></li>
+                    <li><a href="index.html#reservation">Prenotazione</a></li>
+                    <li><a href="index.html#contact">Contatti</a></li>
                 </ul>
             </div>
             <div>
-                <h3 style="color: var(--accent); margin-bottom:15px;">Contatti</h3>
+                <h3 style="color:var(--accent); margin-bottom:15px;">Contatti</h3>
                 <p><i class="fas fa-map-marker-alt"></i> Via Istria, 1, Senigallia</p>
-                <p><i class="fas fa-phone"></i> +39 071 793 1259</p>
-                <p><i class="fab fa-whatsapp"></i> +39 371 381 3563</p>
-                <p><i class="fas fa-envelope"></i> info@inoutsenigallia.it</p>
+                <p><i class="fas fa-phone"></i> <a href="tel:+390717931259" style="color:#ddd; text-decoration:none;">+39 071 793 1259</a></p>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/393713813563" target="_blank" style="color:#ddd; text-decoration:none;">+39 371 381 3563</a></p>
+            </div>
+            <div>
+                <h3 style="color:var(--accent); margin-bottom:15px;">Orari</h3>
+                <p>Lun–Dom: 12:00–14:00 / 19:00–23:00</p>
+                <p style="color:#c0392b;"><strong>Martedì CHIUSO</strong></p>
             </div>
         </div>
         <div class="copyright">
-            <p>© 2025 Ristorante IN&OUT Senigallia – P.IVA 02067180428 | Martedì chiuso</p>
+            <p>© 2025 Ristorante IN&OUT Senigallia – P.IVA 02067180428</p>
         </div>
     </div>
 </footer>
 
-<!-- Float buttons -->
-<a href="https://wa.me/393713813563?text=Prenotazione" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-</a>
+<!-- Float -->
+<a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
 
 <script>
     // Loader
-    window.addEventListener('load', function() {
+    window.addEventListener('load', () => {
         const loader = document.getElementById('page-loader');
         loader.classList.add('hidden');
         setTimeout(() => { loader.style.display = 'none'; }, 600);
     });
-
     // Scroll header + back to top
     window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        const backBtn = document.getElementById('backToTop');
-        header.classList.toggle('scrolled', window.scrollY > 50);
-        backBtn.classList.toggle('active', window.scrollY > 600);
+        document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+        document.getElementById('backToTop').classList.toggle('active', window.scrollY > 600);
     });
-
-    // Menu mobile
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    const closeMenu = document.getElementById('closeMenu');
-    menuToggle.addEventListener('click', () => mobileNav.classList.add('active'));
-    closeMenu.addEventListener('click', () => mobileNav.classList.remove('active'));
-    document.querySelectorAll('.mobile-nav a').forEach(link => {
-        link.addEventListener('click', () => mobileNav.classList.remove('active'));
-    });
-
-    // Retour en haut
-    document.getElementById('backToTop').addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Lightbox pour agrandir le menu
-    const menuImage = document.getElementById('menuImage');
-    const lightbox = document.getElementById('menuLightbox');
+    // Mobile nav
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('active'));
+    document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('active'));
+    document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', () => document.getElementById('mobileNav').classList.remove('active')));
+    // Back to top
+    document.getElementById('backToTop').addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+    // Lightbox galerie
+    const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
-
-    menuImage.addEventListener('click', function() {
-        lightboxImg.src = this.src;
-        lightbox.classList.add('active');
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+        });
     });
-
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox || e.target === lightboxClose) {
-            lightbox.classList.remove('active');
-        }
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lightboxClose) lightbox.classList.remove('active');
     });
-
-    lightboxClose.addEventListener('click', function() {
-        lightbox.classList.remove('active');
-    });
-
-    // Correction logo fallback
-    window.addEventListener('DOMContentLoaded', function() {
-        const logoImg = document.getElementById('logoImg');
-        if (logoImg && logoImg.naturalWidth === 0) {
-            logoImg.classList.add('error');
-            document.getElementById('logoFallback').style.display = 'inline-block';
-        }
-    });
-
-    // Échap pour fermer lightbox
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            lightbox.classList.remove('active');
-        }
-    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lightbox.classList.remove('active'); });
 </script>
 </body>
 </html>
