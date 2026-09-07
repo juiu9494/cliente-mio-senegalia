@@ -18,6 +18,7 @@
             --gold: #c9a962;
             --whatsapp: #25D366;
             --red: #c0392b;
+            --deliveroo: #00ccbc;
             --shadow: 0 12px 40px rgba(0,0,0,0.5);
             --shadow-hover: 0 25px 50px rgba(0,0,0,0.6);
             --radius: 16px;
@@ -56,6 +57,14 @@
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
         }
         .btn-whatsapp:hover { background: #1da851; transform: translateY(-4px); }
+        .btn-deliveroo {
+            background: var(--deliveroo); color: white;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; border-radius: 50px; font-weight: 600;
+            text-decoration: none; transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 204, 188, 0.3);
+        }
+        .btn-deliveroo:hover { background: #00b3a4; transform: translateY(-4px); }
 
         /* Loader */
         #page-loader {
@@ -303,6 +312,7 @@
         <li><a href="index.html#gallery">Piatti</a></li>
         <li><a href="index.html#reservation">Prenota</a></li>
         <li><a href="index.html#contact">Contatti</a></li>
+        <li><a href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&utm_medium=referrer&utm_source=menu_share" target="_blank">Ordina su Deliveroo</a></li>
     </ul>
 </div>
 
@@ -315,6 +325,9 @@
         <div class="hero-btns">
             <a href="menu.html" class="btn">Scopri il Menù</a>
             <a href="#reservation" class="btn btn-outline">Prenota un Tavolo</a>
+            <a href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&utm_medium=referrer&utm_source=menu_share" target="_blank" class="btn-deliveroo">
+                <i class="fas fa-motorcycle"></i> Ordina su Deliveroo
+            </a>
         </div>
     </div>
 </section>
@@ -368,9 +381,12 @@
             <div class="step"><div class="step-number">2</div><h3>Scrivi</h3><p>Data, ora e numero di persone</p></div>
             <div class="step"><div class="step-number">3</div><h3>Conferma</h3><p>Risposta immediata</p></div>
         </div>
-        <div style="text-align:center;">
+        <div style="text-align:center; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
             <a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo%20presso%20IN%26OUT%20Senigallia" target="_blank" class="btn-whatsapp">
                 <i class="fab fa-whatsapp"></i> Prenota Ora su WhatsApp
+            </a>
+            <a href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&utm_medium=referrer&utm_source=menu_share" target="_blank" class="btn-deliveroo">
+                <i class="fas fa-motorcycle"></i> Ordina su Deliveroo
             </a>
         </div>
     </div>
@@ -449,6 +465,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> Via Istria, 1, Senigallia</p>
                 <p><i class="fas fa-phone"></i> <a href="tel:+390717931259" style="color:#ddd; text-decoration:none;">+39 071 793 1259</a></p>
                 <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/393713813563" target="_blank" style="color:#ddd; text-decoration:none;">+39 371 381 3563</a></p>
+                <p><i class="fas fa-motorcycle"></i> <a href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&utm_medium=referrer&utm_source=menu_share" target="_blank" style="color:#ddd; text-decoration:none;">Ordina su Deliveroo</a></p>
             </div>
             <div>
                 <h3 style="color:var(--accent); margin-bottom:15px;">Orari</h3>
