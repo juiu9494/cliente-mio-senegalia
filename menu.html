@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menù – IN&OUT Senigallia</title>
+    <meta name="description" content="Scopri le pizze e le offerte IN&OUT Senigallia. Ordina la tua pizza e approfitta della promozione Deliveroo.">
+    <title>Menù e offerte – IN&OUT Senigallia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -30,107 +31,113 @@
             line-height: 1.7;
             overflow-x: hidden;
         }
+        .container { width: min(1100px, 92%); margin: 0 auto; }
         .menu-header {
-            background: var(--surface);
-            padding: 50px 0 30px;
+            background: linear-gradient(135deg, #211812, var(--surface));
+            padding: 58px 0 36px;
             text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
         }
-        .menu-header h1 { font-size: 3.5rem; color: var(--gold); margin-bottom: 10px; }
-        .menu-header p { color: var(--muted); font-size: 1.2rem; }
-        .back-btn {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
+        .menu-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 3.5rem); color: var(--gold); margin-bottom: 10px; }
+        .menu-header p { color: var(--muted); font-size: 1.1rem; }
+        .back-btn { display: inline-block; margin-top: 20px; color: var(--accent); text-decoration: none; font-weight: 600; transition: color 0.3s; }
         .back-btn:hover { color: var(--accent-strong); }
-        .menu-image-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .menu-image-container img {
-            width: 100%;
-            height: auto;
+        .feature-card {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 38px;
+            margin: 48px auto;
+            padding: 22px;
+            background: linear-gradient(145deg, #211b16, #15110e);
+            border: 1px solid rgba(212,163,115,0.22);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
         }
-        .deliveroo-btn-container {
-            text-align: center;
-            margin: 30px 0 50px;
-        }
+        .feature-card img { width: 100%; height: 390px; object-fit: cover; display: block; border-radius: 14px; }
+        .feature-copy { padding: 20px; }
+        .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.82rem; font-weight: 600; }
+        .feature-copy h2, .section-heading { font-family: 'Playfair Display', serif; color: var(--gold); font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.2; margin: 12px 0; }
+        .feature-copy p { color: var(--muted); margin: 12px 0 22px; }
         .btn-deliveroo {
-            background: var(--deliveroo);
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 42px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(0, 204, 188, 0.3);
+            background: var(--deliveroo); color: #fff; display: inline-flex; align-items: center;
+            justify-content: center; gap: 11px; padding: 15px 28px; border-radius: 50px;
+            font-weight: 700; text-decoration: none; transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,204,188,0.25);
         }
-        .btn-deliveroo:hover {
-            background: #00b3a4;
-            transform: translateY(-4px);
+        .btn-deliveroo:hover { background: #00b3a4; transform: translateY(-3px); }
+        .menu-image-container { max-width: 1000px; margin: 60px auto; text-align: center; }
+        .menu-image-container img { width: 100%; height: auto; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.06); }
+        .section-heading { text-align: center; margin: 60px 0 24px; }
+        .deliveroo-promo {
+            position: relative; display: block; max-width: 900px; margin: 28px auto 58px;
+            overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow);
+            border: 1px solid rgba(0,204,188,0.35);
         }
+        .deliveroo-promo img { display: block; width: 100%; max-height: 540px; object-fit: cover; transition: transform 0.5s ease; }
+        .deliveroo-promo:hover img { transform: scale(1.025); }
+        .deliveroo-caption { text-align: center; color: var(--muted); margin: -38px auto 55px; padding: 0 15px; }
+        .deliveroo-btn-container { text-align: center; margin: 28px 0 65px; }
         .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--whatsapp);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            box-shadow: 0 6px 20px rgba(37,211,102,0.4);
-            z-index: 99;
-            text-decoration: none;
+            position: fixed; bottom: 24px; left: 24px; width: 58px; height: 58px;
+            background: var(--whatsapp); border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 1.7rem; box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+            z-index: 99; text-decoration: none;
         }
-        .whatsapp-float:hover { transform: scale(1.1); }
-        @media (max-width: 768px) {
-            .menu-header h1 { font-size: 2.5rem; }
-            .menu-image-container { margin: 20px auto; }
-            .btn-deliveroo { padding: 16px 30px; font-size: 1rem; }
+        @media (max-width: 760px) {
+            .feature-card { grid-template-columns: 1fr; gap: 12px; margin: 28px auto; padding: 14px; }
+            .feature-card img { height: 290px; }
+            .feature-copy { padding: 12px 8px 18px; }
+            .menu-image-container { margin: 36px auto; }
         }
     </style>
 </head>
 <body>
-
-<div class="menu-header">
-    <div class="container" style="max-width: 1000px; margin: 0 auto;">
-        <h1>Il Nostro Menù</h1>
-        <p>Pizzeria Ristorante – Senigallia</p>
+<header class="menu-header">
+    <div class="container">
+        <h1>Il gusto della pizza, la gioia di condividerla</h1>
+        <p>Le specialità e il menù di IN&OUT Senigallia</p>
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
     </div>
-</div>
+</header>
 
-<div class="menu-image-container">
-    <img src="menu2026.jpeg" alt="Menù IN&OUT Senigallia 2026" onerror="this.onerror=null; this.src='https://placehold.co/1000x1400/1f1b17/c9a962?text=Menù+IN%26OUT+2026';">
-</div>
+<main class="container">
+    <section class="feature-card" aria-labelledby="pizza-title">
+        <img src="pizza.jpeg" alt="Pizza fragrante preparata da IN&OUT Senigallia">
+        <div class="feature-copy">
+            <span class="eyebrow">Preparata con passione</span>
+            <h2 id="pizza-title">La nostra pizza, tutta da gustare</h2>
+            <p>Ingredienti scelti, sapori autentici e tutta la passione di IN&OUT. Scopri il menù e scegli la tua prossima pizza preferita.</p>
+            <a href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&amp;utm_medium=referrer&amp;utm_source=menu_share" target="_blank" rel="noopener noreferrer" class="btn-deliveroo">
+                <i class="fas fa-motorcycle" aria-hidden="true"></i> Ordina la tua pizza
+            </a>
+        </div>
+    </section>
 
-<div class="deliveroo-btn-container">
-    <a href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&utm_medium=referrer&utm_source=menu_share" target="_blank" class="btn-deliveroo">
-        <i class="fas fa-motorcycle"></i> Ordina su Deliveroo
-    </a>
-</div>
+    <section aria-labelledby="menu-title">
+        <h2 class="section-heading" id="menu-title">Il nostro menù</h2>
+        <div class="menu-image-container">
+            <img src="menu2026.jpeg" alt="Menù IN&OUT Senigallia 2026" onerror="this.onerror=null; this.src='https://placehold.co/1000x1400/1f1b17/c9a962?text=Men%C3%B9+IN%26OUT+2026';">
+        </div>
+    </section>
 
-<a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
+    <section aria-labelledby="promo-title">
+        <h2 class="section-heading" id="promo-title">Ordina su Deliveroo</h2>
+        <p style="text-align:center; color:var(--muted); max-width:680px; margin:0 auto 24px;">Scopri la nostra proposta e le offerte disponibili: la bontà di IN&OUT arriva direttamente a casa tua.</p>
+        <a class="deliveroo-promo" href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&amp;utm_medium=referrer&amp;utm_source=menu_share" target="_blank" rel="noopener noreferrer" aria-label="Apri IN&OUT su Deliveroo">
+            <img src="delivro_sconto.jpeg" alt="Offerta e sconto Deliveroo per ordinare da IN&OUT Senigallia">
+        </a>
+        <div class="deliveroo-btn-container">
+            <a href="https://deliveroo.it/it/menu/ancona/senigallia/in-out?utm_campaign=organic&amp;utm_medium=referrer&amp;utm_source=menu_share" target="_blank" rel="noopener noreferrer" class="btn-deliveroo">
+                <i class="fas fa-motorcycle" aria-hidden="true"></i> Scopri l’offerta su Deliveroo
+            </a>
+        </div>
+    </section>
+</main>
+
+<a href="https://wa.me/393713813563?text=Ciao%21%20Vorrei%20prenotare%20un%20tavolo" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contattaci su WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
 </a>
-
 </body>
 </html>
